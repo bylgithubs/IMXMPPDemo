@@ -1,0 +1,15 @@
+//
+//  IM-Prefix.pch
+//  IMXMPPDemo
+//
+//  Created by Civet on 2020/5/4.
+//  Copyright © 2020 PersonalONBYL. All rights reserved.
+//
+
+#ifndef IM_Prefix_h
+#define IM_Prefix_h
+
+
+#endif /* IM_Prefix_h */
+
+#import "constants.h"
