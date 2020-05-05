@@ -39,8 +39,13 @@
     [self.passwardLabel setText:@"密码:"];
     
     self.userNameTextField = [[UITextField alloc] init];
+    self.userNameTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwardTextField = [[UITextField alloc] init];
+    self.passwardTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwardTextField.secureTextEntry = YES;
+    
+    self.userNameTextField.text = @"aaa";
+    self.passwardTextField.text = @"aaa";
     
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
@@ -111,11 +116,19 @@
     self.passward = self.passwardTextField.text;
     
     //连接xmpp
-    
+    XmppManager *xmppManager = [XmppManager sharedInstance];
+    xmppManager.isRegisterAfterConnected = NO;
+    [xmppManager connectToServer:self.userName passward:self.passward];
 }
 
 - (void)registerClickAction{
+    self.userName = self.userNameTextField.text;
+    self.passward = self.passwardTextField.text;
     
+    //连接xmpp
+    XmppManager *xmppManager = [XmppManager sharedInstance];
+    xmppManager.isRegisterAfterConnected = YES;
+    [xmppManager connectToServer:self.userName passward:self.passward];
 }
 
 /*

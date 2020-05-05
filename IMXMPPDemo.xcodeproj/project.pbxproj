@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64065FE22460FC9C00AF4975 /* XmppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FE12460FC9C00AF4975 /* XmppManager.m */; };
 		64093B952460113C00C75DA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093B942460113C00C75DA3 /* AppDelegate.m */; };
 		64093B982460113C00C75DA3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093B972460113C00C75DA3 /* ViewController.m */; };
 		64093B9B2460113C00C75DA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64093B992460113C00C75DA3 /* Main.storyboard */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64065FE02460FC9C00AF4975 /* XmppManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmppManager.h; sourceTree = "<group>"; };
+		64065FE12460FC9C00AF4975 /* XmppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XmppManager.m; sourceTree = "<group>"; };
 		64093B902460113C00C75DA3 /* IMXMPPDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMXMPPDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64093B932460113C00C75DA3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		64093B942460113C00C75DA3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -61,6 +64,8 @@
 		64065FDF2460FC0900AF4975 /* Xmpp */ = {
 			isa = PBXGroup;
 			children = (
+				64065FE02460FC9C00AF4975 /* XmppManager.h */,
+				64065FE12460FC9C00AF4975 /* XmppManager.m */,
 			);
 			path = Xmpp;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64065FE22460FC9C00AF4975 /* XmppManager.m in Sources */,
 				64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */,
 				64093B982460113C00C75DA3 /* ViewController.m in Sources */,
 				64093BA32460114300C75DA3 /* main.m in Sources */,
