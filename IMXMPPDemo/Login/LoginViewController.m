@@ -19,7 +19,6 @@
 @property (nonatomic,strong) NSString *userName;
 @property (nonatomic,strong) NSString *passward;
 
-
 @end
 
 @implementation LoginViewController
@@ -28,6 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initUI];
+    [self initData];
 }
 
 -(void)initUI{
@@ -111,10 +111,12 @@
     }];
 }
 
-- (void)loginClickAction{
+- (void)initData{
     self.userName = self.userNameTextField.text;
     self.passward = self.passwardTextField.text;
-    
+}
+
+- (void)loginClickAction{
     //连接xmpp
     XmppManager *xmppManager = [XmppManager sharedInstance];
     xmppManager.isRegisterAfterConnected = NO;
@@ -122,9 +124,6 @@
 }
 
 - (void)registerClickAction{
-    self.userName = self.userNameTextField.text;
-    self.passward = self.passwardTextField.text;
-    
     //连接xmpp
     XmppManager *xmppManager = [XmppManager sharedInstance];
     xmppManager.isRegisterAfterConnected = YES;
