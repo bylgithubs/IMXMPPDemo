@@ -4,6 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'IMXMPPDemo' do
  pod 'XMPPFramework', '~> 4.0.0'
+ pod 'Masonry', '~> 1.1.0'
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 

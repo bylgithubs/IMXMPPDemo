@@ -13,6 +13,7 @@
 		64093B9D2460114300C75DA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64093B9C2460114300C75DA3 /* Assets.xcassets */; };
 		64093BA02460114300C75DA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64093B9E2460114300C75DA3 /* LaunchScreen.storyboard */; };
 		64093BA32460114300C75DA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093BA22460114300C75DA3 /* main.m */; };
+		64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093BAF2460176C00C75DA3 /* LoginViewController.m */; };
 		85AF33461DC05BE2245B04A6 /* Pods_IMXMPPDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,8 @@
 		64093BA22460114300C75DA3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		64093BAA246013E900C75DA3 /* IM-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IM-Prefix.pch"; sourceTree = "<group>"; };
 		64093BAC246014C500C75DA3 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		64093BAE2460176C00C75DA3 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		64093BAF2460176C00C75DA3 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMXMPPDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AE98748654903ADA77D050 /* Pods-IMXMPPDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMXMPPDemo.release.xcconfig"; path = "Target Support Files/Pods-IMXMPPDemo/Pods-IMXMPPDemo.release.xcconfig"; sourceTree = "<group>"; };
 		91276AE7DC66FE3F484D82D5 /* Pods-IMXMPPDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMXMPPDemo.debug.xcconfig"; path = "Target Support Files/Pods-IMXMPPDemo/Pods-IMXMPPDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 		64093B922460113C00C75DA3 /* IMXMPPDemo */ = {
 			isa = PBXGroup;
 			children = (
+				64093BAD246016CB00C75DA3 /* Login */,
 				64093BAB2460149E00C75DA3 /* CommonFiles */,
 				64093BA92460139000C75DA3 /* SupportFiles */,
 				64093B932460113C00C75DA3 /* AppDelegate.h */,
@@ -105,6 +109,15 @@
 				64093BAC246014C500C75DA3 /* constants.h */,
 			);
 			path = CommonFiles;
+			sourceTree = "<group>";
+		};
+		64093BAD246016CB00C75DA3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				64093BAE2460176C00C75DA3 /* LoginViewController.h */,
+				64093BAF2460176C00C75DA3 /* LoginViewController.m */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		E6DF606EE9C229478DC1DEA1 /* Frameworks */ = {
@@ -229,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */,
 				64093B982460113C00C75DA3 /* ViewController.m in Sources */,
 				64093BA32460114300C75DA3 /* main.m in Sources */,
 				64093B952460113C00C75DA3 /* AppDelegate.m in Sources */,
