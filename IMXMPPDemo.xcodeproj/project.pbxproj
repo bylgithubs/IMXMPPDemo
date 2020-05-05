@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		64065FE22460FC9C00AF4975 /* XmppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FE12460FC9C00AF4975 /* XmppManager.m */; };
+		64065FE524614DA200AF4975 /* MainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FE424614DA200AF4975 /* MainTabBarViewController.m */; };
+		64065FE924614E3C00AF4975 /* LoginInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FE824614E3C00AF4975 /* LoginInformationModel.m */; };
+		64065FEE2461519400AF4975 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FED2461519400AF4975 /* AddressViewController.m */; };
+		64065FF2246151F100AF4975 /* ChatRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FF1246151F100AF4975 /* ChatRecordViewController.m */; };
+		64065FF62461522300AF4975 /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FF52461522300AF4975 /* ChatRoomViewController.m */; };
 		64093B952460113C00C75DA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093B942460113C00C75DA3 /* AppDelegate.m */; };
-		64093B982460113C00C75DA3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093B972460113C00C75DA3 /* ViewController.m */; };
 		64093B9B2460113C00C75DA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64093B992460113C00C75DA3 /* Main.storyboard */; };
 		64093B9D2460114300C75DA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64093B9C2460114300C75DA3 /* Assets.xcassets */; };
 		64093BA02460114300C75DA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64093B9E2460114300C75DA3 /* LaunchScreen.storyboard */; };
@@ -21,11 +25,19 @@
 /* Begin PBXFileReference section */
 		64065FE02460FC9C00AF4975 /* XmppManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmppManager.h; sourceTree = "<group>"; };
 		64065FE12460FC9C00AF4975 /* XmppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XmppManager.m; sourceTree = "<group>"; };
+		64065FE324614DA200AF4975 /* MainTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarViewController.h; sourceTree = "<group>"; };
+		64065FE424614DA200AF4975 /* MainTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTabBarViewController.m; sourceTree = "<group>"; };
+		64065FE724614E3C00AF4975 /* LoginInformationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginInformationModel.h; sourceTree = "<group>"; };
+		64065FE824614E3C00AF4975 /* LoginInformationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginInformationModel.m; sourceTree = "<group>"; };
+		64065FEC2461519400AF4975 /* AddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		64065FED2461519400AF4975 /* AddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		64065FF0246151F100AF4975 /* ChatRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRecordViewController.h; sourceTree = "<group>"; };
+		64065FF1246151F100AF4975 /* ChatRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRecordViewController.m; sourceTree = "<group>"; };
+		64065FF42461522300AF4975 /* ChatRoomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRoomViewController.h; sourceTree = "<group>"; };
+		64065FF52461522300AF4975 /* ChatRoomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRoomViewController.m; sourceTree = "<group>"; };
 		64093B902460113C00C75DA3 /* IMXMPPDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMXMPPDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64093B932460113C00C75DA3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		64093B942460113C00C75DA3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		64093B962460113C00C75DA3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		64093B972460113C00C75DA3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		64093B9A2460113C00C75DA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		64093B9C2460114300C75DA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64093B9F2460114300C75DA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,6 +82,51 @@
 			path = Xmpp;
 			sourceTree = "<group>";
 		};
+		64065FE624614DAF00AF4975 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64065FE724614E3C00AF4975 /* LoginInformationModel.h */,
+				64065FE824614E3C00AF4975 /* LoginInformationModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		64065FEA2461514600AF4975 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				64065FEC2461519400AF4975 /* AddressViewController.h */,
+				64065FED2461519400AF4975 /* AddressViewController.m */,
+			);
+			path = Address;
+			sourceTree = "<group>";
+		};
+		64065FEB2461516500AF4975 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				64065FF3246151FB00AF4975 /* ChatRoom */,
+				64065FEF246151B800AF4975 /* ChatRecord */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		64065FEF246151B800AF4975 /* ChatRecord */ = {
+			isa = PBXGroup;
+			children = (
+				64065FF0246151F100AF4975 /* ChatRecordViewController.h */,
+				64065FF1246151F100AF4975 /* ChatRecordViewController.m */,
+			);
+			path = ChatRecord;
+			sourceTree = "<group>";
+		};
+		64065FF3246151FB00AF4975 /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				64065FF42461522300AF4975 /* ChatRoomViewController.h */,
+				64065FF52461522300AF4975 /* ChatRoomViewController.m */,
+			);
+			path = ChatRoom;
+			sourceTree = "<group>";
+		};
 		64093B872460113C00C75DA3 = {
 			isa = PBXGroup;
 			children = (
@@ -91,19 +148,21 @@
 		64093B922460113C00C75DA3 /* IMXMPPDemo */ = {
 			isa = PBXGroup;
 			children = (
-				64065FDF2460FC0900AF4975 /* Xmpp */,
 				64093BAD246016CB00C75DA3 /* Login */,
 				64093BAB2460149E00C75DA3 /* CommonFiles */,
+				64065FEB2461516500AF4975 /* Chat */,
+				64065FEA2461514600AF4975 /* Address */,
+				64065FDF2460FC0900AF4975 /* Xmpp */,
 				64093BA92460139000C75DA3 /* SupportFiles */,
 				64093B932460113C00C75DA3 /* AppDelegate.h */,
 				64093B942460113C00C75DA3 /* AppDelegate.m */,
-				64093B962460113C00C75DA3 /* ViewController.h */,
-				64093B972460113C00C75DA3 /* ViewController.m */,
 				64093B992460113C00C75DA3 /* Main.storyboard */,
 				64093B9C2460114300C75DA3 /* Assets.xcassets */,
 				64093B9E2460114300C75DA3 /* LaunchScreen.storyboard */,
 				64093BA12460114300C75DA3 /* Info.plist */,
 				64093BA22460114300C75DA3 /* main.m */,
+				64065FE324614DA200AF4975 /* MainTabBarViewController.h */,
+				64065FE424614DA200AF4975 /* MainTabBarViewController.m */,
 			);
 			path = IMXMPPDemo;
 			sourceTree = "<group>";
@@ -127,6 +186,7 @@
 		64093BAD246016CB00C75DA3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				64065FE624614DAF00AF4975 /* Model */,
 				64093BAE2460176C00C75DA3 /* LoginViewController.h */,
 				64093BAF2460176C00C75DA3 /* LoginViewController.m */,
 			);
@@ -256,10 +316,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				64065FE22460FC9C00AF4975 /* XmppManager.m in Sources */,
+				64065FF2246151F100AF4975 /* ChatRecordViewController.m in Sources */,
 				64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */,
-				64093B982460113C00C75DA3 /* ViewController.m in Sources */,
+				64065FE924614E3C00AF4975 /* LoginInformationModel.m in Sources */,
+				64065FE524614DA200AF4975 /* MainTabBarViewController.m in Sources */,
 				64093BA32460114300C75DA3 /* main.m in Sources */,
 				64093B952460113C00C75DA3 /* AppDelegate.m in Sources */,
+				64065FEE2461519400AF4975 /* AddressViewController.m in Sources */,
+				64065FF62461522300AF4975 /* ChatRoomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,11 +12,17 @@
 
 #endif /* constants_h */
 
+
+#pragma mark 屏幕大小
 #define SCREENWIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
 
-//#define SERVER_DOMAIN @"civetmac030"
+#pragma mark 服务器相关
 #define SERVER_DOMAIN @"192.168.43.139"
 #define SERVER_PORT @"5222"
 #define XMPP_RESOURCE @"iOS"
 #define HOST_NAME @"192.168.43.139"
+
+#pragma mark 添加通知
+#define LOGIN_SUCCESS @"LoginSuccess"
+#define REGISTER_SUCCESS @"RegisterSuccess"

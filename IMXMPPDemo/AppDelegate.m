@@ -22,7 +22,24 @@
     self.window.rootViewController = loginVC;
     [self.window makeKeyAndVisible];
     
+    [self notificationRegister:YES];
+    
     return YES;
+}
+
+#pragma mark notification
+- (void)notificationRegister:(BOOL)flag{
+    if (flag) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(entryMainTabBar:) name:LOGIN_SUCCESS object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:LOGIN_SUCCESS object:nil];
+    }
+}
+
+- (void)entryMainTabBar:(NSNotification *)noti{
+    MainTabBarViewController *mainTabBarVC = [[MainTabBarViewController alloc] init];
+    self.window.rootViewController = mainTabBarVC;
+    [self.window makeKeyAndVisible];
 }
 
 
@@ -52,5 +69,8 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)dealloc{
+    [self notificationRegister:NO];
+}
 
 @end

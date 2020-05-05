@@ -108,10 +108,9 @@
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender {
     NSLog(@"xmppStreamDidAuthenticate:");
     
-    //_loginSuccess();
-    //[self doOnline];
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
     [[self xmppStream] sendElement:presence];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:nil];
 }
 
 #pragma mark 密码验证失败方法
