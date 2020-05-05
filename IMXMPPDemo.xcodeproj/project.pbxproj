@@ -11,8 +11,27 @@
 		64065FE524614DA200AF4975 /* MainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FE424614DA200AF4975 /* MainTabBarViewController.m */; };
 		64065FE924614E3C00AF4975 /* LoginInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FE824614E3C00AF4975 /* LoginInformationModel.m */; };
 		64065FEE2461519400AF4975 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FED2461519400AF4975 /* AddressViewController.m */; };
-		64065FF2246151F100AF4975 /* ChatRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FF1246151F100AF4975 /* ChatRecordViewController.m */; };
-		64065FF62461522300AF4975 /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64065FF52461522300AF4975 /* ChatRoomViewController.m */; };
+		6406602D24615DF800AF4975 /* DetailInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406602B24615DF800AF4975 /* DetailInformationViewController.m */; };
+		6406603124615E0200AF4975 /* AddressSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406602F24615E0200AF4975 /* AddressSegmentView.m */; };
+		6406603524615E0D00AF4975 /* AddressDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406603324615E0D00AF4975 /* AddressDataModel.m */; };
+		6406603D24615E1700AF4975 /* SuperAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406603A24615E1700AF4975 /* SuperAddressCell.m */; };
+		6406603E24615E1700AF4975 /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406603B24615E1700AF4975 /* AddressTableViewCell.m */; };
+		6406603F24615E1700AF4975 /* AddressSideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406603C24615E1700AF4975 /* AddressSideView.m */; };
+		6406605D24615F1700AF4975 /* ChatRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406604424615F1700AF4975 /* ChatRecordCell.m */; };
+		6406605E24615F1700AF4975 /* ChatRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406604824615F1700AF4975 /* ChatRecordModel.m */; };
+		6406605F24615F1700AF4975 /* ChatRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406604924615F1700AF4975 /* ChatRecordViewController.m */; };
+		6406606024615F1700AF4975 /* ChatRoomMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406604E24615F1700AF4975 /* ChatRoomMenuView.m */; };
+		6406606124615F1700AF4975 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406605124615F1700AF4975 /* CollectionViewCell.m */; };
+		6406606224615F1700AF4975 /* CollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406605224615F1700AF4975 /* CollectionViewFlowLayout.m */; };
+		6406606324615F1700AF4975 /* ChatRoomTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406605424615F1700AF4975 /* ChatRoomTextCell.m */; };
+		6406606424615F1700AF4975 /* SuperChatRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406605824615F1700AF4975 /* SuperChatRoomCell.m */; };
+		6406606524615F1700AF4975 /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406605924615F1700AF4975 /* ChatRoomViewController.m */; };
+		6406606624615F1700AF4975 /* ChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406605B24615F1700AF4975 /* ChatRoomModel.m */; };
+		6406606B24615FA800AF4975 /* CommonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406606724615FA800AF4975 /* CommonMethods.m */; };
+		6406606C24615FA800AF4975 /* CommonComponentMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406606A24615FA800AF4975 /* CommonComponentMethods.m */; };
+		6406606F24615FE000AF4975 /* FMDBOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406606E24615FE000AF4975 /* FMDBOperation.m */; };
+		6406607624615FEF00AF4975 /* KeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406607124615FEF00AF4975 /* KeyboardView.m */; };
+		6406607724615FEF00AF4975 /* CustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406607324615FEF00AF4975 /* CustomTextView.m */; };
 		64093B952460113C00C75DA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093B942460113C00C75DA3 /* AppDelegate.m */; };
 		64093B9B2460113C00C75DA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64093B992460113C00C75DA3 /* Main.storyboard */; };
 		64093B9D2460114300C75DA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64093B9C2460114300C75DA3 /* Assets.xcassets */; };
@@ -31,10 +50,49 @@
 		64065FE824614E3C00AF4975 /* LoginInformationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginInformationModel.m; sourceTree = "<group>"; };
 		64065FEC2461519400AF4975 /* AddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
 		64065FED2461519400AF4975 /* AddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
-		64065FF0246151F100AF4975 /* ChatRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRecordViewController.h; sourceTree = "<group>"; };
-		64065FF1246151F100AF4975 /* ChatRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRecordViewController.m; sourceTree = "<group>"; };
-		64065FF42461522300AF4975 /* ChatRoomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRoomViewController.h; sourceTree = "<group>"; };
-		64065FF52461522300AF4975 /* ChatRoomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRoomViewController.m; sourceTree = "<group>"; };
+		6406602924615DF800AF4975 /* DetailInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInformationViewController.h; sourceTree = "<group>"; };
+		6406602B24615DF800AF4975 /* DetailInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInformationViewController.m; sourceTree = "<group>"; };
+		6406602F24615E0200AF4975 /* AddressSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressSegmentView.m; sourceTree = "<group>"; };
+		6406603024615E0200AF4975 /* AddressSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressSegmentView.h; sourceTree = "<group>"; };
+		6406603324615E0D00AF4975 /* AddressDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressDataModel.m; sourceTree = "<group>"; };
+		6406603424615E0D00AF4975 /* AddressDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressDataModel.h; sourceTree = "<group>"; };
+		6406603724615E1700AF4975 /* AddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
+		6406603824615E1700AF4975 /* SuperAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperAddressCell.h; sourceTree = "<group>"; };
+		6406603924615E1700AF4975 /* AddressSideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressSideView.h; sourceTree = "<group>"; };
+		6406603A24615E1700AF4975 /* SuperAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperAddressCell.m; sourceTree = "<group>"; };
+		6406603B24615E1700AF4975 /* AddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressTableViewCell.m; sourceTree = "<group>"; };
+		6406603C24615E1700AF4975 /* AddressSideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressSideView.m; sourceTree = "<group>"; };
+		6406604324615F1700AF4975 /* ChatRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRecordCell.h; sourceTree = "<group>"; };
+		6406604424615F1700AF4975 /* ChatRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRecordCell.m; sourceTree = "<group>"; };
+		6406604524615F1700AF4975 /* ChatRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRecordViewController.h; sourceTree = "<group>"; };
+		6406604724615F1700AF4975 /* ChatRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRecordModel.h; sourceTree = "<group>"; };
+		6406604824615F1700AF4975 /* ChatRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRecordModel.m; sourceTree = "<group>"; };
+		6406604924615F1700AF4975 /* ChatRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRecordViewController.m; sourceTree = "<group>"; };
+		6406604B24615F1700AF4975 /* ChatRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomViewController.h; sourceTree = "<group>"; };
+		6406604D24615F1700AF4975 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		6406604E24615F1700AF4975 /* ChatRoomMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomMenuView.m; sourceTree = "<group>"; };
+		6406604F24615F1700AF4975 /* CollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		6406605024615F1700AF4975 /* ChatRoomMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomMenuView.h; sourceTree = "<group>"; };
+		6406605124615F1700AF4975 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		6406605224615F1700AF4975 /* CollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		6406605424615F1700AF4975 /* ChatRoomTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomTextCell.m; sourceTree = "<group>"; };
+		6406605524615F1700AF4975 /* SuperChatRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperChatRoomCell.h; sourceTree = "<group>"; };
+		6406605624615F1700AF4975 /* ChatRoomDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomDelegate.h; sourceTree = "<group>"; };
+		6406605724615F1700AF4975 /* ChatRoomTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomTextCell.h; sourceTree = "<group>"; };
+		6406605824615F1700AF4975 /* SuperChatRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperChatRoomCell.m; sourceTree = "<group>"; };
+		6406605924615F1700AF4975 /* ChatRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomViewController.m; sourceTree = "<group>"; };
+		6406605B24615F1700AF4975 /* ChatRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomModel.m; sourceTree = "<group>"; };
+		6406605C24615F1700AF4975 /* ChatRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomModel.h; sourceTree = "<group>"; };
+		6406606724615FA800AF4975 /* CommonMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMethods.m; sourceTree = "<group>"; };
+		6406606824615FA800AF4975 /* CommonComponentMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonComponentMethods.h; sourceTree = "<group>"; };
+		6406606924615FA800AF4975 /* CommonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMethods.h; sourceTree = "<group>"; };
+		6406606A24615FA800AF4975 /* CommonComponentMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonComponentMethods.m; sourceTree = "<group>"; };
+		6406606D24615FE000AF4975 /* FMDBOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBOperation.h; sourceTree = "<group>"; };
+		6406606E24615FE000AF4975 /* FMDBOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBOperation.m; sourceTree = "<group>"; };
+		6406607124615FEF00AF4975 /* KeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardView.m; sourceTree = "<group>"; };
+		6406607324615FEF00AF4975 /* CustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextView.m; sourceTree = "<group>"; };
+		6406607424615FEF00AF4975 /* CustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextView.h; sourceTree = "<group>"; };
+		6406607524615FEF00AF4975 /* KeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardView.h; sourceTree = "<group>"; };
 		64093B902460113C00C75DA3 /* IMXMPPDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMXMPPDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64093B932460113C00C75DA3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		64093B942460113C00C75DA3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -94,37 +152,177 @@
 		64065FEA2461514600AF4975 /* Address */ = {
 			isa = PBXGroup;
 			children = (
+				6406603624615E1700AF4975 /* AddressCell */,
+				6406603224615E0D00AF4975 /* AddressModel */,
+				6406602E24615E0200AF4975 /* AddressCustomView */,
+				6406602824615DF800AF4975 /* AddressOtherViews */,
 				64065FEC2461519400AF4975 /* AddressViewController.h */,
 				64065FED2461519400AF4975 /* AddressViewController.m */,
 			);
 			path = Address;
 			sourceTree = "<group>";
 		};
-		64065FEB2461516500AF4975 /* Chat */ = {
+		6406602824615DF800AF4975 /* AddressOtherViews */ = {
 			isa = PBXGroup;
 			children = (
-				64065FF3246151FB00AF4975 /* ChatRoom */,
-				64065FEF246151B800AF4975 /* ChatRecord */,
+				6406602924615DF800AF4975 /* DetailInformationViewController.h */,
+				6406602A24615DF800AF4975 /* AddressCustomView */,
+				6406602B24615DF800AF4975 /* DetailInformationViewController.m */,
+				6406602C24615DF800AF4975 /* AddressModel */,
+			);
+			name = AddressOtherViews;
+			path = ../../../../workspaces20200311/IMDemo/IMDemo/Address/AddressOtherViews;
+			sourceTree = "<group>";
+		};
+		6406602A24615DF800AF4975 /* AddressCustomView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AddressCustomView;
+			sourceTree = "<group>";
+		};
+		6406602C24615DF800AF4975 /* AddressModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AddressModel;
+			sourceTree = "<group>";
+		};
+		6406602E24615E0200AF4975 /* AddressCustomView */ = {
+			isa = PBXGroup;
+			children = (
+				6406602F24615E0200AF4975 /* AddressSegmentView.m */,
+				6406603024615E0200AF4975 /* AddressSegmentView.h */,
+			);
+			name = AddressCustomView;
+			path = ../../../../workspaces20200311/IMDemo/IMDemo/Address/AddressCustomView;
+			sourceTree = "<group>";
+		};
+		6406603224615E0D00AF4975 /* AddressModel */ = {
+			isa = PBXGroup;
+			children = (
+				6406603324615E0D00AF4975 /* AddressDataModel.m */,
+				6406603424615E0D00AF4975 /* AddressDataModel.h */,
+			);
+			name = AddressModel;
+			path = ../../../../workspaces20200311/IMDemo/IMDemo/Address/AddressModel;
+			sourceTree = "<group>";
+		};
+		6406603624615E1700AF4975 /* AddressCell */ = {
+			isa = PBXGroup;
+			children = (
+				6406603724615E1700AF4975 /* AddressTableViewCell.h */,
+				6406603824615E1700AF4975 /* SuperAddressCell.h */,
+				6406603924615E1700AF4975 /* AddressSideView.h */,
+				6406603A24615E1700AF4975 /* SuperAddressCell.m */,
+				6406603B24615E1700AF4975 /* AddressTableViewCell.m */,
+				6406603C24615E1700AF4975 /* AddressSideView.m */,
+			);
+			name = AddressCell;
+			path = ../../../../workspaces20200311/IMDemo/IMDemo/Address/AddressCell;
+			sourceTree = "<group>";
+		};
+		6406604024615F1700AF4975 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6406604124615F1700AF4975 /* ChatRecord */,
+				6406604A24615F1700AF4975 /* ChatRoom */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		64065FEF246151B800AF4975 /* ChatRecord */ = {
+		6406604124615F1700AF4975 /* ChatRecord */ = {
 			isa = PBXGroup;
 			children = (
-				64065FF0246151F100AF4975 /* ChatRecordViewController.h */,
-				64065FF1246151F100AF4975 /* ChatRecordViewController.m */,
+				6406604224615F1700AF4975 /* ChatRecordCell */,
+				6406604524615F1700AF4975 /* ChatRecordViewController.h */,
+				6406604624615F1700AF4975 /* ChatRecordModel */,
+				6406604924615F1700AF4975 /* ChatRecordViewController.m */,
 			);
 			path = ChatRecord;
 			sourceTree = "<group>";
 		};
-		64065FF3246151FB00AF4975 /* ChatRoom */ = {
+		6406604224615F1700AF4975 /* ChatRecordCell */ = {
 			isa = PBXGroup;
 			children = (
-				64065FF42461522300AF4975 /* ChatRoomViewController.h */,
-				64065FF52461522300AF4975 /* ChatRoomViewController.m */,
+				6406604324615F1700AF4975 /* ChatRecordCell.h */,
+				6406604424615F1700AF4975 /* ChatRecordCell.m */,
+			);
+			path = ChatRecordCell;
+			sourceTree = "<group>";
+		};
+		6406604624615F1700AF4975 /* ChatRecordModel */ = {
+			isa = PBXGroup;
+			children = (
+				6406604724615F1700AF4975 /* ChatRecordModel.h */,
+				6406604824615F1700AF4975 /* ChatRecordModel.m */,
+			);
+			path = ChatRecordModel;
+			sourceTree = "<group>";
+		};
+		6406604A24615F1700AF4975 /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				6406604B24615F1700AF4975 /* ChatRoomViewController.h */,
+				6406604C24615F1700AF4975 /* ChatRoomMenuView */,
+				6406605324615F1700AF4975 /* ChatRoomCell */,
+				6406605924615F1700AF4975 /* ChatRoomViewController.m */,
+				6406605A24615F1700AF4975 /* ChatRoomModel */,
 			);
 			path = ChatRoom;
+			sourceTree = "<group>";
+		};
+		6406604C24615F1700AF4975 /* ChatRoomMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				6406604D24615F1700AF4975 /* CollectionViewCell.h */,
+				6406604E24615F1700AF4975 /* ChatRoomMenuView.m */,
+				6406604F24615F1700AF4975 /* CollectionViewFlowLayout.h */,
+				6406605024615F1700AF4975 /* ChatRoomMenuView.h */,
+				6406605124615F1700AF4975 /* CollectionViewCell.m */,
+				6406605224615F1700AF4975 /* CollectionViewFlowLayout.m */,
+			);
+			path = ChatRoomMenuView;
+			sourceTree = "<group>";
+		};
+		6406605324615F1700AF4975 /* ChatRoomCell */ = {
+			isa = PBXGroup;
+			children = (
+				6406605424615F1700AF4975 /* ChatRoomTextCell.m */,
+				6406605524615F1700AF4975 /* SuperChatRoomCell.h */,
+				6406605624615F1700AF4975 /* ChatRoomDelegate.h */,
+				6406605724615F1700AF4975 /* ChatRoomTextCell.h */,
+				6406605824615F1700AF4975 /* SuperChatRoomCell.m */,
+			);
+			path = ChatRoomCell;
+			sourceTree = "<group>";
+		};
+		6406605A24615F1700AF4975 /* ChatRoomModel */ = {
+			isa = PBXGroup;
+			children = (
+				6406605B24615F1700AF4975 /* ChatRoomModel.m */,
+				6406605C24615F1700AF4975 /* ChatRoomModel.h */,
+			);
+			path = ChatRoomModel;
+			sourceTree = "<group>";
+		};
+		6406607024615FEF00AF4975 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				6406607124615FEF00AF4975 /* KeyboardView.m */,
+				6406607224615FEF00AF4975 /* CustomView */,
+				6406607524615FEF00AF4975 /* KeyboardView.h */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		6406607224615FEF00AF4975 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				6406607324615FEF00AF4975 /* CustomTextView.m */,
+				6406607424615FEF00AF4975 /* CustomTextView.h */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		64093B872460113C00C75DA3 = {
@@ -148,9 +346,9 @@
 		64093B922460113C00C75DA3 /* IMXMPPDemo */ = {
 			isa = PBXGroup;
 			children = (
+				6406604024615F1700AF4975 /* Chat */,
 				64093BAD246016CB00C75DA3 /* Login */,
 				64093BAB2460149E00C75DA3 /* CommonFiles */,
-				64065FEB2461516500AF4975 /* Chat */,
 				64065FEA2461514600AF4975 /* Address */,
 				64065FDF2460FC0900AF4975 /* Xmpp */,
 				64093BA92460139000C75DA3 /* SupportFiles */,
@@ -178,6 +376,13 @@
 		64093BAB2460149E00C75DA3 /* CommonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				6406607024615FEF00AF4975 /* Keyboard */,
+				6406606D24615FE000AF4975 /* FMDBOperation.h */,
+				6406606E24615FE000AF4975 /* FMDBOperation.m */,
+				6406606824615FA800AF4975 /* CommonComponentMethods.h */,
+				6406606A24615FA800AF4975 /* CommonComponentMethods.m */,
+				6406606924615FA800AF4975 /* CommonMethods.h */,
+				6406606724615FA800AF4975 /* CommonMethods.m */,
 				64093BAC246014C500C75DA3 /* constants.h */,
 			);
 			path = CommonFiles;
@@ -315,15 +520,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6406606424615F1700AF4975 /* SuperChatRoomCell.m in Sources */,
 				64065FE22460FC9C00AF4975 /* XmppManager.m in Sources */,
-				64065FF2246151F100AF4975 /* ChatRecordViewController.m in Sources */,
+				6406606F24615FE000AF4975 /* FMDBOperation.m in Sources */,
+				6406603124615E0200AF4975 /* AddressSegmentView.m in Sources */,
 				64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */,
+				6406605F24615F1700AF4975 /* ChatRecordViewController.m in Sources */,
+				6406607724615FEF00AF4975 /* CustomTextView.m in Sources */,
+				6406603D24615E1700AF4975 /* SuperAddressCell.m in Sources */,
+				6406603F24615E1700AF4975 /* AddressSideView.m in Sources */,
+				6406606B24615FA800AF4975 /* CommonMethods.m in Sources */,
 				64065FE924614E3C00AF4975 /* LoginInformationModel.m in Sources */,
+				6406602D24615DF800AF4975 /* DetailInformationViewController.m in Sources */,
+				6406605E24615F1700AF4975 /* ChatRecordModel.m in Sources */,
+				6406606024615F1700AF4975 /* ChatRoomMenuView.m in Sources */,
 				64065FE524614DA200AF4975 /* MainTabBarViewController.m in Sources */,
+				6406606324615F1700AF4975 /* ChatRoomTextCell.m in Sources */,
+				6406606524615F1700AF4975 /* ChatRoomViewController.m in Sources */,
 				64093BA32460114300C75DA3 /* main.m in Sources */,
+				6406606124615F1700AF4975 /* CollectionViewCell.m in Sources */,
+				6406606C24615FA800AF4975 /* CommonComponentMethods.m in Sources */,
 				64093B952460113C00C75DA3 /* AppDelegate.m in Sources */,
 				64065FEE2461519400AF4975 /* AddressViewController.m in Sources */,
-				64065FF62461522300AF4975 /* ChatRoomViewController.m in Sources */,
+				6406606224615F1700AF4975 /* CollectionViewFlowLayout.m in Sources */,
+				6406603524615E0D00AF4975 /* AddressDataModel.m in Sources */,
+				6406606624615F1700AF4975 /* ChatRoomModel.m in Sources */,
+				6406607624615FEF00AF4975 /* KeyboardView.m in Sources */,
+				6406605D24615F1700AF4975 /* ChatRecordCell.m in Sources */,
+				6406603E24615E1700AF4975 /* AddressTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

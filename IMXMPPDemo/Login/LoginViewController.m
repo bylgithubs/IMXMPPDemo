@@ -72,7 +72,7 @@
     CGFloat width = 60;
     CGFloat height = 40;
     [self.userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.view.mas_centerX).mas_offset(-SCREENWIDTH/5);
+        make.centerX.mas_equalTo(self.view.mas_centerX).mas_offset(-SCREEN_WIDTH/5);
         make.centerY.mas_equalTo(self.view.mas_centerY).mas_offset(-20);
         make.width.mas_equalTo(width);
         make.height.mas_equalTo(height);

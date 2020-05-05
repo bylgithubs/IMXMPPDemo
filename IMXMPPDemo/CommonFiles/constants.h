@@ -14,8 +14,8 @@
 
 
 #pragma mark 屏幕大小
-#define SCREENWIDTH [UIScreen mainScreen].bounds.size.width
-#define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 #pragma mark 服务器相关
 #define SERVER_DOMAIN @"192.168.43.139"
@@ -23,6 +23,23 @@
 #define XMPP_RESOURCE @"iOS"
 #define HOST_NAME @"192.168.43.139"
 
+#pragma mark 手机屏幕适配
+#define Device_Is_iPhoneX \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+
+#define SafeAreaBottom (Device_Is_iPhoneX ? 34.f : 0.f) //底部安全距离
+
 #pragma mark 添加通知
 #define LOGIN_SUCCESS @"LoginSuccess"
 #define REGISTER_SUCCESS @"RegisterSuccess"
+#define DELETE_KEYBOARD_TEXT @"DeleteKeyboardText"
+#define REFRESH_CHATROOM_MESSAGE @"RefreshChatRoomMessage"
+#define UPDATE_CHAT_RECORD @"UpdateChatRecord"
+
+enum MessageType{
+    Text
+};

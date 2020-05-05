@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressTableViewCell.h"
+#import <Contacts/Contacts.h>
+#import "AddressDataModel.h"
+#import <Masonry/Masonry.h>
+#import "ChatRoomViewController.h"
+#import "DetailInformationViewController.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 

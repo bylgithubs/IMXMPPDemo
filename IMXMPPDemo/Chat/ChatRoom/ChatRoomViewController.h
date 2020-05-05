@@ -1,16 +1,24 @@
 //
 //  ChatRoomViewController.h
-//  IMXMPPDemo
+//  IMDemo
 //
-//  Created by Civet on 2020/5/5.
+//  Created by Civet on 2020/4/15.
 //  Copyright © 2020 PersonalONBYL. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressDataModel.h"
+#import "ChatRoomTextCell.h"
+#import "CommonComponentMethods.h"
+#import "CommonMethods.h"
+#import "FMDBOperation.h"
+#import "ChatRoomMenuView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatRoomViewController : UIViewController
+
+@property (nonatomic,strong) AddressDataModel *addressDataModel;
 
 @end
 
