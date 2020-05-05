@@ -58,6 +58,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		64065FDF2460FC0900AF4975 /* Xmpp */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Xmpp;
+			sourceTree = "<group>";
+		};
 		64093B872460113C00C75DA3 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +86,7 @@
 		64093B922460113C00C75DA3 /* IMXMPPDemo */ = {
 			isa = PBXGroup;
 			children = (
+				64065FDF2460FC0900AF4975 /* Xmpp */,
 				64093BAD246016CB00C75DA3 /* Login */,
 				64093BAB2460149E00C75DA3 /* CommonFiles */,
 				64093BA92460139000C75DA3 /* SupportFiles */,

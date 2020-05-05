@@ -11,3 +11,6 @@
 
 
 #endif /* constants_h */
+
+#define SCREENWIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
