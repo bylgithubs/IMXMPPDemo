@@ -18,6 +18,7 @@
 @property (nonatomic,strong) NSIndexPath *ClickCellIndex;
 @property (nonatomic,assign) BOOL sideSwitch;
 @property (nonatomic,strong) AddressDataModel *addressDataModel;
+@property (nonatomic,strong) UIButton *addFriendBtn;
 
 
 @end
@@ -55,13 +56,20 @@
     self.segmentView = [[AddressSegmentView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2 - 75, (44 - 30)/2, 150, 30)];
     self.navigationItem.titleView = self.segmentView;
     self.segmentView.delegate = self;
+    
+    self.addFriendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.addFriendBtn.frame = CGRectMake(0, 0, 50, 30);
+    [self.addFriendBtn setTitle:@"添加好友" forState:UIControlStateNormal];
+    self.addFriendBtn.backgroundColor = [UIColor blueColor];
+    [self.addFriendBtn addTarget:self action:@selector(addFriendClickAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.addFriendBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.addFriendBtn];
 }
 
 - (void)initData{
     NSMutableArray *arr = self.rosterArr;
-    //获取通讯录数据
     self.dataArr = self.rosterArr;
-    //[self requestContactData];
 }
 
 #pragma mark notification
@@ -159,6 +167,10 @@
     [self notificationRegister:NO];
 }
 
+#pragma mark 添加好友点击事件
+- (void)addFriendClickAction{
+    
+}
 /*
 #pragma mark - Navigation
 

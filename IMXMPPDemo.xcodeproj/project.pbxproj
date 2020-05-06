@@ -166,8 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				6406602924615DF800AF4975 /* DetailInformationViewController.h */,
-				6406602A24615DF800AF4975 /* AddressCustomView */,
 				6406602B24615DF800AF4975 /* DetailInformationViewController.m */,
+				6406602A24615DF800AF4975 /* AddressCustomView */,
 				6406602C24615DF800AF4975 /* AddressModel */,
 			);
 			name = AddressOtherViews;
@@ -191,8 +191,8 @@
 		6406602E24615E0200AF4975 /* AddressCustomView */ = {
 			isa = PBXGroup;
 			children = (
-				6406602F24615E0200AF4975 /* AddressSegmentView.m */,
 				6406603024615E0200AF4975 /* AddressSegmentView.h */,
+				6406602F24615E0200AF4975 /* AddressSegmentView.m */,
 			);
 			name = AddressCustomView;
 			path = ../../../../workspaces20200311/IMDemo/IMDemo/Address/AddressCustomView;
@@ -201,8 +201,8 @@
 		6406603224615E0D00AF4975 /* AddressModel */ = {
 			isa = PBXGroup;
 			children = (
-				6406603324615E0D00AF4975 /* AddressDataModel.m */,
 				6406603424615E0D00AF4975 /* AddressDataModel.h */,
+				6406603324615E0D00AF4975 /* AddressDataModel.m */,
 			);
 			name = AddressModel;
 			path = ../../../../workspaces20200311/IMDemo/IMDemo/Address/AddressModel;
@@ -211,12 +211,12 @@
 		6406603624615E1700AF4975 /* AddressCell */ = {
 			isa = PBXGroup;
 			children = (
-				6406603724615E1700AF4975 /* AddressTableViewCell.h */,
 				6406603824615E1700AF4975 /* SuperAddressCell.h */,
-				6406603924615E1700AF4975 /* AddressSideView.h */,
 				6406603A24615E1700AF4975 /* SuperAddressCell.m */,
-				6406603B24615E1700AF4975 /* AddressTableViewCell.m */,
+				6406603924615E1700AF4975 /* AddressSideView.h */,
 				6406603C24615E1700AF4975 /* AddressSideView.m */,
+				6406603724615E1700AF4975 /* AddressTableViewCell.h */,
+				6406603B24615E1700AF4975 /* AddressTableViewCell.m */,
 			);
 			name = AddressCell;
 			path = ../../../../workspaces20200311/IMDemo/IMDemo/Address/AddressCell;
@@ -234,9 +234,9 @@
 		6406604124615F1700AF4975 /* ChatRecord */ = {
 			isa = PBXGroup;
 			children = (
+				6406604624615F1700AF4975 /* ChatRecordModel */,
 				6406604224615F1700AF4975 /* ChatRecordCell */,
 				6406604524615F1700AF4975 /* ChatRecordViewController.h */,
-				6406604624615F1700AF4975 /* ChatRecordModel */,
 				6406604924615F1700AF4975 /* ChatRecordViewController.m */,
 			);
 			path = ChatRecord;
@@ -263,11 +263,11 @@
 		6406604A24615F1700AF4975 /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
-				6406604B24615F1700AF4975 /* ChatRoomViewController.h */,
 				6406604C24615F1700AF4975 /* ChatRoomMenuView */,
-				6406605324615F1700AF4975 /* ChatRoomCell */,
-				6406605924615F1700AF4975 /* ChatRoomViewController.m */,
 				6406605A24615F1700AF4975 /* ChatRoomModel */,
+				6406605324615F1700AF4975 /* ChatRoomCell */,
+				6406604B24615F1700AF4975 /* ChatRoomViewController.h */,
+				6406605924615F1700AF4975 /* ChatRoomViewController.m */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";
@@ -300,8 +300,8 @@
 		6406605A24615F1700AF4975 /* ChatRoomModel */ = {
 			isa = PBXGroup;
 			children = (
-				6406605B24615F1700AF4975 /* ChatRoomModel.m */,
 				6406605C24615F1700AF4975 /* ChatRoomModel.h */,
+				6406605B24615F1700AF4975 /* ChatRoomModel.m */,
 			);
 			path = ChatRoomModel;
 			sourceTree = "<group>";
@@ -309,9 +309,9 @@
 		6406607024615FEF00AF4975 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				6406607524615FEF00AF4975 /* KeyboardView.h */,
 				6406607124615FEF00AF4975 /* KeyboardView.m */,
 				6406607224615FEF00AF4975 /* CustomView */,
-				6406607524615FEF00AF4975 /* KeyboardView.h */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -319,8 +319,8 @@
 		6406607224615FEF00AF4975 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				6406607324615FEF00AF4975 /* CustomTextView.m */,
 				6406607424615FEF00AF4975 /* CustomTextView.h */,
+				6406607324615FEF00AF4975 /* CustomTextView.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -346,21 +346,21 @@
 		64093B922460113C00C75DA3 /* IMXMPPDemo */ = {
 			isa = PBXGroup;
 			children = (
-				6406604024615F1700AF4975 /* Chat */,
-				64093BAD246016CB00C75DA3 /* Login */,
 				64093BAB2460149E00C75DA3 /* CommonFiles */,
-				64065FEA2461514600AF4975 /* Address */,
 				64065FDF2460FC0900AF4975 /* Xmpp */,
+				64093BAD246016CB00C75DA3 /* Login */,
+				64065FEA2461514600AF4975 /* Address */,
+				6406604024615F1700AF4975 /* Chat */,
 				64093BA92460139000C75DA3 /* SupportFiles */,
 				64093B932460113C00C75DA3 /* AppDelegate.h */,
 				64093B942460113C00C75DA3 /* AppDelegate.m */,
+				64065FE324614DA200AF4975 /* MainTabBarViewController.h */,
+				64065FE424614DA200AF4975 /* MainTabBarViewController.m */,
 				64093B992460113C00C75DA3 /* Main.storyboard */,
 				64093B9C2460114300C75DA3 /* Assets.xcassets */,
 				64093B9E2460114300C75DA3 /* LaunchScreen.storyboard */,
 				64093BA12460114300C75DA3 /* Info.plist */,
 				64093BA22460114300C75DA3 /* main.m */,
-				64065FE324614DA200AF4975 /* MainTabBarViewController.h */,
-				64065FE424614DA200AF4975 /* MainTabBarViewController.m */,
 			);
 			path = IMXMPPDemo;
 			sourceTree = "<group>";
@@ -376,6 +376,7 @@
 		64093BAB2460149E00C75DA3 /* CommonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				64093BAC246014C500C75DA3 /* constants.h */,
 				6406607024615FEF00AF4975 /* Keyboard */,
 				6406606D24615FE000AF4975 /* FMDBOperation.h */,
 				6406606E24615FE000AF4975 /* FMDBOperation.m */,
@@ -383,7 +384,6 @@
 				6406606A24615FA800AF4975 /* CommonComponentMethods.m */,
 				6406606924615FA800AF4975 /* CommonMethods.h */,
 				6406606724615FA800AF4975 /* CommonMethods.m */,
-				64093BAC246014C500C75DA3 /* constants.h */,
 			);
 			path = CommonFiles;
 			sourceTree = "<group>";
