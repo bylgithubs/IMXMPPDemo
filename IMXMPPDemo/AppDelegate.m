@@ -38,6 +38,10 @@
 
 - (void)entryMainTabBar:(NSNotification *)noti{
     MainTabBarViewController *mainTabBarVC = [[MainTabBarViewController alloc] init];
+    NSMutableArray *arr = noti.object;
+    NSLog(@"================%@",arr);
+    //mainTabBarVC.rostersArr = noti.object;
+    [mainTabBarVC initData:noti.object];
     self.window.rootViewController = mainTabBarVC;
     [self.window makeKeyAndVisible];
 }

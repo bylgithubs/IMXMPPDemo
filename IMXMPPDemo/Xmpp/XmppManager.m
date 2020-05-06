@@ -14,14 +14,14 @@
 @property (nonatomic,strong) XMPPReconnect *xmppReconnect;
 @property (nonatomic,strong) NSString *userName;
 @property (nonatomic,strong) NSString *passward;
-@property (nonatomic,assign) BOOL isConnected;
+@property (nonatomic,strong) XMPPRosterCoreDataStorage *rosterStorage;
+@property (nonatomic,strong) XMPPRoster *xmppRoster;
 
 @end
 
 @implementation XmppManager
 @synthesize xmppStream;
 @synthesize xmppReconnect;
-@synthesize isConnected;
 @synthesize isRegisterAfterConnected;
 
 #pragma mark Singleton
@@ -36,10 +36,12 @@
 }
 
 - (void)configStream{
+    self.rosterArr = [[NSMutableArray alloc] init];
     xmppStream = [[XMPPStream alloc] init];
     xmppReconnect = [[XMPPReconnect alloc] init];
     [xmppReconnect activate:xmppStream];
     [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    [self activeRosterModules];
 }
 
 #pragma mark 连接服务器
@@ -110,7 +112,7 @@
     
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
     [[self xmppStream] sendElement:presence];
-    [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:nil];
 }
 
 #pragma mark 密码验证失败方法
@@ -119,5 +121,38 @@
     NSLog(@"验证失败的方法,请检查你的用户名或密码是否正确,%@",error);
 }
 
+#pragma mark 激活花名册模块，获取好友列表
+- (void)activeRosterModules{
+    //1.花名册存储对象
+    self.rosterStorage = [XMPPRosterCoreDataStorage sharedInstance];
+    //2.花名册模块
+    self.xmppRoster = [[XMPPRoster alloc] initWithRosterStorage:self.rosterStorage];
+    //3.激活此模块
+    [self.xmppRoster activate:self.xmppStream];
+    //4.添加roster代理
+    [self.xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
+}
+
+#pragma mark 获取所有好友,有多少好友，这个代理方法执行几遍
+//获取所有好友,有多少好友，这个代理方法执行几遍
+-(void)xmppRoster:(XMPPRoster *)sender didReceiveRosterItem:(DDXMLElement *)item
+{  //得到item的jid
+    NSString *jid = [[item attributeForName:@"jid"]stringValue];
+    
+    //转换成XMPPJID类型
+    XMPPJID *userJID = [XMPPJID jidWithString:jid];
+    NSLog(@"%@",[userJID user]);
+    //将所有userJID放入数组，以便在获取好友列表结束时为外部传值
+    [self.rosterArr addObject:userJID];
+}
+
+//登录成功后会执行这个代理
+-(void)xmppRosterDidEndPopulating:(XMPPRoster *)sender
+{
+    NSLog(@"获取好友列表结束,此处向外部传值");
+    NSMutableArray *arr = self.rosterArr;
+    [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:self.rosterArr];
+
+}
 
 @end

@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LoginInformationModel : NSObject
 
-@property (nonatomic,copy) NSString *userName;
+@property (nonatomic,copy) NSString *user;
+@property (nonatomic,copy) NSString *domain;
+@property (nonatomic,copy) NSString *resource;
 
 @end
 

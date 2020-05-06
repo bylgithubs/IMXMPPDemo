@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XmppManager : NSObject
 
 @property (nonatomic,assign) BOOL isRegisterAfterConnected;
+@property (nonatomic,strong) NSMutableArray *rosterArr;
 
 + (instancetype)sharedInstance;
-
 //连接服务器
 - (void)connectToServer:(NSString *)user passward:(NSString *)passward;
 

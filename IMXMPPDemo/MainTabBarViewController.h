@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MainTabBarViewController : UITabBarController
 
+@property (nonatomic,strong) NSMutableArray *rostersArr;
+- (void)initData:(NSMutableArray *)dataArr;
+
 @end
 
 NS_ASSUME_NONNULL_END

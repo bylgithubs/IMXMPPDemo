@@ -48,6 +48,7 @@
     
     [self initUI];
     [self initData];
+    [self notificationRegister:YES];
 }
 
 - (void)initUI{
@@ -57,8 +58,19 @@
 }
 
 - (void)initData{
+    NSMutableArray *arr = self.rosterArr;
     //获取通讯录数据
+    self.dataArr = self.rosterArr;
     //[self requestContactData];
+}
+
+#pragma mark notification
+- (void)notificationRegister:(BOOL)flag{
+    if (flag) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initData) name:ADDRESS_REFRESH_ROSTER_DATA object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ADDRESS_REFRESH_ROSTER_DATA object:nil];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -85,12 +97,8 @@
         [addrCell addAddressSideView];
         addrCell.sideView.delegate = self;
     }
-    AddressDataModel *model = self.dataArr[indexPath.row];
-    if (model.userName != nil) {
-        addrCell.nameLabel.text = model.userName;
-    } else {
-        addrCell.nameLabel.text = model.homePhone;
-    }
+    LoginInformationModel *model = self.dataArr[indexPath.row];
+    addrCell.nameLabel.text = model.user;
     
     return addrCell;
     
@@ -145,6 +153,10 @@
         detailInfoVC.detailInfoModel = self.addressDataModel;
         [self.navigationController pushViewController:detailInfoVC animated:YES];
     }
+}
+
+- (void)dealloc{
+    [self notificationRegister:NO];
 }
 
 /*

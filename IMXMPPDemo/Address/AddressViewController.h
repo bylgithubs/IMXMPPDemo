@@ -13,11 +13,14 @@
 #import <Masonry/Masonry.h>
 #import "ChatRoomViewController.h"
 #import "DetailInformationViewController.h"
+#import "LoginInformationModel.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AddressViewController : UIViewController
+
+@property (nonatomic,strong) NSMutableArray *rosterArr;
 
 @end
 
