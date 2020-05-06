@@ -33,6 +33,11 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 #define SafeAreaBottom (Device_Is_iPhoneX ? 34.f : 0.f) //底部安全距离
 
+#pragma mark 数据库相关
+#define DATABASE_NAME @"IMXMPPDemo.sqlite"
+#define DOCUMENT_PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
+#define DATABASE_PATH [DOCUMENT_PATH stringByAppendingPathComponent:DATABASE_NAME]
+
 #pragma mark 添加通知
 #define LOGIN_SUCCESS @"LoginSuccess"
 #define REGISTER_SUCCESS @"RegisterSuccess"

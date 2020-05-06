@@ -21,28 +21,38 @@ static FMDBOperation *sharedInstance = nil;
     return sharedInstance;
 }
 
-//- (FMDatabaseQueue *)dbQueue{
-//    if (!_dbQueue) {
-//        _dbQueue = [FMDatabaseQueue databaseQueueWithPath:DATABASE_PATH];
-//    }
-//    return _dbQueue;
-//}
-//
-//- (void)initDB{
-//    NSString *databasePath = DATABASE_PATH;
-//    self.dbOperation = [FMDatabase databaseWithPath:databasePath];
-//    BOOL isSuccess = [self.dbOperation open];
-//    if (!isSuccess) {
-//        NSLog(@"打开数据库 %@ 失败",DATABASE_NAME);
-//        return;
-//    }
-//    if (self.dbOperation != nil) {
-//        //建表
-//        [self initTable];
-//    }
-//}
-//
-//- (void)initTable{
+- (FMDatabaseQueue *)dbQueue{
+    if (!_dbQueue) {
+        _dbQueue = [FMDatabaseQueue databaseQueueWithPath:DATABASE_PATH];
+    }
+    return _dbQueue;
+}
+
+- (void)initDB{
+    NSString *databasePath = DATABASE_PATH;
+    self.dbOperation = [FMDatabase databaseWithPath:databasePath];
+    BOOL isSuccess = [self.dbOperation open];
+    if (!isSuccess) {
+        NSLog(@"打开数据库 %@ 失败",DATABASE_NAME);
+        return;
+    }
+    if (self.dbOperation != nil) {
+        //建表
+        [self initTable];
+    }
+}
+
+- (void)initTable{
+    NSString *tableName = @"RosterList";
+    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(jid integer PRIMARY KEY AUTOINCREMENT,uid varchar,name varchar,ask varchar,subscription varchar,current_date varchar)",tableName];
+    NSLog(@"===%@",sqlStr);
+    BOOL result = [self.dbOperation executeUpdate:sqlStr];
+    if (result) {
+        NSLog(@"创建表 %@ 成功",tableName);
+    } else {
+        NSLog(@"创建表 %@ 失败",tableName);
+    }
+    
 //    NSString *tableName = @"ChatMessage";
 //    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(jid integer PRIMARY KEY AUTOINCREMENT,room_ID varchar,user_name varchar,content text,current_date varchar)",tableName];
 //    NSLog(@"===%@",sqlStr);
@@ -52,7 +62,7 @@ static FMDBOperation *sharedInstance = nil;
 //    } else {
 //        NSLog(@"创建表 %@ 失败",tableName);
 //    }
-//    
+//
 //    tableName = @"ChatRecord";
 //    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(jid integer PRIMARY KEY AUTOINCREMENT,room_ID varchar,user_name varchar,content text,current_date varchar)",tableName];
 //    NSLog(@"===%@",sqlStr);
@@ -62,9 +72,18 @@ static FMDBOperation *sharedInstance = nil;
 //    } else {
 //        NSLog(@"创建表 %@ 失败",tableName);
 //    }
-//    
-//}
-//
+    
+}
+
+//插入花名册
+- (void)insertRosterData:(RosterListModel *)model{
+
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        NSString *sqlStr = @"insert into RosterList(uid,name,ask,subscription,current_date) values(?,?,?,?,?);";
+        [db executeUpdate:sqlStr,model.uid,model.name,model.ask,model.subscription,model.current_date];
+    }];
+}
+
 ////插入聊天记录
 //- (void)insertChatMessage:(ChatRoomModel *)model{
 //    

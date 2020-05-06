@@ -11,16 +11,18 @@
 #import <FMDatabaseQueue.h>
 #import "ChatRoomModel.h"
 #import "ChatRecordModel.h"
+#import "RosterListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FMDBOperation : NSObject
 
-//+ (instancetype) sharedDatabaseInstance;
-//- (void)initDB;
-//@property (nonatomic,strong) FMDatabase *dbOperation;
-//@property (nonatomic,strong) FMDatabaseQueue *dbQueue;
-//
++ (instancetype) sharedDatabaseInstance;
+- (void)initDB;
+@property (nonatomic,strong) FMDatabase *dbOperation;
+@property (nonatomic,strong) FMDatabaseQueue *dbQueue;
+//插入花名册信息
+- (void)insertRosterData:(RosterListModel *)model;
 ////插入聊天记录
 //- (void)insertChatMessage:(ChatRoomModel *)model;
 ////取出聊天记录

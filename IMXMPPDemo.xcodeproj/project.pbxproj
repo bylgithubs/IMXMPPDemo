@@ -38,6 +38,8 @@
 		64093BA02460114300C75DA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64093B9E2460114300C75DA3 /* LaunchScreen.storyboard */; };
 		64093BA32460114300C75DA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093BA22460114300C75DA3 /* main.m */; };
 		64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093BAF2460176C00C75DA3 /* LoginViewController.m */; };
+		6471216724629D4A0078423F /* RosterListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471216624629D4A0078423F /* RosterListModel.m */; };
+		6471216B2462AB220078423F /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471216A2462AB220078423F /* XMLReader.m */; };
 		85AF33461DC05BE2245B04A6 /* Pods_IMXMPPDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +107,10 @@
 		64093BAC246014C500C75DA3 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		64093BAE2460176C00C75DA3 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		64093BAF2460176C00C75DA3 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		6471216524629D4A0078423F /* RosterListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RosterListModel.h; sourceTree = "<group>"; };
+		6471216624629D4A0078423F /* RosterListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RosterListModel.m; sourceTree = "<group>"; };
+		647121692462AB220078423F /* XMLReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		6471216A2462AB220078423F /* XMLReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMXMPPDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AE98748654903ADA77D050 /* Pods-IMXMPPDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMXMPPDemo.release.xcconfig"; path = "Target Support Files/Pods-IMXMPPDemo/Pods-IMXMPPDemo.release.xcconfig"; sourceTree = "<group>"; };
 		91276AE7DC66FE3F484D82D5 /* Pods-IMXMPPDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMXMPPDemo.debug.xcconfig"; path = "Target Support Files/Pods-IMXMPPDemo/Pods-IMXMPPDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 		64065FDF2460FC0900AF4975 /* Xmpp */ = {
 			isa = PBXGroup;
 			children = (
+				647121682462AAF20078423F /* CustomerTool */,
 				64065FE02460FC9C00AF4975 /* XmppManager.h */,
 				64065FE12460FC9C00AF4975 /* XmppManager.m */,
 			);
@@ -376,6 +383,7 @@
 		64093BAB2460149E00C75DA3 /* CommonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				6471216424629D140078423F /* Model */,
 				64093BAC246014C500C75DA3 /* constants.h */,
 				6406607024615FEF00AF4975 /* Keyboard */,
 				6406606D24615FE000AF4975 /* FMDBOperation.h */,
@@ -396,6 +404,24 @@
 				64093BAF2460176C00C75DA3 /* LoginViewController.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		6471216424629D140078423F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6471216524629D4A0078423F /* RosterListModel.h */,
+				6471216624629D4A0078423F /* RosterListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		647121682462AAF20078423F /* CustomerTool */ = {
+			isa = PBXGroup;
+			children = (
+				647121692462AB220078423F /* XMLReader.h */,
+				6471216A2462AB220078423F /* XMLReader.m */,
+			);
+			path = CustomerTool;
 			sourceTree = "<group>";
 		};
 		E6DF606EE9C229478DC1DEA1 /* Frameworks */ = {
@@ -521,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6406606424615F1700AF4975 /* SuperChatRoomCell.m in Sources */,
+				6471216724629D4A0078423F /* RosterListModel.m in Sources */,
 				64065FE22460FC9C00AF4975 /* XmppManager.m in Sources */,
 				6406606F24615FE000AF4975 /* FMDBOperation.m in Sources */,
 				6406603124615E0200AF4975 /* AddressSegmentView.m in Sources */,
@@ -541,6 +568,7 @@
 				6406606124615F1700AF4975 /* CollectionViewCell.m in Sources */,
 				6406606C24615FA800AF4975 /* CommonComponentMethods.m in Sources */,
 				64093B952460113C00C75DA3 /* AppDelegate.m in Sources */,
+				6471216B2462AB220078423F /* XMLReader.m in Sources */,
 				64065FEE2461519400AF4975 /* AddressViewController.m in Sources */,
 				6406606224615F1700AF4975 /* CollectionViewFlowLayout.m in Sources */,
 				6406603524615E0D00AF4975 /* AddressDataModel.m in Sources */,

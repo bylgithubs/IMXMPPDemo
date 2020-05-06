@@ -8,7 +8,7 @@
 
 #import "XmppManager.h"
 
-@interface XmppManager ()
+@interface XmppManager ()<NSXMLParserDelegate>
 
 @property (nonatomic,strong) XMPPStream *xmppStream;
 @property (nonatomic,strong) XMPPReconnect *xmppReconnect;
@@ -154,5 +154,92 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:self.rosterArr];
 
 }
+
+//Request
+//- (void)getDetailsofRegisteredUser {
+//
+//    //To Search Peticular User either by using their name, email or username
+//    NSString *userBare1  = [[xmppStream myJID] bare];
+//    NSXMLElement *query = [NSXMLElement elementWithName:@"query"];
+//    [query addAttributeWithName:@"xmlns" stringValue:@"jabber:iq:search"];
+//
+//    NSXMLElement *x = [NSXMLElement elementWithName:@"x" xmlns:@"jabber:x:data"];
+//    [x addAttributeWithName:@"type" stringValue:@"submit"];
+//
+//    NSXMLElement *formType = [NSXMLElement elementWithName:@"field"];
+//    [formType addAttributeWithName:@"type" stringValue:@"hidden"];
+//    [formType addAttributeWithName:@"var" stringValue:@"FORM_TYPE"];
+//    [formType addChild:[NSXMLElement elementWithName:@"value" stringValue:@"jabber:iq:search" ]];
+//
+//    NSXMLElement *userName = [NSXMLElement elementWithName:@"field"];
+//    [userName addAttributeWithName:@"var" stringValue:@"Username"];
+//    [userName addChild:[NSXMLElement elementWithName:@"value" stringValue:@"1" ]];
+//
+//    NSXMLElement *name = [NSXMLElement elementWithName:@"field"];
+//    [name addAttributeWithName:@"var" stringValue:@"Name"];
+//    [name addChild:[NSXMLElement elementWithName:@"value" stringValue:@"1"]];
+//
+//    NSXMLElement *email = [NSXMLElement elementWithName:@"field"];
+//    [email addAttributeWithName:@"var" stringValue:@"Email"];
+//    [email addChild:[NSXMLElement elementWithName:@"value" stringValue:@"1"]];
+//
+//    //Here in the place of SearchString we have to provide registered user name or emailid or username(if it matches in Server it provide registered user details otherwise Server provides response as empty)
+//    NSXMLElement *search = [NSXMLElement elementWithName:@"field"];
+//    [search addAttributeWithName:@"var" stringValue:@"search"];
+//    [search addChild:[NSXMLElement elementWithName:@"value" stringValue:[NSString stringWithFormat:@"%@", @"aaaaa"]]];
+//
+//    [x addChild:formType];
+//    [x addChild:userName];
+//    [x addChild:name];
+//    [x addChild:email];
+//    [x addChild:search];
+//    [query addChild:x];
+//
+//    NSXMLElement *iq = [NSXMLElement elementWithName:@"iq"];
+//    [iq addAttributeWithName:@"type" stringValue:@"set"];
+//    [iq addAttributeWithName:@"id" stringValue:@"searchByUserName"];
+//    [iq addAttributeWithName:@"to" stringValue:[NSString stringWithFormat:@"search.%@",SERVER_DOMAIN]];
+//    [iq addAttributeWithName:@"from" stringValue:userBare1];
+//    [iq addChild:query];
+//    [xmppStream sendElement:iq];
+//
+//}
+
+//We will get response here
+
+- (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
+{
+    NSString *xmlString = iq.XMLString;
+//    NSData *data = [xmlString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
+//    NSDictionary *dic = [self dictionaryWithParser:parser];
+    //NSDictionary *dic = [NSDictionary dictionaryWithXMLString:iq.XMLString];
+    //DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+    XMLReader *xmlReader = [XMLReader sharedInstance];
+    NSMutableArray *dataArr = [xmlReader arrayWithXMLString:xmlString];
+    for (RosterListModel *model in dataArr) {
+        FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+        [fmdb insertRosterData:model];
+    }
+    NSLog(@"searched format %@", iq);
+    return YES;
+
+}
+
+//- (NSDictionary<NSString *, id> *)dictionaryWithParser:(NSXMLParser *)parser
+//{
+//    parser.delegate = self;
+//    [parser parse];
+////    id result = _root;
+////    _root = nil;
+////    _stack = nil;
+////    _text = nil;
+//    NSDictionary *result = nil;
+//    return result;
+//}
+//
+//- (void)parser:(__unused NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(__unused NSString *)namespaceURI qualifiedName:(__unused NSString *)qName attributes:(NSDictionary *)attributeDict{
+//
+//}
 
 @end

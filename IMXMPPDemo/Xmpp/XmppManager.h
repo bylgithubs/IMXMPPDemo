@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <XMPPFramework.h>
+#import "XMLReader.h"
+#import "RosterListModel.h"
+#import "FMDBOperation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

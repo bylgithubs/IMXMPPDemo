@@ -38,14 +38,21 @@
 
 - (void)entryMainTabBar:(NSNotification *)noti{
     MainTabBarViewController *mainTabBarVC = [[MainTabBarViewController alloc] init];
-    NSMutableArray *arr = noti.object;
-    NSLog(@"================%@",arr);
-    //mainTabBarVC.rostersArr = noti.object;
     [mainTabBarVC initData:noti.object];
     self.window.rootViewController = mainTabBarVC;
     [self.window makeKeyAndVisible];
+    
+    //创建数据库
+    [self initDB];
 }
 
+//创建数据库
+- (void)initDB{
+    FMDBOperation *shareInstance = [FMDBOperation sharedDatabaseInstance];
+    
+    [shareInstance initDB];
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
