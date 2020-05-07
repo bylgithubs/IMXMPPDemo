@@ -31,6 +31,10 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 }\
 (isPhoneX);})
 
+//获取导航栏+状态栏的高度
+#define NAVIGATION_AND_STATUSBAR_HEIGHT self.navigationController.navigationBar.frame.size.height+[[UIApplication sharedApplication] statusBarFrame].size.height
+
+
 #define SafeAreaBottom (Device_Is_iPhoneX ? 34.f : 0.f) //底部安全距离
 
 #pragma mark 数据库相关

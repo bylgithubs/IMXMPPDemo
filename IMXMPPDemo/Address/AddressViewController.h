@@ -14,6 +14,7 @@
 #import "ChatRoomViewController.h"
 #import "DetailInformationViewController.h"
 #import "LoginInformationModel.h"
+#import "AddFriendViewController.h"
 
 
 NS_ASSUME_NONNULL_BEGIN

@@ -40,6 +40,9 @@
 		64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093BAF2460176C00C75DA3 /* LoginViewController.m */; };
 		6471216724629D4A0078423F /* RosterListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471216624629D4A0078423F /* RosterListModel.m */; };
 		6471216B2462AB220078423F /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471216A2462AB220078423F /* XMLReader.m */; };
+		647166522463948600A64520 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647166512463948600A64520 /* AddFriendViewController.m */; };
+		6471665C24639C3900A64520 /* SearchFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471665B24639C3900A64520 /* SearchFriends.m */; };
+		647166602463A56600A64520 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471665F2463A56600A64520 /* AddFriendCell.m */; };
 		85AF33461DC05BE2245B04A6 /* Pods_IMXMPPDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +114,12 @@
 		6471216624629D4A0078423F /* RosterListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RosterListModel.m; sourceTree = "<group>"; };
 		647121692462AB220078423F /* XMLReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		6471216A2462AB220078423F /* XMLReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
+		647166502463948600A64520 /* AddFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
+		647166512463948600A64520 /* AddFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
+		6471665A24639C3900A64520 /* SearchFriends.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchFriends.h; sourceTree = "<group>"; };
+		6471665B24639C3900A64520 /* SearchFriends.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchFriends.m; sourceTree = "<group>"; };
+		6471665E2463A56600A64520 /* AddFriendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
+		6471665F2463A56600A64520 /* AddFriendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
 		65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMXMPPDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AE98748654903ADA77D050 /* Pods-IMXMPPDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMXMPPDemo.release.xcconfig"; path = "Target Support Files/Pods-IMXMPPDemo/Pods-IMXMPPDemo.release.xcconfig"; sourceTree = "<group>"; };
 		91276AE7DC66FE3F484D82D5 /* Pods-IMXMPPDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMXMPPDemo.debug.xcconfig"; path = "Target Support Files/Pods-IMXMPPDemo/Pods-IMXMPPDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +168,7 @@
 		64065FEA2461514600AF4975 /* Address */ = {
 			isa = PBXGroup;
 			children = (
+				6471664F2463944C00A64520 /* AddFriend */,
 				6406603624615E1700AF4975 /* AddressCell */,
 				6406603224615E0D00AF4975 /* AddressModel */,
 				6406602E24615E0200AF4975 /* AddressCustomView */,
@@ -424,6 +434,35 @@
 			path = CustomerTool;
 			sourceTree = "<group>";
 		};
+		6471664F2463944C00A64520 /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				6471665D2463A51900A64520 /* AddFriendCell */,
+				6471665324639B2F00A64520 /* SearchFriends */,
+				647166502463948600A64520 /* AddFriendViewController.h */,
+				647166512463948600A64520 /* AddFriendViewController.m */,
+			);
+			path = AddFriend;
+			sourceTree = "<group>";
+		};
+		6471665324639B2F00A64520 /* SearchFriends */ = {
+			isa = PBXGroup;
+			children = (
+				6471665A24639C3900A64520 /* SearchFriends.h */,
+				6471665B24639C3900A64520 /* SearchFriends.m */,
+			);
+			path = SearchFriends;
+			sourceTree = "<group>";
+		};
+		6471665D2463A51900A64520 /* AddFriendCell */ = {
+			isa = PBXGroup;
+			children = (
+				6471665E2463A56600A64520 /* AddFriendCell.h */,
+				6471665F2463A56600A64520 /* AddFriendCell.m */,
+			);
+			path = AddFriendCell;
+			sourceTree = "<group>";
+		};
 		E6DF606EE9C229478DC1DEA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6406606424615F1700AF4975 /* SuperChatRoomCell.m in Sources */,
+				647166522463948600A64520 /* AddFriendViewController.m in Sources */,
 				6471216724629D4A0078423F /* RosterListModel.m in Sources */,
 				64065FE22460FC9C00AF4975 /* XmppManager.m in Sources */,
 				6406606F24615FE000AF4975 /* FMDBOperation.m in Sources */,
@@ -556,6 +596,7 @@
 				6406607724615FEF00AF4975 /* CustomTextView.m in Sources */,
 				6406603D24615E1700AF4975 /* SuperAddressCell.m in Sources */,
 				6406603F24615E1700AF4975 /* AddressSideView.m in Sources */,
+				6471665C24639C3900A64520 /* SearchFriends.m in Sources */,
 				6406606B24615FA800AF4975 /* CommonMethods.m in Sources */,
 				64065FE924614E3C00AF4975 /* LoginInformationModel.m in Sources */,
 				6406602D24615DF800AF4975 /* DetailInformationViewController.m in Sources */,
@@ -571,6 +612,7 @@
 				6471216B2462AB220078423F /* XMLReader.m in Sources */,
 				64065FEE2461519400AF4975 /* AddressViewController.m in Sources */,
 				6406606224615F1700AF4975 /* CollectionViewFlowLayout.m in Sources */,
+				647166602463A56600A64520 /* AddFriendCell.m in Sources */,
 				6406603524615E0D00AF4975 /* AddressDataModel.m in Sources */,
 				6406606624615F1700AF4975 /* ChatRoomModel.m in Sources */,
 				6406607624615FEF00AF4975 /* KeyboardView.m in Sources */,

@@ -169,7 +169,8 @@
 
 #pragma mark 添加好友点击事件
 - (void)addFriendClickAction{
-    
+    AddFriendViewController *addFriendVC = [[AddFriendViewController alloc] init];
+    [self.navigationController pushViewController:addFriendVC animated:YES];
 }
 /*
 #pragma mark - Navigation

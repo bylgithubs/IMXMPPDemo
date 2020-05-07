@@ -110,6 +110,8 @@
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender {
     NSLog(@"xmppStreamDidAuthenticate:");
     
+    [[NSUserDefaults standardUserDefaults] setObject:self.userName forKey:@"currentUserName"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.passward forKey:@"currentPassward"];
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
     [[self xmppStream] sendElement:presence];
     //[[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:nil];
@@ -154,58 +156,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:self.rosterArr];
 
 }
-
-//Request
-//- (void)getDetailsofRegisteredUser {
-//
-//    //To Search Peticular User either by using their name, email or username
-//    NSString *userBare1  = [[xmppStream myJID] bare];
-//    NSXMLElement *query = [NSXMLElement elementWithName:@"query"];
-//    [query addAttributeWithName:@"xmlns" stringValue:@"jabber:iq:search"];
-//
-//    NSXMLElement *x = [NSXMLElement elementWithName:@"x" xmlns:@"jabber:x:data"];
-//    [x addAttributeWithName:@"type" stringValue:@"submit"];
-//
-//    NSXMLElement *formType = [NSXMLElement elementWithName:@"field"];
-//    [formType addAttributeWithName:@"type" stringValue:@"hidden"];
-//    [formType addAttributeWithName:@"var" stringValue:@"FORM_TYPE"];
-//    [formType addChild:[NSXMLElement elementWithName:@"value" stringValue:@"jabber:iq:search" ]];
-//
-//    NSXMLElement *userName = [NSXMLElement elementWithName:@"field"];
-//    [userName addAttributeWithName:@"var" stringValue:@"Username"];
-//    [userName addChild:[NSXMLElement elementWithName:@"value" stringValue:@"1" ]];
-//
-//    NSXMLElement *name = [NSXMLElement elementWithName:@"field"];
-//    [name addAttributeWithName:@"var" stringValue:@"Name"];
-//    [name addChild:[NSXMLElement elementWithName:@"value" stringValue:@"1"]];
-//
-//    NSXMLElement *email = [NSXMLElement elementWithName:@"field"];
-//    [email addAttributeWithName:@"var" stringValue:@"Email"];
-//    [email addChild:[NSXMLElement elementWithName:@"value" stringValue:@"1"]];
-//
-//    //Here in the place of SearchString we have to provide registered user name or emailid or username(if it matches in Server it provide registered user details otherwise Server provides response as empty)
-//    NSXMLElement *search = [NSXMLElement elementWithName:@"field"];
-//    [search addAttributeWithName:@"var" stringValue:@"search"];
-//    [search addChild:[NSXMLElement elementWithName:@"value" stringValue:[NSString stringWithFormat:@"%@", @"aaaaa"]]];
-//
-//    [x addChild:formType];
-//    [x addChild:userName];
-//    [x addChild:name];
-//    [x addChild:email];
-//    [x addChild:search];
-//    [query addChild:x];
-//
-//    NSXMLElement *iq = [NSXMLElement elementWithName:@"iq"];
-//    [iq addAttributeWithName:@"type" stringValue:@"set"];
-//    [iq addAttributeWithName:@"id" stringValue:@"searchByUserName"];
-//    [iq addAttributeWithName:@"to" stringValue:[NSString stringWithFormat:@"search.%@",SERVER_DOMAIN]];
-//    [iq addAttributeWithName:@"from" stringValue:userBare1];
-//    [iq addChild:query];
-//    [xmppStream sendElement:iq];
-//
-//}
-
-//We will get response here
 
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
 {

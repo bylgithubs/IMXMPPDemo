@@ -25,6 +25,7 @@ static XMLReader *xmlReader = nil;
     return xmlReader;
 }
 
+//解析花名册数据，xml转array
 - (NSMutableArray *)arrayWithXMLString:(NSString *)xmlString{
     self.dataArr = [[NSMutableArray alloc] init];
     NSData *data = [xmlString dataUsingEncoding:NSUTF8StringEncoding];
