@@ -10,6 +10,7 @@
 #import "SearchFriends.h"
 #import <Masonry.h>
 #import "AddFriendCell.h"
+#import "CommonComponentMethods.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

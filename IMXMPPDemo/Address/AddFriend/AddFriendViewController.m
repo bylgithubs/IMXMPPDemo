@@ -40,6 +40,8 @@
 - (void)initUI{
     self.view.backgroundColor = [UIColor whiteColor];
     [self setTitle:@"添加好友"];
+    UIView *backBtnView = [CommonComponentMethods setLeftBarItems:self];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtnView];
     searchFriends = [[SearchFriends alloc] initWithFrame:CGRectMake(0, NAVIGATION_AND_STATUSBAR_HEIGHT, SCREEN_WIDTH , 50)];
     [self.view addSubview:searchFriends];
 }
@@ -64,6 +66,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 45;
+}
+
+- (void)clickBackBtn{
+    self.tabBarController.tabBar.hidden = NO;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

@@ -393,8 +393,8 @@
 		64093BAB2460149E00C75DA3 /* CommonFiles */ = {
 			isa = PBXGroup;
 			children = (
-				6471216424629D140078423F /* Model */,
 				64093BAC246014C500C75DA3 /* constants.h */,
+				6471216424629D140078423F /* Model */,
 				6406607024615FEF00AF4975 /* Keyboard */,
 				6406606D24615FE000AF4975 /* FMDBOperation.h */,
 				6406606E24615FE000AF4975 /* FMDBOperation.m */,
