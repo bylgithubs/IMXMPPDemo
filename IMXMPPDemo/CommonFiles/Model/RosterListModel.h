@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RosterListModel : NSObject
 
+@property (nonatomic,copy) NSString *jid;
 @property (nonatomic,copy) NSString *uid;
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic,copy) NSString *ask;

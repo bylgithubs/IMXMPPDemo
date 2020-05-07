@@ -31,8 +31,10 @@
 - (void)notificationRegister:(BOOL)flag{
     if (flag) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(entryMainTabBar:) name:LOGIN_SUCCESS object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initDB) name:CREATE_DATABASE_AND_TABLE object:nil];
     } else {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:LOGIN_SUCCESS object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:CREATE_DATABASE_AND_TABLE object:nil];
     }
 }
 
@@ -43,7 +45,7 @@
     [self.window makeKeyAndVisible];
     
     //创建数据库
-    [self initDB];
+    //[self initDB];
 }
 
 //创建数据库

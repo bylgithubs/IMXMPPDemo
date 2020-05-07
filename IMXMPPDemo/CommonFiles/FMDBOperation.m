@@ -43,8 +43,9 @@ static FMDBOperation *sharedInstance = nil;
 }
 
 - (void)initTable{
+    
     NSString *tableName = @"RosterList";
-    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(jid integer PRIMARY KEY AUTOINCREMENT,uid varchar,name varchar,ask varchar,subscription varchar,current_date varchar)",tableName];
+    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,jid varchar,uid varchar,name varchar,ask varchar,subscription varchar,current_date varchar)",tableName];
     NSLog(@"===%@",sqlStr);
     BOOL result = [self.dbOperation executeUpdate:sqlStr];
     if (result) {
@@ -79,9 +80,36 @@ static FMDBOperation *sharedInstance = nil;
 - (void)insertRosterData:(RosterListModel *)model{
 
     [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        NSString *sqlStr = @"insert into RosterList(uid,name,ask,subscription,current_date) values(?,?,?,?,?);";
-        [db executeUpdate:sqlStr,model.uid,model.name,model.ask,model.subscription,model.current_date];
+        NSString *sqlStr = @"select * from RosterList where jid = ?";
+        FMResultSet *res = [db executeQuery:sqlStr,model.jid];
+        if ([res next]) {
+            sqlStr = @"delete from RosterList where jid = ?";
+            [db executeUpdate:sqlStr,model.jid];
+        }
+        sqlStr = @"insert into RosterList(jid,uid,name,ask,subscription,current_date) values(?,?,?,?,?,?);";
+        [db executeUpdate:sqlStr,model.jid,model.uid,model.name,model.ask,model.subscription,model.current_date];
     }];
+}
+
+//查询用户是否存在
+- (NSMutableArray *)searchFriendsFromRoster:(NSString *)name{
+    NSMutableArray *dataArr = [NSMutableArray array];
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        NSString *sqlStr = @"select * from RosterList where uid = ?";
+        FMResultSet *resultSet = [db executeQuery:sqlStr,name];
+        while ([resultSet next]) {
+            RosterListModel *model = [[RosterListModel alloc] init];
+            model.jid = [resultSet stringForColumn:@"jid"];
+            model.uid = [resultSet stringForColumn:@"uid"];
+            model.name = [resultSet stringForColumn:@"name"];
+            model.ask = [resultSet stringForColumn:@"ask"];
+            model.subscription = [resultSet stringForColumn:@"subscription"];
+            model.current_date = [resultSet stringForColumn:@"current_date"];
+            [dataArr addObject:model];
+        }
+        [resultSet close];
+    }];
+    return dataArr;
 }
 
 ////插入聊天记录

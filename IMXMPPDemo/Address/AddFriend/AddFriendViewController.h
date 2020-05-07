@@ -11,6 +11,7 @@
 #import <Masonry.h>
 #import "AddFriendCell.h"
 #import "CommonComponentMethods.h"
+#import "FMDBOperation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

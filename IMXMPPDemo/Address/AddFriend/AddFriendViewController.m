@@ -8,10 +8,11 @@
 
 #import "AddFriendViewController.h"
 
-@interface AddFriendViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface AddFriendViewController ()<UITableViewDelegate,UITableViewDataSource,SearchFriendDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) SearchFriends *searchFriends;
+@property (nonatomic,strong) NSMutableArray *dataArr;
 
 @end
 
@@ -24,6 +25,7 @@
     // Do any additional setup after loading the view.
     self.tabBarController.tabBar.hidden = YES;
     [self initUI];
+    [self initData];
     tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -43,7 +45,12 @@
     UIView *backBtnView = [CommonComponentMethods setLeftBarItems:self];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtnView];
     searchFriends = [[SearchFriends alloc] initWithFrame:CGRectMake(0, NAVIGATION_AND_STATUSBAR_HEIGHT, SCREEN_WIDTH , 50)];
+    searchFriends.delegate = self;
     [self.view addSubview:searchFriends];
+}
+
+- (void)initData{
+    self.dataArr = [[NSMutableArray alloc] init];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -51,7 +58,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 100;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -60,7 +67,8 @@
     if (cell == nil) {
         cell = [[AddFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
+    RosterListModel *model = self.dataArr[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",model.uid];
     return cell;
 }
 
@@ -71,6 +79,13 @@
 - (void)clickBackBtn{
     self.tabBarController.tabBar.hidden = NO;
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark searchFriendDelegate
+- (void)searchFriendWithName:(NSString *)name{
+    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+    self.dataArr = [fmdb searchFriendsFromRoster:name];
+    [tableView reloadData];
 }
 
 /*

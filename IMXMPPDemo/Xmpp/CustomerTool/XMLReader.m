@@ -48,7 +48,9 @@ static XMLReader *xmlReader = nil;
 - (void)parser:(__unused NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(__unused NSString *)namespaceURI qualifiedName:(__unused NSString *)qName attributes:(NSDictionary *)attributeDict{
     if ([elementName isEqualToString:@"item"]) {
         RosterListModel *model = [[RosterListModel alloc] init];
-        model.uid = [attributeDict objectForKey:@"jid"];
+        model.jid = [attributeDict objectForKey:@"jid"];
+        NSArray *strArr = [[attributeDict objectForKey:@"jid"] componentsSeparatedByString:@"@"];
+        model.uid = strArr[0];
         model.name = [attributeDict objectForKey:@"name"];
         model.ask = [attributeDict objectForKey:@"ask"];
         model.subscription = [attributeDict objectForKey:@"subscription"];
