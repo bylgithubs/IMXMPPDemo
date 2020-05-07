@@ -40,10 +40,8 @@
 
 - (void)initUI{
     self.tabBarController.tabBar.hidden = YES;
-    if (self.addressDataModel.userName!=nil) {
-        [self.navigationItem setTitle:self.addressDataModel.userName];
-    } else {
-        [self.navigationItem setTitle:self.addressDataModel.homePhone];
+    if (self.loginInfoModel!=nil) {
+        [self.navigationItem setTitle:self.loginInfoModel.user];
     }
     //设置聊天室导航栏标题样式
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -170,41 +168,29 @@
             return;
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_KEYBOARD_TEXT object:nil];
-        [self SendDataAndInsertDB:text];
+        //[self SendDataAndInsertDB:text];
     }
 }
 
 //发送和存储消息
-- (void)SendDataAndInsertDB:(NSString *)message{
-    dispatch_queue_t dispatchQueue = dispatch_queue_create("SendDataAndInsertDB", nil);
-    dispatch_async(dispatchQueue, ^{
-        ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
-        ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
-        chatRoomModel.userID = self.addressDataModel.userID;
-        chatRecordModel.userID = self.addressDataModel.userID;
-        if (self.addressDataModel.userName) {
-            chatRoomModel.userName = self.addressDataModel.userName;
-            chatRecordModel.userName = self.addressDataModel.userName;
-        } else {
-            chatRoomModel.userName = self.addressDataModel.homePhone;
-            chatRecordModel.userName = self.addressDataModel.homePhone;
-        }
-        if (message != nil) {
-            chatRoomModel.content = message;
-            chatRecordModel.content = message;
-        }
-        chatRoomModel.currentDate = [CommonMethods setDateFormat:[NSDate date]];
-        chatRecordModel.currentDate = [CommonMethods setDateFormat:[NSDate date]];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            FMDBOperation *dbOperation = [FMDBOperation sharedDatabaseInstance];
-//            [dbOperation insertChatMessage:chatRoomModel];
-//            [dbOperation insertChatRecord:chatRecordModel];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_CHATROOM_MESSAGE object:nil];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_CHAT_RECORD object:nil];
-//        });
-        
-    });
-}
+//- (void)SendDataAndInsertDB:(NSString *)message{
+//    dispatch_queue_t dispatchQueue = dispatch_queue_create("SendDataAndInsertDB", nil);
+//    dispatch_async(dispatchQueue, ^{
+//        ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
+//        ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
+//        chatRoomModel.userID = self.rosterModel.uid;
+//        chatRecordModel.userID = self.rosterModel.uid;
+//        chatRoomModel.userName = self.rosterModel.uid;
+//        chatRecordModel.userName = self.rosterModel.uid;
+//        if (message != nil) {
+//            chatRoomModel.content = message;
+//            chatRecordModel.content = message;
+//        }
+//        chatRoomModel.currentDate = [CommonMethods setDateFormat:[NSDate date]];
+//        chatRecordModel.currentDate = [CommonMethods setDateFormat:[NSDate date]];
+//
+//    });
+//}
 
 - (void)chatRoomTableViewCellLongPress:(SuperChatRoomCell *)chatRoomCell type:(enum MessageType)type content:(NSString *)content{
     NSString *roomID = chatRoomCell.chatRoomModel.userID;

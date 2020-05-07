@@ -11,14 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol SearchFriendDelegate <NSObject>
-
-- (void)searchFriendWithName:(NSString *)name;
-
-@end
+//@protocol SearchFriendDelegate <NSObject>
+//
+//- (void)searchFriendWithName:(NSString *)name;
+//
+//@end
 @interface SearchFriends : UIView
 
-@property (nonatomic,weak) id<SearchFriendDelegate> delegate;
 
 @end
 

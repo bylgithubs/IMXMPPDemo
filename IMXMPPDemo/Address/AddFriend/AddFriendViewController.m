@@ -8,7 +8,7 @@
 
 #import "AddFriendViewController.h"
 
-@interface AddFriendViewController ()<UITableViewDelegate,UITableViewDataSource,SearchFriendDelegate>
+@interface AddFriendViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) SearchFriends *searchFriends;
@@ -45,7 +45,6 @@
     UIView *backBtnView = [CommonComponentMethods setLeftBarItems:self];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtnView];
     searchFriends = [[SearchFriends alloc] initWithFrame:CGRectMake(0, NAVIGATION_AND_STATUSBAR_HEIGHT, SCREEN_WIDTH , 50)];
-    searchFriends.delegate = self;
     [self.view addSubview:searchFriends];
 }
 

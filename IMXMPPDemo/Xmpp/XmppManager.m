@@ -42,6 +42,7 @@
     [xmppReconnect activate:xmppStream];
     [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     [self activeRosterModules];
+    [self notification:YES];
 }
 
 #pragma mark 连接服务器
@@ -159,6 +160,26 @@
 
 }
 
+//name为用户账号
+- (void)xmppAddFriendSubscribe:(NSNotification *)noti
+{
+    //XMPPHOST 就是服务器名， 主机名
+    XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",noti.object,SERVER_DOMAIN]];
+    //[presence addAttributeWithName:@"subscription" stringValue:@"好友"];
+    [self.xmppRoster subscribePresenceToUser:jid];
+}
+
+- (void)notification:(BOOL)flag{
+    if (flag) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xmppAddFriendSubscribe:) name:XMPPMANAGER_ADD_FRIEND object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:XMPPMANAGER_ADD_FRIEND object:nil];
+    }
+}
+
+- (void)dealloc{
+    [self notification:NO];
+}
 //Request
 //- (void)getDetailsofRegisteredUser {
 //

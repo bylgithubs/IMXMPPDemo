@@ -82,14 +82,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
-    ChatRecordModel *model = self.dataArr[indexPath.row];
-    AddressDataModel *addrModel = [[AddressDataModel alloc] init];
-    addrModel.userID = model.userID;
-    addrModel.userName = model.userName;
-    chatRoomVC.addressDataModel = addrModel;
-
-    [self.navigationController pushViewController:chatRoomVC animated:YES];
+//    ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
+//    ChatRecordModel *model = self.dataArr[indexPath.row];
+//    AddressDataModel *addrModel = [[AddressDataModel alloc] init];
+//    addrModel.userID = model.userID;
+//    addrModel.userName = model.userName;
+//    chatRoomVC.loginInfoModel = addrModel;
+//
+//    [self.navigationController pushViewController:chatRoomVC animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{

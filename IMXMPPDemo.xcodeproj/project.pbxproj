@@ -305,11 +305,11 @@
 		6406605324615F1700AF4975 /* ChatRoomCell */ = {
 			isa = PBXGroup;
 			children = (
-				6406605424615F1700AF4975 /* ChatRoomTextCell.m */,
-				6406605524615F1700AF4975 /* SuperChatRoomCell.h */,
 				6406605624615F1700AF4975 /* ChatRoomDelegate.h */,
-				6406605724615F1700AF4975 /* ChatRoomTextCell.h */,
+				6406605524615F1700AF4975 /* SuperChatRoomCell.h */,
 				6406605824615F1700AF4975 /* SuperChatRoomCell.m */,
+				6406605724615F1700AF4975 /* ChatRoomTextCell.h */,
+				6406605424615F1700AF4975 /* ChatRoomTextCell.m */,
 			);
 			path = ChatRoomCell;
 			sourceTree = "<group>";

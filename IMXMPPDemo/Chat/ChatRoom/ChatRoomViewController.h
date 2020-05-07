@@ -13,12 +13,13 @@
 #import "CommonMethods.h"
 #import "FMDBOperation.h"
 #import "ChatRoomMenuView.h"
+#import "LoginInformationModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatRoomViewController : UIViewController
 
-@property (nonatomic,strong) AddressDataModel *addressDataModel;
+@property (nonatomic,strong) LoginInformationModel *loginInfoModel;
 
 @end
 

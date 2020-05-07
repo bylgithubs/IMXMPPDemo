@@ -33,7 +33,7 @@
     
     self.searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.searchBtn.backgroundColor = [UIColor whiteColor];
-    [self.searchBtn setTitle:@"搜索" forState:UIControlStateNormal];
+    [self.searchBtn setTitle:@"添加" forState:UIControlStateNormal];
     [self.searchBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.searchBtn addTarget:self action:@selector(searchClickAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.searchBtn];
@@ -53,11 +53,16 @@
     }];
 }
 
+//- (void)searchClickAction{
+//    NSString *searchText = self.textField.text;
+//    if ([self.delegate respondsToSelector:@selector(searchFriendWithName:)]) {
+//        [self.delegate searchFriendWithName:searchText];
+//    }
+//}
 - (void)searchClickAction{
     NSString *searchText = self.textField.text;
-    if ([self.delegate respondsToSelector:@selector(searchFriendWithName:)]) {
-        [self.delegate searchFriendWithName:searchText];
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:XMPPMANAGER_ADD_FRIEND object:searchText];
+    self.textField.text = @"";
 }
 /*
 // Only override drawRect: if you perform custom drawing.

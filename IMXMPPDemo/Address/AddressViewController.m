@@ -17,8 +17,8 @@
 @property (nonatomic,strong) AddressSegmentView *segmentView;
 @property (nonatomic,strong) NSIndexPath *ClickCellIndex;
 @property (nonatomic,assign) BOOL sideSwitch;
-@property (nonatomic,strong) AddressDataModel *addressDataModel;
 @property (nonatomic,strong) UIButton *addFriendBtn;
+@property (nonatomic,strong) LoginInformationModel *loginInfoModel;
 
 
 @end
@@ -33,7 +33,6 @@
     
     self.dataDic = [[NSMutableDictionary alloc] init];
     self.dataArr = [[NSMutableArray alloc] init];
-    self.addressDataModel = [[AddressDataModel alloc] init];
     tableView = [[UITableView alloc] init];
     tableView.delegate = self;
     tableView.dataSource =self;
@@ -119,9 +118,8 @@
     
     self.ClickCellIndex = indexPath;
     
-    self.addressDataModel = self.dataArr[indexPath.row];
-    //self.addressDataModel = [self.dataDic objectForKey:self.dataArr[indexPath.row]];
-    NSLog(@"===========%@",self.addressDataModel);
+    self.loginInfoModel = self.dataArr[indexPath.row];
+
     [tableView reloadData];
 }
 
@@ -154,11 +152,11 @@
 - (void)sideViewClick:(NSInteger)btnTag{
     if (btnTag == 1) {
         ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
-        chatRoomVC.addressDataModel = self.addressDataModel;
+        chatRoomVC.loginInfoModel = self.loginInfoModel;
         [self.navigationController pushViewController:chatRoomVC animated:YES];
     } else {
         DetailInformationViewController *detailInfoVC = [[DetailInformationViewController alloc] init];
-        detailInfoVC.detailInfoModel = self.addressDataModel;
+        detailInfoVC.detailInfoModel = self.loginInfoModel;
         [self.navigationController pushViewController:detailInfoVC animated:YES];
     }
 }

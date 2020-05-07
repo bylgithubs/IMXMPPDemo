@@ -50,6 +50,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define UPDATE_CHAT_RECORD @"UpdateChatRecord"
 #define ADDRESS_REFRESH_ROSTER_DATA @"AddressRefreshRosterData"
 #define CREATE_DATABASE_AND_TABLE @"CreateDatabaseAndTable"
+#define XMPPMANAGER_ADD_FRIEND @"XmppManagerAddFriend"
 
 enum MessageType{
     Text
