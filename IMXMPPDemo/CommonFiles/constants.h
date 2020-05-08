@@ -17,6 +17,9 @@
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
+#pragma mark 用户相关
+#define CURRENTUSER [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"]
+
 #pragma mark 服务器相关
 #define SERVER_DOMAIN @"civetmac030"
 #define SERVER_PORT @"5222"

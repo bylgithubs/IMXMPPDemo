@@ -54,6 +54,17 @@ static FMDBOperation *sharedInstance = nil;
         NSLog(@"创建表 %@ 失败",tableName);
     }
     
+    tableName = @"ChatMessage";
+    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_type varchar,message_from varchar,message_to varchar,content text,send_date varchar)",tableName];
+    NSLog(@"===%@",sqlStr);
+    result = [self.dbOperation executeUpdate:sqlStr];
+    if (result) {
+        NSLog(@"创建表 %@ 成功",tableName);
+    } else {
+        NSLog(@"创建表 %@ 失败",tableName);
+    }
+    
+    
 //    tableName = @"ChatMessage";
 //    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,room_ID varchar,user_name varchar,content text,current_date varchar)",tableName];
 //    NSLog(@"===%@",sqlStr);
@@ -110,6 +121,15 @@ static FMDBOperation *sharedInstance = nil;
         [resultSet close];
     }];
     return dataArr;
+}
+
+//插入聊天记录
+- (void)insertChatMessage:(ChatRoomModel *)model{
+
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        NSString *sqlStr = @"insert into ChatMessage(uid,room_id,user_nick,message_type,message_from,message_to,content,send_date) values(?,?,?,?,?,?,?,?)";
+        [db executeUpdate:sqlStr,model.uId,model.roomId,model.userNick,model.messageType,model.messageFrom,model.messageTo,model.content,model.sendDate];
+    }];
 }
 
 ////插入聊天记录

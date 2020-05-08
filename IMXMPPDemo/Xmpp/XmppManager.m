@@ -10,13 +10,10 @@
 
 @interface XmppManager ()<NSXMLParserDelegate>
 
-@property (nonatomic,strong) XMPPStream *xmppStream;
-@property (nonatomic,strong) XMPPReconnect *xmppReconnect;
+
 @property (nonatomic,strong) NSString *userName;
 @property (nonatomic,strong) NSString *passward;
-@property (nonatomic,strong) XMPPRosterCoreDataStorage *rosterStorage;
-@property (nonatomic,strong) XMPPRoster *xmppRoster;
-@property (nonatomic,strong) XMPPRoom *xmppRoom;
+
 
 @end
 

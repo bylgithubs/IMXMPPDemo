@@ -168,32 +168,59 @@
             return;
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_KEYBOARD_TEXT object:nil];
-        //[self SendMessageAndInsertDB:text];
+        [self SendMessageAndInsertDB:text];
     }
 }
 
 //发送和存储消息
-//- (void)SendMessageAndInsertDB:(NSString *)message{
-//    dispatch_queue_t dispatchQueue = dispatch_queue_create("SendDataAndInsertDB", nil);
-//    dispatch_async(dispatchQueue, ^{
-//        ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
-//        ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
-//        chatRoomModel.userID = self.rosterModel.uid;
-//        chatRecordModel.userID = self.rosterModel.uid;
-//        chatRoomModel.userName = self.rosterModel.uid;
-//        chatRecordModel.userName = self.rosterModel.uid;
-//        if (message != nil) {
-//            chatRoomModel.content = message;
-//            chatRecordModel.content = message;
-//        }
-//        chatRoomModel.currentDate = [CommonMethods setDateFormat:[NSDate date]];
-//        chatRecordModel.currentDate = [CommonMethods setDateFormat:[NSDate date]];
-//
-//    });
-//}
+- (void)SendMessageAndInsertDB:(NSString *)message{
+    dispatch_queue_t dispatchQueue = dispatch_queue_create("SendDataAndInsertDB", nil);
+    dispatch_async(dispatchQueue, ^{
+        ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
+        ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
+        chatRoomModel.uId = self.loginInfoModel.user;
+        chatRoomModel.roomId = self.loginInfoModel.user;
+        chatRoomModel.userNick = self.loginInfoModel.user;
+        chatRoomModel.messageFrom = CURRENTUSER;
+        chatRoomModel.messageTo = self.loginInfoModel.user;
+        chatRoomModel.messageType = @"text";
+        if (message != nil) {
+            chatRoomModel.content = message;
+            chatRecordModel.content = message;
+        }
+        chatRoomModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
+        chatRecordModel.currentDate = [CommonMethods setDateFormat:[NSDate date]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            FMDBOperation *dbOperation = [FMDBOperation sharedDatabaseInstance];
+            [dbOperation insertChatMessage:chatRoomModel];
+//            [dbOperation insertChatRecord:chatRecordModel];
+            [self sendMessageToServer:chatRoomModel];
+            [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_CHATROOM_MESSAGE object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_CHAT_RECORD object:nil];
+        });
+
+    });
+}
+
+- (void)sendMessageToServer:(ChatRoomModel *)model{
+    XmppManager *xmppManager = [XmppManager sharedInstance];
+    
+    NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+    [body setStringValue:model.content];
+    NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+    [message addAttributeWithName:@"type" stringValue:@"chat"];
+    NSString *to = [NSString stringWithFormat:@"%@@%@", model.uId,SERVER_DOMAIN];
+    [message addAttributeWithName:@"from" stringValue:model.messageFrom];
+    [message addAttributeWithName:@"to" stringValue:to];
+    [message addAttributeWithName:@"sendDate" stringValue:model.sendDate];
+    [message addChild:body];
+    [xmppManager.xmppStream sendElement:message];
+}
+
 
 - (void)chatRoomTableViewCellLongPress:(SuperChatRoomCell *)chatRoomCell type:(enum MessageType)type content:(NSString *)content{
-    NSString *roomID = chatRoomCell.chatRoomModel.userID;
+    NSString *roomID = chatRoomCell.chatRoomModel.roomId;
     self.currentCell = chatRoomCell;
     chatRoomMenuView = [[ChatRoomMenuView alloc] initWithFrame:self.view.bounds viewController:self];
     self.chatRoomMenuView.delegate = self;
@@ -210,7 +237,7 @@
 }
 
 - (void)deleteMessageCell{
-    NSString *jid = self.currentCell.chatRoomModel.jID;
+    //NSString *jid = self.currentCell.chatRoomModel.jID;
 //    if ([[FMDBOperation sharedDatabaseInstance] deleteChatRoomMessage:jid]) {
 //        [self.dataArr removeObject:self.currentCell.chatRoomModel];
 //        [self reloadTableView];

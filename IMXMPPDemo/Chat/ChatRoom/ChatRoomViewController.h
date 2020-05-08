@@ -14,6 +14,7 @@
 #import "FMDBOperation.h"
 #import "ChatRoomMenuView.h"
 #import "LoginInformationModel.h"
+#import "XmppManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
