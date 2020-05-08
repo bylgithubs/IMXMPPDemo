@@ -168,12 +168,12 @@
             return;
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_KEYBOARD_TEXT object:nil];
-        //[self SendDataAndInsertDB:text];
+        //[self SendMessageAndInsertDB:text];
     }
 }
 
 //发送和存储消息
-//- (void)SendDataAndInsertDB:(NSString *)message{
+//- (void)SendMessageAndInsertDB:(NSString *)message{
 //    dispatch_queue_t dispatchQueue = dispatch_queue_create("SendDataAndInsertDB", nil);
 //    dispatch_async(dispatchQueue, ^{
 //        ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];

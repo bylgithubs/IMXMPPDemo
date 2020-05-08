@@ -16,12 +16,14 @@
 @property (nonatomic,strong) NSString *passward;
 @property (nonatomic,strong) XMPPRosterCoreDataStorage *rosterStorage;
 @property (nonatomic,strong) XMPPRoster *xmppRoster;
+@property (nonatomic,strong) XMPPRoom *xmppRoom;
 
 @end
 
 @implementation XmppManager
 @synthesize xmppStream;
 @synthesize xmppReconnect;
+@synthesize xmppRoom;
 @synthesize isRegisterAfterConnected;
 
 #pragma mark Singleton
@@ -157,6 +159,7 @@
 -(void)xmppRosterDidEndPopulating:(XMPPRoster *)sender
 {
     NSLog(@"获取好友列表结束,此处向外部传值");
+//    [self sendMessage:@"111111111111111111111111111111111111" toUser:@"bbb"];
     NSMutableArray *arr = self.rosterArr;
     [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:self.rosterArr];
 
@@ -178,11 +181,60 @@
     [self.xmppRoster removeUser:jid];
 }
 
+#pragma mark -- 聊天相关
+//发送消息方法
+//-(void)sendMessage:(NSString *)sendMsg toJid:(XMPPJID *)jid
+//{
+//    //组装xml格式的消息
+//    XMPPMessage *msg = [XMPPMessage messageWithType:@"chat" to:jid];
+//    /*添加内容节点
+//     <message type = "chat" ,ToJID = toJid>
+//     <body>sendMsg</body>
+//     </message>
+//     */
+//    [self sendMessage:sendMsg toJid:jid];
+//    [msg addBody:sendMsg];
+//    //发送
+//    [xmppStream sendElement:msg];
+//}
+
+//- (void)sendMessage{
+//    [self sendMessage:@"2222222222222222222" toUser:@"bbb"];
+//}
+
+- (void)sendMessage:(NSString *) message1 toUser:(NSString *) user
+{
+    NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+    [body setStringValue:message1];
+    NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+    [message addAttributeWithName:@"type" stringValue:@"chat"];
+    NSString *to = [NSString stringWithFormat:@"%@@%@", user,SERVER_DOMAIN];
+    [message addAttributeWithName:@"to" stringValue:to];
+    [message addChild:body];
+    [self.xmppStream sendElement:message];
+}
+
+#pragma mark -- 消息代理方法
+-(void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message
+{
+    NSLog(@"发送消息成功");
+}
+-(void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error
+{
+    NSLog(@"发送失败");
+}
+//接收到消息触发
+-(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
+{
+    NSLog(@"接收到消息--%@",[[message attributeForName:@"body"]stringValue]);
+}
+
 - (void)notification:(BOOL)flag{
     if (flag) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xmppAddFriendSubscribe:) name:XMPPMANAGER_ADD_FRIEND object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xmppDeleteFriendSubscribe:) name:XMPPMANAGER_DELETE_FRIEND object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnectedToServer) name:XMPPMANAGER_DISCONNECTED_TO_SERVER object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendMessage) name:TEST11 object:nil];
     } else {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:XMPPMANAGER_ADD_FRIEND object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:XMPPMANAGER_DELETE_FRIEND object:nil];

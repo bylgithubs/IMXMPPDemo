@@ -18,7 +18,7 @@
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 #pragma mark 服务器相关
-#define SERVER_DOMAIN @"192.168.43.139"
+#define SERVER_DOMAIN @"civetmac030"
 #define SERVER_PORT @"5222"
 #define XMPP_RESOURCE @"iOS"
 #define HOST_NAME @"192.168.43.139"
@@ -56,6 +56,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define XMPPMANAGER_ADD_FRIEND @"XmppManagerAddFriend"
 #define XMPPMANAGER_DELETE_FRIEND @"XmppManagerDeleteFriend"
 #define XMPPMANAGER_DISCONNECTED_TO_SERVER @"XmppManagerDisconnectedToServer"
+//#define TEST11 @"test11"
 
 enum MessageType{
     Text

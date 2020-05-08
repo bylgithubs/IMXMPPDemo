@@ -44,8 +44,8 @@
     self.passwardTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwardTextField.secureTextEntry = YES;
     
-    self.userNameTextField.text = @"aaaaa";
-    self.passwardTextField.text = @"aaaaa";
+    self.userNameTextField.text = @"eee";
+    self.passwardTextField.text = @"eee";
     
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];

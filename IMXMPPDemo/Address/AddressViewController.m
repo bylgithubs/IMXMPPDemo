@@ -207,6 +207,7 @@
 
 #pragma mark 添加好友点击事件
 - (void)addFriendClickAction{
+    [[NSNotificationCenter defaultCenter] postNotificationName:TEST11 object:nil];
     AddFriendViewController *addFriendVC = [[AddFriendViewController alloc] init];
     [self.navigationController pushViewController:addFriendVC animated:YES];
 }
