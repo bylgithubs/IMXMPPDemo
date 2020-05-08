@@ -160,20 +160,29 @@
 
 }
 
-//name为用户账号
+//添加好友
 - (void)xmppAddFriendSubscribe:(NSNotification *)noti
 {
     //XMPPHOST 就是服务器名， 主机名
     XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",noti.object,SERVER_DOMAIN]];
-    //[presence addAttributeWithName:@"subscription" stringValue:@"好友"];
     [self.xmppRoster subscribePresenceToUser:jid];
+}
+
+//删除好友
+- (void)xmppDeleteFriendSubscribe:(NSNotification *)noti
+{
+    //XMPPHOST 就是服务器名， 主机名
+    XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",noti.object,SERVER_DOMAIN]];
+    [self.xmppRoster removeUser:jid];
 }
 
 - (void)notification:(BOOL)flag{
     if (flag) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xmppAddFriendSubscribe:) name:XMPPMANAGER_ADD_FRIEND object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xmppDeleteFriendSubscribe:) name:XMPPMANAGER_DELETE_FRIEND object:nil];
     } else {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:XMPPMANAGER_ADD_FRIEND object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:XMPPMANAGER_DELETE_FRIEND object:nil];
     }
 }
 

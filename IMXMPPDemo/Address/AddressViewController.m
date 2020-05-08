@@ -12,7 +12,7 @@
 @interface AddressViewController ()<UITableViewDelegate,UITableViewDataSource,SegmentViewDelegate,AddressSideViewDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) NSMutableDictionary *dataDic;
+//@property (nonatomic,strong) NSMutableDictionary *dataDic;
 @property (nonatomic,strong) NSMutableArray *dataArr;
 @property (nonatomic,strong) AddressSegmentView *segmentView;
 @property (nonatomic,strong) NSIndexPath *ClickCellIndex;
@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.dataDic = [[NSMutableDictionary alloc] init];
+    //self.dataDic = [[NSMutableDictionary alloc] init];
     self.dataArr = [[NSMutableArray alloc] init];
     tableView = [[UITableView alloc] init];
     tableView.delegate = self;
@@ -71,12 +71,39 @@
     self.dataArr = self.rosterArr;
 }
 
+- (void)AddFriend:(NSNotification *)noti{
+    [self.dataArr addObject:noti.object];
+    self.sideSwitch = NO;
+    [tableView reloadData];
+}
+
+- (void)DeleteFriend{
+    [self.dataArr removeObjectAtIndex:self.ClickCellIndex.row];
+    self.sideSwitch = NO;
+    [tableView reloadData];
+}
+
+//- (void)operationTableViewData:(NSNotification *)noti{
+//    NSString *operationType = noti.object;
+//    if ([operationType isEqualToString:@"AddFriend"]) {
+//
+//    }
+//    else if ([operationType isEqualToString:@"DeleteFriend"]) {
+//
+//    }
+//
+//}
+
 #pragma mark notification
 - (void)notificationRegister:(BOOL)flag{
     if (flag) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initData) name:ADDRESS_REFRESH_ROSTER_DATA object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AddFriend:) name:ADDRESS_ADD_ROSTER_DATA object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DeleteFriend) name:ADDRESS_Delete_ROSTER_DATA object:nil];
     } else {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:ADDRESS_REFRESH_ROSTER_DATA object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ADDRESS_ADD_ROSTER_DATA object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ADDRESS_Delete_ROSTER_DATA object:nil];
     }
 }
 
@@ -95,9 +122,6 @@
     if (addrCell == nil) {
         addrCell = [[AddressTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSLog(@"=========%@",self.dataDic);
-    NSLog(@"=========%@",self.dataArr);
-    addrCell.dataDic = self.dataDic;
     addrCell.dataArr = self.dataArr;
     [addrCell setCellContent];
     if (self.ClickCellIndex.section == indexPath.section && self.ClickCellIndex.row == indexPath.row && self.sideSwitch) {
@@ -156,7 +180,7 @@
         [self.navigationController pushViewController:chatRoomVC animated:YES];
     } else {
         DetailInformationViewController *detailInfoVC = [[DetailInformationViewController alloc] init];
-        detailInfoVC.detailInfoModel = self.loginInfoModel;
+        detailInfoVC.loginInfoModel = self.loginInfoModel;
         [self.navigationController pushViewController:detailInfoVC animated:YES];
     }
 }

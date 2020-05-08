@@ -62,6 +62,11 @@
 - (void)searchClickAction{
     NSString *searchText = self.textField.text;
     [[NSNotificationCenter defaultCenter] postNotificationName:XMPPMANAGER_ADD_FRIEND object:searchText];
+    LoginInformationModel *loginModel = [[LoginInformationModel alloc] init];
+    loginModel.user = self.textField.text;
+    loginModel.domain = SERVER_DOMAIN;
+    loginModel.resource = XMPP_RESOURCE;
+    [[NSNotificationCenter defaultCenter] postNotificationName:ADDRESS_ADD_ROSTER_DATA object:loginModel];
     self.textField.text = @"";
 }
 /*

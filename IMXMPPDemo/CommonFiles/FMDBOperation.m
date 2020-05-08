@@ -54,10 +54,10 @@ static FMDBOperation *sharedInstance = nil;
         NSLog(@"创建表 %@ 失败",tableName);
     }
     
-//    NSString *tableName = @"ChatMessage";
-//    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(jid integer PRIMARY KEY AUTOINCREMENT,room_ID varchar,user_name varchar,content text,current_date varchar)",tableName];
+//    tableName = @"ChatMessage";
+//    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,room_ID varchar,user_name varchar,content text,current_date varchar)",tableName];
 //    NSLog(@"===%@",sqlStr);
-//    BOOL result = [self.dbOperation executeUpdate:sqlStr];
+//    result = [self.dbOperation executeUpdate:sqlStr];
 //    if (result) {
 //        NSLog(@"创建表 %@ 成功",tableName);
 //    } else {

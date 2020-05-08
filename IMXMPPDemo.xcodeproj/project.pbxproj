@@ -293,10 +293,10 @@
 			isa = PBXGroup;
 			children = (
 				6406604D24615F1700AF4975 /* CollectionViewCell.h */,
+				6406605124615F1700AF4975 /* CollectionViewCell.m */,
+				6406605024615F1700AF4975 /* ChatRoomMenuView.h */,
 				6406604E24615F1700AF4975 /* ChatRoomMenuView.m */,
 				6406604F24615F1700AF4975 /* CollectionViewFlowLayout.h */,
-				6406605024615F1700AF4975 /* ChatRoomMenuView.h */,
-				6406605124615F1700AF4975 /* CollectionViewCell.m */,
 				6406605224615F1700AF4975 /* CollectionViewFlowLayout.m */,
 			);
 			path = ChatRoomMenuView;
