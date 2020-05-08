@@ -16,8 +16,8 @@
 @property (nonatomic,strong) UITextField *passwardTextField;
 @property (nonatomic,strong) UIButton *loginBtn;
 @property (nonatomic,strong) UIButton *registerBtn;
-@property (nonatomic,strong) NSString *userName;
-@property (nonatomic,strong) NSString *passward;
+//@property (nonatomic,strong) NSString *userName;
+//@property (nonatomic,strong) NSString *passward;
 
 @end
 
@@ -127,7 +127,9 @@
     //连接xmpp
     XmppManager *xmppManager = [XmppManager sharedInstance];
     xmppManager.isRegisterAfterConnected = YES;
-    [xmppManager connectToServer:self.userName passward:self.passward];
+    [xmppManager connectToServer:self.userNameTextField.text passward:self.passwardTextField.text];
+    self.userNameTextField.text = @"";
+    self.passwardTextField.text = @"";
 }
 
 /*
