@@ -80,7 +80,7 @@ static FMDBOperation *sharedInstance = nil;
 - (void)insertRosterData:(RosterListModel *)model{
 
     [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        NSString *sqlStr = @"select * from RosterList where jid = ?";
+        NSString *sqlStr = @"select * from RosterLis1t where jid = ?";
         FMResultSet *res = [db executeQuery:sqlStr,model.jid];
         if ([res next]) {
             sqlStr = @"delete from RosterList where jid = ?";

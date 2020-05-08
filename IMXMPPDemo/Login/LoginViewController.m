@@ -112,15 +112,15 @@
 }
 
 - (void)initData{
-    self.userName = self.userNameTextField.text;
-    self.passward = self.passwardTextField.text;
+//    self.userName = self.userNameTextField.text;
+//    self.passward = self.passwardTextField.text;
 }
 
 - (void)loginClickAction{
     //连接xmpp
     XmppManager *xmppManager = [XmppManager sharedInstance];
     xmppManager.isRegisterAfterConnected = NO;
-    [xmppManager connectToServer:self.userName passward:self.passward];
+    [xmppManager connectToServer:self.userNameTextField.text passward:self.passwardTextField.text];
 }
 
 - (void)registerClickAction{

@@ -17,6 +17,7 @@
 @property (nonatomic,strong) AddressSegmentView *segmentView;
 @property (nonatomic,strong) NSIndexPath *ClickCellIndex;
 @property (nonatomic,assign) BOOL sideSwitch;
+@property (nonatomic,strong) UIButton *loginOutBtn;
 @property (nonatomic,strong) UIButton *addFriendBtn;
 @property (nonatomic,strong) LoginInformationModel *loginInfoModel;
 
@@ -55,6 +56,15 @@
     self.segmentView = [[AddressSegmentView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2 - 75, (44 - 30)/2, 150, 30)];
     self.navigationItem.titleView = self.segmentView;
     self.segmentView.delegate = self;
+    
+    self.loginOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.loginOutBtn.frame = CGRectMake(0, 0, 50, 30);
+    [self.loginOutBtn setTitle:@"登出" forState:UIControlStateNormal];
+    self.loginOutBtn.backgroundColor = [UIColor blueColor];
+    [self.loginOutBtn addTarget:self action:@selector(loginOutClickAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.loginOutBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.loginOutBtn];
     
     self.addFriendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.addFriendBtn.frame = CGRectMake(0, 0, 50, 30);
@@ -187,6 +197,12 @@
 
 - (void)dealloc{
     [self notificationRegister:NO];
+}
+
+#pragma mark 登出点击事件
+- (void)loginOutClickAction{
+    [[NSNotificationCenter defaultCenter] postNotificationName:ADDRESS_LOGINOUT object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:XMPPMANAGER_DISCONNECTED_TO_SERVER object:nil];
 }
 
 #pragma mark 添加好友点击事件

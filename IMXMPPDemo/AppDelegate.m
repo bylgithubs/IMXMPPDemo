@@ -18,21 +18,43 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     self.window.rootViewController = loginVC;
     [self.window makeKeyAndVisible];
-    
+    //[self loginMainInterface];
     [self notificationRegister:YES];
     
     return YES;
 }
 
+- (void)loginMainInterface{
+    [self cleanCacheAndCookie];
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    [UIApplication sharedApplication].keyWindow.rootViewController = loginVC;
+}
+
+- (void)cleanCacheAndCookie{
+    NSHTTPCookie *cookie;
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in [storage cookies]){
+            [storage deleteCookie:cookie];
+        }
+    //    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        NSURLCache * cache = [NSURLCache sharedURLCache];
+        [cache removeAllCachedResponses];
+        [cache setDiskCapacity:0];
+        [cache setMemoryCapacity:0];
+}
+
 #pragma mark notification
 - (void)notificationRegister:(BOOL)flag{
     if (flag) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginMainInterface) name:ADDRESS_LOGINOUT object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(entryMainTabBar:) name:LOGIN_SUCCESS object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initDB) name:CREATE_DATABASE_AND_TABLE object:nil];
     } else {
+         [[NSNotificationCenter defaultCenter] removeObserver:self name:ADDRESS_LOGINOUT object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:LOGIN_SUCCESS object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:CREATE_DATABASE_AND_TABLE object:nil];
     }

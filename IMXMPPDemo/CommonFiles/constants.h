@@ -51,9 +51,11 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define ADDRESS_REFRESH_ROSTER_DATA @"AddressRefreshRosterData"
 #define ADDRESS_ADD_ROSTER_DATA @"AddressAddRosterData"
 #define ADDRESS_Delete_ROSTER_DATA @"AddressDeleteRosterData"
+#define ADDRESS_LOGINOUT @"AddressLoginout"
 #define CREATE_DATABASE_AND_TABLE @"CreateDatabaseAndTable"
 #define XMPPMANAGER_ADD_FRIEND @"XmppManagerAddFriend"
 #define XMPPMANAGER_DELETE_FRIEND @"XmppManagerDeleteFriend"
+#define XMPPMANAGER_DISCONNECTED_TO_SERVER @"XmppManagerDisconnectedToServer"
 
 enum MessageType{
     Text
