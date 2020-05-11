@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatRoomModel : NSObject
 
-//@property (nonatomic,copy) NSString *jId;
+@property (nonatomic,copy) NSString *jId;
 @property (nonatomic,copy) NSString *uId;
 @property (nonatomic,copy) NSString *roomId;
 @property (nonatomic,copy) NSString *userNick;

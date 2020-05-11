@@ -115,7 +115,7 @@
     textCell.delegate = self;
     ChatRoomModel *model = self.dataArr[indexPath.row];
     textCell.chatRoomModel = model;
-    textCell.textLabel.text = [NSString stringWithFormat:@"%@",model.content];
+    [textCell configData];
     return textCell;
 }
 
@@ -130,9 +130,12 @@
 }
 
 - (void)changeTableViewHeight{
+    tableView.backgroundColor = [UIColor redColor];
     CGRect tableViewFrame = tableView.frame;
-    tableViewFrame.size.height = self.keyboard.frame.origin.y;
+    tableViewFrame.origin.y = NAVIGATION_AND_STATUSBAR_HEIGHT;
+    tableViewFrame.size.height = self.keyboard.frame.origin.y - NAVIGATION_AND_STATUSBAR_HEIGHT;
     tableView.frame = tableViewFrame;
+    
 }
 
 - (void)addKeyBoard{
@@ -151,8 +154,6 @@
 
 
 -(void)KeyBoardViewHeightChange:(CGRect)keyboardFrame{
-//    CGRect customKeyboardFrame = self.keyboard.frame;
-//    customKeyboardFrame.origin.y =
     self.keyboard.frame = keyboardFrame;
     [self changeTableViewHeight];
 }
@@ -244,11 +245,11 @@
 }
 
 - (void)deleteMessageCell{
-    //NSString *jid = self.currentCell.chatRoomModel.jID;
-//    if ([[FMDBOperation sharedDatabaseInstance] deleteChatRoomMessage:jid]) {
-//        [self.dataArr removeObject:self.currentCell.chatRoomModel];
-//        [self reloadTableView];
-//    }
+    NSString *jid = self.currentCell.chatRoomModel.jId;
+    if ([[FMDBOperation sharedDatabaseInstance] deleteChatRoomMessage:jid]) {
+        [self.dataArr removeObject:self.currentCell.chatRoomModel];
+        [self reloadTableView];
+    }
     
 }
 

@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
+- (void)configData;
+
 @end
 
 NS_ASSUME_NONNULL_END

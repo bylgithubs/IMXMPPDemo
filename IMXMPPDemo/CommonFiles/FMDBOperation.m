@@ -174,45 +174,7 @@ static FMDBOperation *sharedInstance = nil;
         FMResultSet *resultSet = [db executeQuery:sqlStr,uid];
         while ([resultSet next]) {
             ChatRoomModel *model = [[ChatRoomModel alloc] init];
-            model.uId = [resultSet stringForColumn:@"uid"];
-            model.roomId = [resultSet stringForColumn:@"room_id"];
-            model.userNick = [resultSet stringForColumn:@"user_nick"];
-            model.messageFrom = [resultSet stringForColumn:@"message_from"];
-            model.messageTo = [resultSet stringForColumn:@"message_to"];
-            model.messageType = [resultSet stringForColumn:@"message_type"];
-            model.content = [resultSet stringForColumn:@"content"];
-            model.sendDate = [resultSet stringForColumn:@"send_date"];
-            [dataArr addObject:model];
-        }
-        [resultSet close];
-    }];
-    
-    return dataArr;
-}
-//
-////删除聊天记录
-//- (BOOL)deleteChatRoomMessage:(NSString *)jID{
-//    @try {
-//        [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-//            NSString *sqlStr = @"delete from ChatMessage where jid = ?";
-//            [db executeUpdate:sqlStr,jID];
-//        }];
-//        return YES;
-//    } @catch (NSException *exception) {
-//        NSLog(@"dbOperatin ERROR:%@",exception.description);
-//        return NO;
-//    }
-//}
-//
-//
-//查询最新聊天消息
-- (NSMutableArray *)getChatRecordData{
-    NSMutableArray *dataArr = [NSMutableArray array];
-    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        NSString *sqlStr = @"select * from ChatRecord order by _id desc";
-        FMResultSet *resultSet = [db executeQuery:sqlStr];
-        while ([resultSet next]) {
-            ChatRoomModel *model = [[ChatRoomModel alloc] init];
+            model.jId = [resultSet stringForColumn:@"_id"];
             model.uId = [resultSet stringForColumn:@"uid"];
             model.roomId = [resultSet stringForColumn:@"room_id"];
             model.userNick = [resultSet stringForColumn:@"user_nick"];
@@ -229,18 +191,58 @@ static FMDBOperation *sharedInstance = nil;
     return dataArr;
 }
 
-////删除最新聊天记录
-//- (BOOL)deleteChatRecordMessage:(NSString *)jID{
-//    @try {
-//        [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-//            NSString *sqlStr = @"delete from ChatRecord where jid = ?";
-//            [db executeUpdate:sqlStr,jID];
-//        }];
-//        return YES;
-//    } @catch (NSException *exception) {
-//        NSLog(@"dbOperatin ERROR:%@",exception.description);
-//        return NO;
-//    }
-//}
+//删除聊天记录
+- (BOOL)deleteChatRoomMessage:(NSString *)jID{
+    @try {
+        [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+            NSString *sqlStr = @"delete from ChatMessage where _id = ?";
+            [db executeUpdate:sqlStr,jID];
+        }];
+        return YES;
+    } @catch (NSException *exception) {
+        NSLog(@"dbOperatin ERROR:%@",exception.description);
+        return NO;
+    }
+}
+
+
+//查询最新聊天消息
+- (NSMutableArray *)getChatRecordData{
+    NSMutableArray *dataArr = [NSMutableArray array];
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        NSString *sqlStr = @"select * from ChatRecord order by _id desc";
+        FMResultSet *resultSet = [db executeQuery:sqlStr];
+        while ([resultSet next]) {
+            ChatRoomModel *model = [[ChatRoomModel alloc] init];
+            model.jId = [resultSet stringForColumn:@"_id"];
+            model.uId = [resultSet stringForColumn:@"uid"];
+            model.roomId = [resultSet stringForColumn:@"room_id"];
+            model.userNick = [resultSet stringForColumn:@"user_nick"];
+            model.messageFrom = [resultSet stringForColumn:@"message_from"];
+            model.messageTo = [resultSet stringForColumn:@"message_to"];
+            model.messageType = [resultSet stringForColumn:@"message_type"];
+            model.content = [resultSet stringForColumn:@"content"];
+            model.sendDate = [resultSet stringForColumn:@"send_date"];
+            [dataArr addObject:model];
+        }
+        [resultSet close];
+    }];
+    
+    return dataArr;
+}
+
+//删除最新聊天记录
+- (BOOL)deleteChatRecordMessage:(NSString *)jID{
+    @try {
+        [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+            NSString *sqlStr = @"delete from ChatRecord where _id = ?";
+            [db executeUpdate:sqlStr,jID];
+        }];
+        return YES;
+    } @catch (NSException *exception) {
+        NSLog(@"dbOperatin ERROR:%@",exception.description);
+        return NO;
+    }
+}
 
 @end

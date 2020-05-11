@@ -33,14 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)insertChatRecord:(ChatRecordModel *)model;
 //查询最新聊天消息
 - (NSMutableArray *)getChatRecordData;
-////删除聊天记录
-//- (BOOL)deleteChatRoomMessage:(NSString *)jID;
-////插入最新聊天记录
-//- (void)insertChatRecord:(ChatRecordModel *)model;
-////查询最新聊天消息
-//- (NSMutableArray *)getChatRecordData;
-////删除最新聊天记录
-//- (BOOL)deleteChatRecordMessage:(NSString *)jID;
+//删除聊天记录
+- (BOOL)deleteChatRoomMessage:(NSString *)jID;
+//删除最新聊天记录
+- (BOOL)deleteChatRecordMessage:(NSString *)jID;
 
 @end
 

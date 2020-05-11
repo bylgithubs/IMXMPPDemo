@@ -116,15 +116,15 @@
 
 //删除一条最新聊天记录
 - (BOOL)deleteChatRecord:(NSIndexPath *)indexPath{
-    //FMDBOperation *db = [FMDBOperation sharedDatabaseInstance];
-    //ChatRecordModel *model = self.dataArr[indexPath.row];
-    //BOOL result = [db deleteChatRecordMessage:model.jID];
-//    if (result) {
-//        [self.dataArr removeObjectAtIndex:indexPath.row];
-//        [tableView beginUpdates];
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        [tableView endUpdates];
-//    }
+    FMDBOperation *db = [FMDBOperation sharedDatabaseInstance];
+    ChatRecordModel *model = self.dataArr[indexPath.row];
+    BOOL result = [db deleteChatRecordMessage:model.jId];
+    if (result) {
+        [self.dataArr removeObjectAtIndex:indexPath.row];
+        [tableView beginUpdates];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView endUpdates];
+    }
     return YES;
 }
 

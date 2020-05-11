@@ -18,6 +18,10 @@
     return self;
 }
 
+- (void)configData{
+    [super configData];
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
