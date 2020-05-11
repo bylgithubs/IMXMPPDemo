@@ -57,16 +57,16 @@
 - (void)initData{
     self.dataArr = [[NSMutableArray alloc] init];
     
-//    dispatch_queue_t getChatRoomMessageQueue = dispatch_queue_create("getChatRoomMessageQueue", NULL);
-//    dispatch_async(getChatRoomMessageQueue, ^{
-//        self.dataArr = [[FMDBOperation sharedDatabaseInstance] getChatRoomMessage:self.addressDataModel.userID];
-//        NSLog(@"============%@",[NSThread currentThread]);
-//        NSLog(@"============%@",self.dataArr);
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.tableView reloadData];
-//            [self scrollToTableViewBottom];
-//        });
-//    });
+    dispatch_queue_t getChatRoomMessageQueue = dispatch_queue_create("getChatRoomMessageQueue", NULL);
+    dispatch_async(getChatRoomMessageQueue, ^{
+        self.dataArr = [[FMDBOperation sharedDatabaseInstance] getChatRoomMessage:self.loginInfoModel.user];
+        NSLog(@"============%@",[NSThread currentThread]);
+        NSLog(@"============%@",self.dataArr);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self scrollToTableViewBottom];
+        });
+    });
 }
 
 - (void)addNotification:(BOOL)flag{

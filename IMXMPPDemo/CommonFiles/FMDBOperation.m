@@ -156,26 +156,29 @@ static FMDBOperation *sharedInstance = nil;
 //    }];
 //}
 //
-////取出聊天记录
-//- (NSMutableArray *)getChatRoomMessage:(NSString *)userID{
-//    NSMutableArray *dataArr = [NSMutableArray array];
-//    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-//        NSString *sqlStr = @"select * from ChatMessage where room_ID = ?";
-//        FMResultSet *resultSet = [db executeQuery:sqlStr,userID];
-//        while ([resultSet next]) {
-//            ChatRoomModel *model = [[ChatRoomModel alloc] init];
-//            model.jID = [NSString stringWithFormat:@"%d",[resultSet intForColumn:@"jid"]];
-//            model.userID = [resultSet stringForColumn:@"room_ID"];
-//            model.userName = [resultSet stringForColumn:@"user_name"];
-//            model.content = [resultSet stringForColumn:@"content"];
-//            model.currentDate = [resultSet stringForColumn:@"current_date"];
-//            [dataArr addObject:model];
-//        }
-//        [resultSet close];
-//    }];
-//    
-//    return dataArr;
-//}
+//取出聊天记录
+- (NSMutableArray *)getChatRoomMessage:(NSString *)uid{
+    NSMutableArray *dataArr = [NSMutableArray array];
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        NSString *sqlStr = @"select * from ChatMessage where room_ID = ?";
+        FMResultSet *resultSet = [db executeQuery:sqlStr,uid];
+        while ([resultSet next]) {
+            ChatRoomModel *model = [[ChatRoomModel alloc] init];
+            model.uId = [resultSet stringForColumn:@"uid"];
+            model.roomId = [resultSet stringForColumn:@"room_id"];
+            model.userNick = [resultSet stringForColumn:@"user_nick"];
+            model.messageFrom = [resultSet stringForColumn:@"message_from"];
+            model.messageTo = [resultSet stringForColumn:@"message_to"];
+            model.messageType = [resultSet stringForColumn:@"message_type"];
+            model.content = [resultSet stringForColumn:@"content"];
+            model.sendDate = [resultSet stringForColumn:@"send_date"];
+            [dataArr addObject:model];
+        }
+        [resultSet close];
+    }];
+    
+    return dataArr;
+}
 //
 ////删除聊天记录
 //- (BOOL)deleteChatRoomMessage:(NSString *)jID{

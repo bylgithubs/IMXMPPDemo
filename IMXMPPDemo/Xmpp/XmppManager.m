@@ -223,7 +223,30 @@
 //接收到消息触发
 -(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
-    NSLog(@"接收到消息--%@",[[message attributeForName:@"body"]stringValue]);
+    [self parseDidReceiveMessage:message];
+    NSLog(@"接收到消息--%@",[message body]);
+}
+
+- (void)parseDidReceiveMessage:(XMPPMessage *)message{
+    NSString *type = [[message attributeForName:@"type"] stringValue];
+    NSString *messageFrom = [[message attributeForName:@"from"] stringValue];
+    NSString *messageTo = [[message attributeForName:@"to"] stringValue];
+    NSString *sendDate = [[message attributeForName:@"sendDate"] stringValue];
+    NSString *body = [message body];
+    ChatRoomModel *chatRoomMessage = [[ChatRoomModel alloc] init];
+    messageFrom = [CommonMethods handleUserIDWithSeparated:messageFrom];
+    messageTo = [CommonMethods handleUserIDWithSeparated:messageTo];
+    chatRoomMessage.uId = messageFrom;
+    chatRoomMessage.roomId = messageFrom;
+    chatRoomMessage.userNick = messageFrom;
+    chatRoomMessage.messageType = type;
+    chatRoomMessage.messageFrom = messageFrom;
+    chatRoomMessage.messageTo = messageTo;
+    chatRoomMessage.sendDate =sendDate;
+    chatRoomMessage.content = body;
+    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+    [fmdb insertChatMessage:chatRoomMessage];
+    [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_CHATROOM_MESSAGE object:nil];
 }
 
 - (void)notification:(BOOL)flag{

@@ -11,6 +11,7 @@
 #import "XMLReader.h"
 #import "RosterListModel.h"
 #import "FMDBOperation.h"
+#import "ChatRoomModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

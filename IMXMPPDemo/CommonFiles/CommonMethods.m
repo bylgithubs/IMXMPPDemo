@@ -24,4 +24,10 @@
     return [formatter stringFromDate:date];
 }
 
++(NSString *)handleUserIDWithSeparated:(NSString *)userId{
+    NSArray *strArr = [userId componentsSeparatedByString:@"@"];
+    return strArr[0];
+}
+
+
 @end

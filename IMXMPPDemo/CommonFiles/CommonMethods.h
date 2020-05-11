@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)setDateFormat:(NSDate *)date;
 
+//获取不带@的用户名
++(NSString *)handleUserIDWithSeparated:(NSString *)userId;
+
 @end
 
 NS_ASSUME_NONNULL_END
