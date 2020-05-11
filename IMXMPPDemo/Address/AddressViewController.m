@@ -67,7 +67,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.loginOutBtn];
     
     self.addFriendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.addFriendBtn.frame = CGRectMake(0, 0, 50, 30);
+    self.addFriendBtn.frame = CGRectMake(0, 0, 80, 30);
     [self.addFriendBtn setTitle:@"添加好友" forState:UIControlStateNormal];
     self.addFriendBtn.backgroundColor = [UIColor blueColor];
     [self.addFriendBtn addTarget:self action:@selector(addFriendClickAction) forControlEvents:UIControlEventTouchUpInside];

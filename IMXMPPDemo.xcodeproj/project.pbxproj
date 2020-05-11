@@ -368,12 +368,12 @@
 		6470596B24694724005CEF12 /* AddressCell */ = {
 			isa = PBXGroup;
 			children = (
-				6470596C24694724005CEF12 /* AddressTableViewCell.h */,
 				6470596D24694724005CEF12 /* SuperAddressCell.h */,
-				6470596E24694724005CEF12 /* AddressSideView.h */,
 				6470596F24694724005CEF12 /* SuperAddressCell.m */,
-				6470597024694724005CEF12 /* AddressTableViewCell.m */,
+				6470596E24694724005CEF12 /* AddressSideView.h */,
 				6470597124694724005CEF12 /* AddressSideView.m */,
+				6470596C24694724005CEF12 /* AddressTableViewCell.h */,
+				6470597024694724005CEF12 /* AddressTableViewCell.m */,
 			);
 			path = AddressCell;
 			sourceTree = "<group>";
@@ -381,8 +381,8 @@
 		6470597524694749005CEF12 /* AddressModel */ = {
 			isa = PBXGroup;
 			children = (
-				6470597624694749005CEF12 /* AddressDataModel.m */,
 				6470597724694749005CEF12 /* AddressDataModel.h */,
+				6470597624694749005CEF12 /* AddressDataModel.m */,
 			);
 			path = AddressModel;
 			sourceTree = "<group>";
@@ -390,8 +390,8 @@
 		647059792469475E005CEF12 /* AddressCustomView */ = {
 			isa = PBXGroup;
 			children = (
-				6470597A2469475E005CEF12 /* AddressSegmentView.m */,
 				6470597B2469475E005CEF12 /* AddressSegmentView.h */,
+				6470597A2469475E005CEF12 /* AddressSegmentView.m */,
 			);
 			path = AddressCustomView;
 			sourceTree = "<group>";
