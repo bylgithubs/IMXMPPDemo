@@ -54,11 +54,11 @@
 
 - (void)reloadChatRecordData{
     [self initData];
-    //[tableView reloadData];
+    [tableView reloadData];
 }
 
 - (void)getDataFromDB{
-    //self.dataArr = [[FMDBOperation sharedDatabaseInstance] getChatRecordData];
+    self.dataArr = [[FMDBOperation sharedDatabaseInstance] getChatRecordData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -82,14 +82,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
-//    ChatRecordModel *model = self.dataArr[indexPath.row];
-//    AddressDataModel *addrModel = [[AddressDataModel alloc] init];
-//    addrModel.userID = model.userID;
-//    addrModel.userName = model.userName;
-//    chatRoomVC.loginInfoModel = addrModel;
-//
-//    [self.navigationController pushViewController:chatRoomVC animated:YES];
+    ChatRecordModel *model = self.dataArr[indexPath.row];
+    LoginInformationModel *loginModel = [[LoginInformationModel alloc] init];
+    loginModel.user = model.uId;
+    
+    ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
+    chatRoomVC.loginInfoModel = loginModel;
+
+    [self.navigationController pushViewController:chatRoomVC animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{

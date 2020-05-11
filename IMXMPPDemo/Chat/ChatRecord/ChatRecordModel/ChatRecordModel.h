@@ -12,11 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatRecordModel : NSObject
 
-@property (nonatomic,copy) NSString *jID;
-@property (nonatomic,copy) NSString *userID;
-@property (nonatomic,copy) NSString *userName;
+@property (nonatomic,copy) NSString *uId;
+@property (nonatomic,copy) NSString *roomId;
+@property (nonatomic,copy) NSString *userNick;
+@property (nonatomic,copy) NSString *messageFrom;
+@property (nonatomic,copy) NSString *messageTo;
+@property (nonatomic,copy) NSString *messageType;
 @property (nonatomic,copy) NSString *content;
-@property (nonatomic,copy) NSString *currentDate;
+@property (nonatomic,copy) NSString *sendDate;
 
 @end
 

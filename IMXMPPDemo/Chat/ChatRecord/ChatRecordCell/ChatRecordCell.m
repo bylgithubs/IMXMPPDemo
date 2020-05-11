@@ -65,9 +65,9 @@
 
 - (void)configData{
     ChatRecordModel *model = self.chatRecordModel;
-//    userNameLabel.text = model.userName;
-//    latestMessageLabel.text = model.content;
-//    currentDateLabel.text = model.currentDate;
+    userNameLabel.text = model.userNick;
+    latestMessageLabel.text = model.content;
+    currentDateLabel.text = model.sendDate;
 }
 
 - (void)awakeFromNib {

@@ -27,8 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSMutableArray *)searchFriendsFromRoster:(NSString *)name;
 //插入聊天记录
 - (void)insertChatMessage:(ChatRoomModel *)model;
-//取出聊天记录
+//取出聊天室记录
 - (NSMutableArray *)getChatRoomMessage:(NSString *)uid;
+//插入最新聊天记录
+- (void)insertChatRecord:(ChatRecordModel *)model;
+//查询最新聊天消息
+- (NSMutableArray *)getChatRecordData;
 ////删除聊天记录
 //- (BOOL)deleteChatRoomMessage:(NSString *)jID;
 ////插入最新聊天记录

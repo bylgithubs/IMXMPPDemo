@@ -233,20 +233,32 @@
     NSString *messageTo = [[message attributeForName:@"to"] stringValue];
     NSString *sendDate = [[message attributeForName:@"sendDate"] stringValue];
     NSString *body = [message body];
-    ChatRoomModel *chatRoomMessage = [[ChatRoomModel alloc] init];
+    ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
     messageFrom = [CommonMethods handleUserIDWithSeparated:messageFrom];
     messageTo = [CommonMethods handleUserIDWithSeparated:messageTo];
-    chatRoomMessage.uId = messageFrom;
-    chatRoomMessage.roomId = messageFrom;
-    chatRoomMessage.userNick = messageFrom;
-    chatRoomMessage.messageType = type;
-    chatRoomMessage.messageFrom = messageFrom;
-    chatRoomMessage.messageTo = messageTo;
-    chatRoomMessage.sendDate =sendDate;
-    chatRoomMessage.content = body;
+    chatRoomModel.uId = messageFrom;
+    chatRoomModel.roomId = messageFrom;
+    chatRoomModel.userNick = messageFrom;
+    chatRoomModel.messageType = type;
+    chatRoomModel.messageFrom = messageFrom;
+    chatRoomModel.messageTo = messageTo;
+    chatRoomModel.sendDate =sendDate;
+    chatRoomModel.content = body;
+    
+    ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
+    chatRecordModel.uId = messageFrom;
+    chatRecordModel.roomId = messageFrom;
+    chatRecordModel.userNick = messageFrom;
+    chatRecordModel.messageType = type;
+    chatRecordModel.messageFrom = messageFrom;
+    chatRecordModel.messageTo = messageTo;
+    chatRecordModel.sendDate =sendDate;
+    chatRecordModel.content = body;
     FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
-    [fmdb insertChatMessage:chatRoomMessage];
+    [fmdb insertChatMessage:chatRoomModel];
+    [fmdb insertChatRecord:chatRecordModel];
     [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_CHATROOM_MESSAGE object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_CHAT_RECORD object:nil];
 }
 
 - (void)notification:(BOOL)flag{

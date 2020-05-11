@@ -177,24 +177,31 @@
     dispatch_queue_t dispatchQueue = dispatch_queue_create("SendDataAndInsertDB", nil);
     dispatch_async(dispatchQueue, ^{
         ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
-        ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
+        
         chatRoomModel.uId = self.loginInfoModel.user;
         chatRoomModel.roomId = self.loginInfoModel.user;
         chatRoomModel.userNick = self.loginInfoModel.user;
         chatRoomModel.messageFrom = CURRENTUSER;
         chatRoomModel.messageTo = self.loginInfoModel.user;
-        chatRoomModel.messageType = @"text";
-        if (message != nil) {
-            chatRoomModel.content = message;
-            chatRecordModel.content = message;
-        }
+        chatRoomModel.messageType = @"chat";
+        chatRoomModel.content = message;
         chatRoomModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
-        chatRecordModel.currentDate = [CommonMethods setDateFormat:[NSDate date]];
+        
+        ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
+        chatRecordModel.uId = self.loginInfoModel.user;
+        chatRecordModel.roomId = self.loginInfoModel.user;
+        chatRecordModel.userNick = self.loginInfoModel.user;
+        chatRecordModel.messageFrom = CURRENTUSER;
+        chatRecordModel.messageTo = self.loginInfoModel.user;
+        chatRecordModel.messageType = @"chat";
+        chatRecordModel.content = message;
+        chatRecordModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             FMDBOperation *dbOperation = [FMDBOperation sharedDatabaseInstance];
             [dbOperation insertChatMessage:chatRoomModel];
-//            [dbOperation insertChatRecord:chatRecordModel];
+            [dbOperation insertChatRecord:chatRecordModel];
+            
             [self sendMessageToServer:chatRoomModel];
             [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_CHATROOM_MESSAGE object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_CHAT_RECORD object:nil];
