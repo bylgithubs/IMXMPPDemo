@@ -29,6 +29,11 @@ static FMDBOperation *sharedInstance = nil;
 }
 
 - (void)initDB{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isExisted = [fileManager fileExistsAtPath:DATABASE_FOLDER];
+    if (!isExisted) {
+        [fileManager createDirectoryAtPath:DATABASE_FOLDER withIntermediateDirectories:YES attributes:nil error:nil];
+    }
     NSString *databasePath = DATABASE_PATH;
     self.dbOperation = [FMDatabase databaseWithPath:databasePath];
     BOOL isSuccess = [self.dbOperation open];

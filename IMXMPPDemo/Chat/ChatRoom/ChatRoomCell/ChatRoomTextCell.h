@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatRoomTextCell : SuperChatRoomCell
 
+@property (nonatomic,strong) UILabel *messageContent;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
 - (void)configData;

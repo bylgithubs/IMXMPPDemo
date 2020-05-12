@@ -22,7 +22,6 @@
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     self.window.rootViewController = loginVC;
     [self.window makeKeyAndVisible];
-    //[self loginMainInterface];
     [self notificationRegister:YES];
     
     return YES;

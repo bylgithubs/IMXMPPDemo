@@ -19,9 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) ChatRoomModel *chatRoomModel;
 
 @property (nonatomic,strong) UILabel *userName;
-@property (nonatomic,strong) UILabel *messageContent;
+@property (nonatomic,assign) CGFloat cellWidth;
+@property (nonatomic,assign) CGFloat cellHeight;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+
+
 
 - (void)configData;
 @end

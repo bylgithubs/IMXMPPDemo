@@ -57,6 +57,8 @@
         [xmppStream setHostName:HOST_NAME];
         NSError *error = nil;
         [xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error];
+    }else{
+        [self disconnectedToServer];
     }
 }
 

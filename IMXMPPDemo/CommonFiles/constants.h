@@ -43,7 +43,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #pragma mark 数据库相关
 #define DATABASE_NAME @"IMXMPPDemo.sqlite"
 #define DOCUMENT_PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
-#define DATABASE_PATH [DOCUMENT_PATH stringByAppendingPathComponent:DATABASE_NAME]
+#define DATABASE_FOLDER [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",CURRENTUSER]]
+#define DATABASE_PATH [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",CURRENTUSER,DATABASE_NAME]]
 
 #pragma mark 添加通知
 #define LOGIN_SUCCESS @"LoginSuccess"
@@ -59,7 +60,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define XMPPMANAGER_ADD_FRIEND @"XmppManagerAddFriend"
 #define XMPPMANAGER_DELETE_FRIEND @"XmppManagerDeleteFriend"
 #define XMPPMANAGER_DISCONNECTED_TO_SERVER @"XmppManagerDisconnectedToServer"
-//#define TEST11 @"test11"
 
 enum MessageType{
     Text

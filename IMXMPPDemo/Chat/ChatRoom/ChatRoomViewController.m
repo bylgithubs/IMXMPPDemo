@@ -19,6 +19,7 @@
 @property (nonatomic,strong) UITapGestureRecognizer *packUpKeyboard;
 @property (nonatomic,strong) ChatRoomMenuView *chatRoomMenuView;
 @property (nonatomic,strong) SuperChatRoomCell *currentCell;
+@property (nonatomic,assign) CGFloat cellHeight;
 
 @end
 
@@ -116,11 +117,13 @@
     ChatRoomModel *model = self.dataArr[indexPath.row];
     textCell.chatRoomModel = model;
     [textCell configData];
+    self.cellHeight = textCell.cellHeight;
+    
     return textCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    return self.cellHeight;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -130,10 +133,9 @@
 }
 
 - (void)changeTableViewHeight{
-    tableView.backgroundColor = [UIColor redColor];
     CGRect tableViewFrame = tableView.frame;
     tableViewFrame.origin.y = NAVIGATION_AND_STATUSBAR_HEIGHT;
-    tableViewFrame.size.height = self.keyboard.frame.origin.y - NAVIGATION_AND_STATUSBAR_HEIGHT;
+    tableViewFrame.size.height = self.keyboard.frame.origin.y - tableViewFrame.origin.y;
     tableView.frame = tableViewFrame;
     
 }

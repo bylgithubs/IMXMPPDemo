@@ -32,6 +32,7 @@
 - (void)initUI{
     userNameLabel = [[UILabel alloc] init];
     userNameLabel.backgroundColor = [UIColor whiteColor];
+    userNameLabel.textColor = [UIColor orangeColor];
     [self addSubview:userNameLabel];
     [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
