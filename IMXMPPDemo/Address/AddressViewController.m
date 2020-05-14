@@ -19,7 +19,7 @@
 @property (nonatomic,assign) BOOL sideSwitch;
 @property (nonatomic,strong) UIButton *loginOutBtn;
 @property (nonatomic,strong) UIButton *addFriendBtn;
-@property (nonatomic,strong) LoginInformationModel *loginInfoModel;
+@property (nonatomic,strong) RosterListModel *rosterListModel;
 
 
 @end
@@ -77,10 +77,10 @@
 }
 
 - (void)initData{
-//    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
-//    self.dataArr = [fmdb searchFriendsFromRoster];
-    NSMutableArray *arr = self.rosterArr;
-    self.dataArr = self.rosterArr;
+    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+    self.dataArr = [fmdb searchFriendsFromRoster];
+//    NSMutableArray *arr = self.rosterArr;
+//    self.dataArr = self.rosterArr;
 }
 
 - (void)AddFriend:(NSNotification *)noti{
@@ -109,11 +109,9 @@
 #pragma mark notification
 - (void)notificationRegister:(BOOL)flag{
     if (flag) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initData) name:ADDRESS_REFRESH_ROSTER_DATA object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AddFriend:) name:ADDRESS_ADD_ROSTER_DATA object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DeleteFriend) name:ADDRESS_Delete_ROSTER_DATA object:nil];
     } else {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ADDRESS_REFRESH_ROSTER_DATA object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:ADDRESS_ADD_ROSTER_DATA object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:ADDRESS_Delete_ROSTER_DATA object:nil];
     }
@@ -140,8 +138,8 @@
         [addrCell addAddressSideView];
         addrCell.sideView.delegate = self;
     }
-    LoginInformationModel *model = self.dataArr[indexPath.row];
-    addrCell.nameLabel.text = model.user;
+    RosterListModel *model = self.dataArr[indexPath.row];
+    addrCell.nameLabel.text = model.uid;
     
     return addrCell;
     
@@ -154,7 +152,7 @@
     
     self.ClickCellIndex = indexPath;
     
-    self.loginInfoModel = self.dataArr[indexPath.row];
+    self.rosterListModel = self.dataArr[indexPath.row];
 
     [tableView reloadData];
 }
@@ -188,11 +186,11 @@
 - (void)sideViewClick:(NSInteger)btnTag{
     if (btnTag == 1) {
         ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
-        chatRoomVC.loginInfoModel = self.loginInfoModel;
+        chatRoomVC.rosterListModel = self.rosterListModel;
         [self.navigationController pushViewController:chatRoomVC animated:YES];
     } else {
         DetailInformationViewController *detailInfoVC = [[DetailInformationViewController alloc] init];
-        detailInfoVC.loginInfoModel = self.loginInfoModel;
+        detailInfoVC.rosterListModel = self.rosterListModel;
         [self.navigationController pushViewController:detailInfoVC animated:YES];
     }
 }

@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AddressDataModel.h"
 #import <Masonry.h>
-#import "LoginInformationModel.h"
 #import "CommonComponentMethods.h"
 #import "FMDBOperation.h"
 
@@ -17,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailInformationViewController : UIViewController
 
-@property (nonatomic,strong) LoginInformationModel *loginInfoModel;
+@property (nonatomic,strong) RosterListModel *rosterListModel;
 
 @end
 

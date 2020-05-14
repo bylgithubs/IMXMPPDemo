@@ -52,7 +52,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define DELETE_KEYBOARD_TEXT @"DeleteKeyboardText"
 #define REFRESH_CHATROOM_MESSAGE @"RefreshChatRoomMessage"
 #define UPDATE_CHAT_RECORD @"UpdateChatRecord"
-#define ADDRESS_REFRESH_ROSTER_DATA @"AddressRefreshRosterData"
 #define ADDRESS_ADD_ROSTER_DATA @"AddressAddRosterData"
 #define ADDRESS_Delete_ROSTER_DATA @"AddressDeleteRosterData"
 #define ADDRESS_LOGINOUT @"AddressLoginout"

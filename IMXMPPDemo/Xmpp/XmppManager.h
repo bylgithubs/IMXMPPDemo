@@ -12,7 +12,6 @@
 #import "RosterListModel.h"
 #import "FMDBOperation.h"
 #import "ChatRoomModel.h"
-#import "LoginInformationModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -13,10 +13,7 @@
 #import <Masonry/Masonry.h>
 #import "ChatRoomViewController.h"
 #import "DetailInformationViewController.h"
-#import "LoginInformationModel.h"
 #import "AddFriendViewController.h"
-#import "LoginInformationModel.h"
-
 
 NS_ASSUME_NONNULL_BEGIN
 

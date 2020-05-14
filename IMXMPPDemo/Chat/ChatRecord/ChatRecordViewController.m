@@ -92,11 +92,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ChatRecordModel *model = self.dataArr[indexPath.row];
-    LoginInformationModel *loginModel = [[LoginInformationModel alloc] init];
-    loginModel.user = model.uId;
+    RosterListModel *rosterListModel = [[RosterListModel alloc] init];
+    rosterListModel.uid = model.uId;
     
     ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
-    chatRoomVC.loginInfoModel = loginModel;
+    chatRoomVC.rosterListModel = rosterListModel;
 
     [self.navigationController pushViewController:chatRoomVC animated:YES];
 }

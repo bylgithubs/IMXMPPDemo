@@ -55,12 +55,6 @@
     [chatVC.view setBackgroundColor:[UIColor whiteColor]];
 }
 
-- (void)initData:(NSMutableArray *)dataArr{
-    addrVC.rosterArr = dataArr;
-    [[NSNotificationCenter defaultCenter] postNotificationName:ADDRESS_REFRESH_ROSTER_DATA object:nil];
-    //获取通讯录数据
-    
-}
 /*
 #pragma mark - Navigation
 

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <Masonry.h>
-#import "LoginInformationModel.h"
 #import "FMDBOperation.h"
 #import "RosterListModel.h"
 #import "CommonMethods.h"

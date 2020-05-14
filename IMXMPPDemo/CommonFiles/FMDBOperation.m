@@ -90,6 +90,7 @@ static FMDBOperation *sharedInstance = nil;
             sqlStr = @"delete from RosterList where jid = ?";
             [db executeUpdate:sqlStr,model.jid];
         }
+        [res close];
         sqlStr = @"insert into RosterList(jid,uid,domain,nick,resource,current_date) values(?,?,?,?,?,?);";
         [db executeUpdate:sqlStr,model.jid,model.uid,model.domain,model.nick,model.resource,model.current_date];
     }];

@@ -61,7 +61,6 @@
 
 - (void)entryMainTabBar:(NSNotification *)noti{
     MainTabBarViewController *mainTabBarVC = [[MainTabBarViewController alloc] init];
-    [mainTabBarVC initData:noti.object];
     self.window.rootViewController = mainTabBarVC;
     [self.window makeKeyAndVisible];
     

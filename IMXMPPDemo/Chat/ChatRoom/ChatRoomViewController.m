@@ -41,8 +41,8 @@
 
 - (void)initUI{
     self.tabBarController.tabBar.hidden = YES;
-    if (self.loginInfoModel!=nil) {
-        [self.navigationItem setTitle:self.loginInfoModel.user];
+    if (self.rosterListModel!=nil) {
+        [self.navigationItem setTitle:self.rosterListModel.uid];
     }
     //设置聊天室导航栏标题样式
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -57,10 +57,9 @@
 
 - (void)initData{
     self.dataArr = [[NSMutableArray alloc] init];
-    
     dispatch_queue_t getChatRoomMessageQueue = dispatch_queue_create("getChatRoomMessageQueue", NULL);
     dispatch_async(getChatRoomMessageQueue, ^{
-        self.dataArr = [[FMDBOperation sharedDatabaseInstance] getChatRoomMessage:self.loginInfoModel.user];
+        self.dataArr = [[FMDBOperation sharedDatabaseInstance] getChatRoomMessage:self.rosterListModel.uid];
         NSLog(@"============%@",[NSThread currentThread]);
         NSLog(@"============%@",self.dataArr);
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -80,7 +79,7 @@
 
 - (void)refreshTableView{
     [self initData];
-    [self scrollToTableViewBottom];
+    //[self scrollToTableViewBottom];
     //[tableView reloadData];
 }
 
@@ -103,7 +102,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //return 50;
     return self.dataArr.count;
 }
 
@@ -134,8 +132,8 @@
 
 - (void)changeTableViewHeight{
     CGRect tableViewFrame = tableView.frame;
-    tableViewFrame.origin.y = NAVIGATION_AND_STATUSBAR_HEIGHT;
-    tableViewFrame.size.height = self.keyboard.frame.origin.y - tableViewFrame.origin.y;
+    //tableViewFrame.origin.y = NAVIGATION_AND_STATUSBAR_HEIGHT;
+    tableViewFrame.size.height = self.keyboard.frame.origin.y - NAVIGATION_AND_STATUSBAR_HEIGHT + 80;
     tableView.frame = tableViewFrame;
     
 }
@@ -181,21 +179,21 @@
     dispatch_async(dispatchQueue, ^{
         ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
         
-        chatRoomModel.uId = self.loginInfoModel.user;
-        chatRoomModel.roomId = self.loginInfoModel.user;
-        chatRoomModel.userNick = self.loginInfoModel.user;
+        chatRoomModel.uId = self.rosterListModel.uid;
+        chatRoomModel.roomId = self.rosterListModel.uid;
+        chatRoomModel.userNick = self.rosterListModel.uid;
         chatRoomModel.messageFrom = CURRENTUSER;
-        chatRoomModel.messageTo = self.loginInfoModel.user;
+        chatRoomModel.messageTo = self.rosterListModel.uid;
         chatRoomModel.messageType = @"chat";
         chatRoomModel.content = message;
         chatRoomModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
         
         ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
-        chatRecordModel.uId = self.loginInfoModel.user;
-        chatRecordModel.roomId = self.loginInfoModel.user;
-        chatRecordModel.userNick = self.loginInfoModel.user;
+        chatRecordModel.uId = self.rosterListModel.uid;
+        chatRecordModel.roomId = self.rosterListModel.uid;
+        chatRecordModel.userNick = self.rosterListModel.uid;
         chatRecordModel.messageFrom = CURRENTUSER;
-        chatRecordModel.messageTo = self.loginInfoModel.user;
+        chatRecordModel.messageTo = self.rosterListModel.uid;
         chatRecordModel.messageType = @"chat";
         chatRecordModel.content = message;
         chatRecordModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];

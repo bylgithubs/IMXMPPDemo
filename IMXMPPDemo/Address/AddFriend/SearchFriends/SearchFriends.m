@@ -71,12 +71,8 @@
     model.resource = XMPP_RESOURCE;
     model.current_date = [CommonMethods setDateFormat:[NSDate date]];
     [fmdb insertRosterData:model];
-    
-    LoginInformationModel *loginModel = [[LoginInformationModel alloc] init];
-    loginModel.user = self.textField.text;
-    loginModel.domain = SERVER_DOMAIN;
-    loginModel.resource = XMPP_RESOURCE;
-    [[NSNotificationCenter defaultCenter] postNotificationName:ADDRESS_ADD_ROSTER_DATA object:loginModel];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:ADDRESS_ADD_ROSTER_DATA object:model];
     self.textField.text = @"";
 }
 /*

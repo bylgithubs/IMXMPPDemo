@@ -21,6 +21,7 @@
 - (void)initUI{
     self.messageContent = [[UILabel alloc] init];
     self.messageContent.numberOfLines = 0;
+    self.messageContent.font = [UIFont systemFontOfSize:20];
     //self.messageContent.backgroundColor = [UIColor blueColor];
     [self addSubview:self.messageContent];
 }
