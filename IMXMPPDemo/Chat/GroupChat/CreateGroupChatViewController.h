@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CreateGroupChatCell.h"
 #import "FMDBOperation.h"
+#import "ChatRoomViewController.h"
+#import "RosterListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

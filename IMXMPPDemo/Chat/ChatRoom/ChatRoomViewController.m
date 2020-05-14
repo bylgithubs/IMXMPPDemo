@@ -85,7 +85,12 @@
 
 - (void)clickBackBtn{
     self.tabBarController.tabBar.hidden = NO;
-    [self.navigationController popViewControllerAnimated:YES];
+//跳转回主界面
+    for (UIViewController *viewController in self.navigationController.viewControllers) {
+        if ([viewController isKindOfClass:[ChatRecordViewController class]] || [viewController isKindOfClass:[AddressViewController class]]) {
+            [self.navigationController popToViewController:viewController animated:YES];
+        }
+    }
 }
 
 - (void)scrollToTableViewBottom{

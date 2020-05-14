@@ -98,7 +98,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)clickBottonBtn{
-    
+    ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
+    [self.navigationController pushViewController:chatRoomVC animated:YES];
+    //[self.navigationController presentViewController:chatRoomVC animated:YES completion:nil];
 }
 
 /*
