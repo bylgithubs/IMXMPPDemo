@@ -32,6 +32,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
+
 }
 
 - (void)initData{

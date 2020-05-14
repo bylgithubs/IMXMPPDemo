@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AddressDataModel.h"
 #import "ChatRoomTextCell.h"
-#import "CommonComponentMethods.h"
-#import "CommonMethods.h"
 #import "FMDBOperation.h"
 #import "ChatRoomMenuView.h"
 #import "XmppManager.h"

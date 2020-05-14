@@ -13,3 +13,6 @@
 #endif /* IM_Prefix_h */
 
 #import "constants.h"
+
+#import "CommonMethods.h"
+#import "CommonComponentMethods.h"
