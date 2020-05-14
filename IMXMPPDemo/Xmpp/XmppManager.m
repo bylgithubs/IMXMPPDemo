@@ -8,7 +8,7 @@
 
 #import "XmppManager.h"
 
-@interface XmppManager ()<NSXMLParserDelegate>
+@interface XmppManager ()<NSXMLParserDelegate,XMPPRoomStorage>
 
 
 @property (nonatomic,strong) NSString *userName;
@@ -40,7 +40,7 @@
     xmppReconnect = [[XMPPReconnect alloc] init];
     [xmppReconnect activate:xmppStream];
     [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
-    [self activeRosterModules];
+    [self activeModules];
     [self notification:YES];
 }
 
@@ -130,7 +130,7 @@
 }
 
 #pragma mark 激活花名册模块，获取好友列表
-- (void)activeRosterModules{
+- (void)activeModules{
     //1.花名册存储对象
     self.rosterStorage = [XMPPRosterCoreDataStorage sharedInstance];
     //2.花名册模块
@@ -160,6 +160,17 @@
     NSLog(@"获取好友列表结束,此处向外部传值");
 //    [self sendMessage:@"111111111111111111111111111111111111" toUser:@"bbb"];
     NSMutableArray *arr = self.rosterArr;
+    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+    RosterListModel *model = [[RosterListModel alloc] init];
+    for (XMPPJID *jid in self.rosterArr) {
+        model.jid = [NSString stringWithFormat:@"%@@%@",jid.user,jid.domain];
+        model.uid = jid.user;
+        model.domain = jid.domain;
+        model.nick = jid.user;
+        model.resource = jid.resource;
+        model.current_date = [CommonMethods setDateFormat:[NSDate date]];
+        [fmdb insertRosterData:model];
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:self.rosterArr];
 
 }
@@ -261,6 +272,19 @@
     [fmdb insertChatRecord:chatRecordModel];
     [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_CHATROOM_MESSAGE object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_CHAT_RECORD object:nil];
+}
+
+//初始化聊天室
+- (void)createGroupChat{
+    XMPPJID *room_id = [XMPPJID jidWithString:[CommonMethods getGoupChatRoomID]];
+    xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self jid:room_id];
+    [xmppRoom activate:xmppStream];
+    [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+}
+
+-(void)xmppRoomDidCreate:(XMPPRoom *)sender
+{
+    NSLog(@"================创建聊天室成功");
 }
 
 - (void)notification:(BOOL)flag{

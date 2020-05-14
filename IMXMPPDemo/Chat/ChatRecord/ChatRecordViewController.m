@@ -11,6 +11,7 @@
 @interface ChatRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) UIButton *createGroupChatBtn;
 
 @end
 
@@ -32,6 +33,14 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
+    
+    self.createGroupChatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.createGroupChatBtn.frame = CGRectMake(0, 0, 80, 30);
+    [self.createGroupChatBtn setTitle:@"创建群聊" forState:UIControlStateNormal];
+    self.createGroupChatBtn.backgroundColor = [UIColor blueColor];
+    [self.createGroupChatBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [self.createGroupChatBtn addTarget:self action:@selector(createGroupChatClickAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.createGroupChatBtn];
 }
 
 - (void)initData{
@@ -103,7 +112,9 @@
     }
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
 
 //- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    return UITableViewCellEditingStyleDelete;
@@ -128,8 +139,9 @@
     return YES;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+- (void)createGroupChatClickAction{
+    CreateGroupChatViewController *createGroupChatVC = [[CreateGroupChatViewController alloc] init];
+    [self.navigationController pushViewController:createGroupChatVC animated:YES];
 }
 
 - (void)dealloc{

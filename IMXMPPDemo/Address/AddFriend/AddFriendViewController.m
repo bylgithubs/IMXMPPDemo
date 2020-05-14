@@ -80,12 +80,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark searchFriendDelegate
-- (void)searchFriendWithName:(NSString *)name{
-    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
-    self.dataArr = [fmdb searchFriendsFromRoster:name];
-    [tableView reloadData];
-}
+//#pragma mark searchFriendDelegate
+//- (void)searchFriendWithName:(NSString *)name{
+//    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+//    self.dataArr = [fmdb searchFriendsFromRoster:name];
+//    [tableView reloadData];
+//}
 
 /*
 #pragma mark - Navigation

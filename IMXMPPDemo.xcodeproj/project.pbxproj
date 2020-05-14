@@ -38,6 +38,8 @@
 		6470597424694724005CEF12 /* AddressSideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6470597124694724005CEF12 /* AddressSideView.m */; };
 		6470597824694749005CEF12 /* AddressDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6470597624694749005CEF12 /* AddressDataModel.m */; };
 		6470597C2469475E005CEF12 /* AddressSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6470597A2469475E005CEF12 /* AddressSegmentView.m */; };
+		6470AE85246CDB5B008426F0 /* CreateGroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6470AE84246CDB5B008426F0 /* CreateGroupChatViewController.m */; };
+		6470AE89246CDE19008426F0 /* CreateGroupChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6470AE88246CDE19008426F0 /* CreateGroupChatCell.m */; };
 		6471216724629D4A0078423F /* RosterListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471216624629D4A0078423F /* RosterListModel.m */; };
 		6471216B2462AB220078423F /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471216A2462AB220078423F /* XMLReader.m */; };
 		647166522463948600A64520 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647166512463948600A64520 /* AddFriendViewController.m */; };
@@ -110,6 +112,10 @@
 		6470597724694749005CEF12 /* AddressDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressDataModel.h; sourceTree = "<group>"; };
 		6470597A2469475E005CEF12 /* AddressSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressSegmentView.m; sourceTree = "<group>"; };
 		6470597B2469475E005CEF12 /* AddressSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressSegmentView.h; sourceTree = "<group>"; };
+		6470AE83246CDB5B008426F0 /* CreateGroupChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateGroupChatViewController.h; sourceTree = "<group>"; };
+		6470AE84246CDB5B008426F0 /* CreateGroupChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateGroupChatViewController.m; sourceTree = "<group>"; };
+		6470AE87246CDE19008426F0 /* CreateGroupChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateGroupChatCell.h; sourceTree = "<group>"; };
+		6470AE88246CDE19008426F0 /* CreateGroupChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateGroupChatCell.m; sourceTree = "<group>"; };
 		6471216524629D4A0078423F /* RosterListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RosterListModel.h; sourceTree = "<group>"; };
 		6471216624629D4A0078423F /* RosterListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RosterListModel.m; sourceTree = "<group>"; };
 		647121692462AB220078423F /* XMLReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 		6406604024615F1700AF4975 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				6470AE82246CDA68008426F0 /* GroupChat */,
 				6406604124615F1700AF4975 /* ChatRecord */,
 				6406604A24615F1700AF4975 /* ChatRoom */,
 			);
@@ -396,6 +403,25 @@
 			path = AddressCustomView;
 			sourceTree = "<group>";
 		};
+		6470AE82246CDA68008426F0 /* GroupChat */ = {
+			isa = PBXGroup;
+			children = (
+				6470AE86246CDDC2008426F0 /* CreateGroupChatCell */,
+				6470AE83246CDB5B008426F0 /* CreateGroupChatViewController.h */,
+				6470AE84246CDB5B008426F0 /* CreateGroupChatViewController.m */,
+			);
+			path = GroupChat;
+			sourceTree = "<group>";
+		};
+		6470AE86246CDDC2008426F0 /* CreateGroupChatCell */ = {
+			isa = PBXGroup;
+			children = (
+				6470AE87246CDE19008426F0 /* CreateGroupChatCell.h */,
+				6470AE88246CDE19008426F0 /* CreateGroupChatCell.m */,
+			);
+			path = CreateGroupChatCell;
+			sourceTree = "<group>";
+		};
 		6471216424629D140078423F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,6 +593,7 @@
 			files = (
 				6406606424615F1700AF4975 /* SuperChatRoomCell.m in Sources */,
 				6470597824694749005CEF12 /* AddressDataModel.m in Sources */,
+				6470AE85246CDB5B008426F0 /* CreateGroupChatViewController.m in Sources */,
 				6470597C2469475E005CEF12 /* AddressSegmentView.m in Sources */,
 				647166522463948600A64520 /* AddFriendViewController.m in Sources */,
 				6471216724629D4A0078423F /* RosterListModel.m in Sources */,
@@ -583,6 +610,7 @@
 				6406606024615F1700AF4975 /* ChatRoomMenuView.m in Sources */,
 				64065FE524614DA200AF4975 /* MainTabBarViewController.m in Sources */,
 				6406606324615F1700AF4975 /* ChatRoomTextCell.m in Sources */,
+				6470AE89246CDE19008426F0 /* CreateGroupChatCell.m in Sources */,
 				6406606524615F1700AF4975 /* ChatRoomViewController.m in Sources */,
 				64093BA32460114300C75DA3 /* main.m in Sources */,
 				6406606124615F1700AF4975 /* CollectionViewCell.m in Sources */,

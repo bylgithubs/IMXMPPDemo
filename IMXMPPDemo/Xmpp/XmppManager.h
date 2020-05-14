@@ -12,6 +12,7 @@
 #import "RosterListModel.h"
 #import "FMDBOperation.h"
 #import "ChatRoomModel.h"
+#import "LoginInformationModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 //连接服务器
 - (void)connectToServer:(NSString *)user passward:(NSString *)passward;
+
+//初始化聊天室
+- (void)createGroupChat;
 
 @end
 

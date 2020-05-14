@@ -50,7 +50,7 @@ static FMDBOperation *sharedInstance = nil;
 - (void)initTable{
     
     NSString *tableName = @"RosterList";
-    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,jid varchar,uid varchar,name varchar,ask varchar,subscription varchar,current_date varchar)",tableName];
+    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,jid varchar,uid varchar,domain varchar,nick varchar,resource varchar,current_date varchar)",tableName];
     NSLog(@"===%@",sqlStr);
     BOOL result = [self.dbOperation executeUpdate:sqlStr];
     if (result) {
@@ -112,24 +112,24 @@ static FMDBOperation *sharedInstance = nil;
             sqlStr = @"delete from RosterList where jid = ?";
             [db executeUpdate:sqlStr,model.jid];
         }
-        sqlStr = @"insert into RosterList(jid,uid,name,ask,subscription,current_date) values(?,?,?,?,?,?);";
-        [db executeUpdate:sqlStr,model.jid,model.uid,model.name,model.ask,model.subscription,model.current_date];
+        sqlStr = @"insert into RosterList(jid,uid,domain,nick,resource,current_date) values(?,?,?,?,?,?);";
+        [db executeUpdate:sqlStr,model.jid,model.uid,model.domain,model.nick,model.resource,model.current_date];
     }];
 }
 
-//查询用户是否存在
-- (NSMutableArray *)searchFriendsFromRoster:(NSString *)name{
+//查询当前用户所有好友
+- (NSMutableArray *)searchFriendsFromRoster{
     NSMutableArray *dataArr = [NSMutableArray array];
     [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        NSString *sqlStr = @"select * from RosterList where uid = ?";
-        FMResultSet *resultSet = [db executeQuery:sqlStr,name];
+        NSString *sqlStr = @"select * from RosterList";
+        FMResultSet *resultSet = [db executeQuery:sqlStr];
         while ([resultSet next]) {
             RosterListModel *model = [[RosterListModel alloc] init];
             model.jid = [resultSet stringForColumn:@"jid"];
             model.uid = [resultSet stringForColumn:@"uid"];
-            model.name = [resultSet stringForColumn:@"name"];
-            model.ask = [resultSet stringForColumn:@"ask"];
-            model.subscription = [resultSet stringForColumn:@"subscription"];
+            model.domain = [resultSet stringForColumn:@"domain"];
+            model.nick = [resultSet stringForColumn:@"nick"];
+            model.resource = [resultSet stringForColumn:@"resource"];
             model.current_date = [resultSet stringForColumn:@"current_date"];
             [dataArr addObject:model];
         }
@@ -147,15 +147,6 @@ static FMDBOperation *sharedInstance = nil;
     }];
 }
 
-////插入聊天记录
-//- (void)insertChatMessage:(ChatRoomModel *)model{
-//    
-//    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-//        NSString *sqlStr = @"insert into ChatMessage(room_ID,user_name,content,current_date) values(?,?,?,?)";
-//        [db executeUpdate:sqlStr,model.userID,model.userName,model.content,model.currentDate];
-//    }];
-//}
-//
 //插入最新聊天记录
 - (void)insertChatRecord:(ChatRecordModel *)model{
     [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {

@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,copy) NSString *jid;
 @property (nonatomic,copy) NSString *uid;
-@property (nonatomic,copy) NSString *name;
-@property (nonatomic,copy) NSString *ask;
-@property (nonatomic,copy) NSString *subscription;
+@property (nonatomic,copy) NSString *domain;
+@property (nonatomic,copy) NSString *nick;
+@property (nonatomic,copy) NSString *resource;
 @property (nonatomic,copy) NSString *current_date;
 
 @end
