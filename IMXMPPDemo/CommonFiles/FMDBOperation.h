@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) FMDatabaseQueue *dbQueue;
 //插入花名册信息
 - (void)insertRosterData:(RosterListModel *)model;
+//删除好友
+- (BOOL)deleteRosterFriend:(NSString *)uid;
 //查询当前用户所有好友
 - (NSMutableArray *)searchFriendsFromRoster;
 //插入聊天记录

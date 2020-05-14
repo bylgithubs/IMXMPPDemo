@@ -292,7 +292,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xmppAddFriendSubscribe:) name:XMPPMANAGER_ADD_FRIEND object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xmppDeleteFriendSubscribe:) name:XMPPMANAGER_DELETE_FRIEND object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnectedToServer) name:XMPPMANAGER_DISCONNECTED_TO_SERVER object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendMessage) name:TEST11 object:nil];
     } else {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:XMPPMANAGER_ADD_FRIEND object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:XMPPMANAGER_DELETE_FRIEND object:nil];

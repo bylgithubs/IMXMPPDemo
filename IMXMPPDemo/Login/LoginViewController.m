@@ -35,7 +35,8 @@
     self.userNameLabel = [[UILabel alloc] init];
     [self.userNameLabel setText:@"用户名:"];
     
-    self.passwardLabel = [[UILabel alloc] init];
+    self.passwardLabel =
+    [[UILabel alloc] init];
     [self.passwardLabel setText:@"密码:"];
     
     self.userNameTextField = [[UITextField alloc] init];
@@ -44,8 +45,8 @@
     self.passwardTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwardTextField.secureTextEntry = YES;
     
-    self.userNameTextField.text = @"bbb";
-    self.passwardTextField.text = @"bbb";
+    self.userNameTextField.text = @"ccc";
+    self.passwardTextField.text = @"ccc";
     
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];

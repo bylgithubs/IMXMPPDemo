@@ -77,6 +77,8 @@
 }
 
 - (void)initData{
+//    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+//    self.dataArr = [fmdb searchFriendsFromRoster];
     NSMutableArray *arr = self.rosterArr;
     self.dataArr = self.rosterArr;
 }

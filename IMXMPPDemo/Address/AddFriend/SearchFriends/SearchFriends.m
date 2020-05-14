@@ -62,6 +62,16 @@
 - (void)searchClickAction{
     NSString *searchText = self.textField.text;
     [[NSNotificationCenter defaultCenter] postNotificationName:XMPPMANAGER_ADD_FRIEND object:searchText];
+    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+    RosterListModel *model = [[RosterListModel alloc] init];
+    model.jid = [NSString stringWithFormat:@"%@@%@",searchText,SERVER_DOMAIN];
+    model.uid = searchText;
+    model.domain = SERVER_DOMAIN;
+    model.nick = searchText;
+    model.resource = XMPP_RESOURCE;
+    model.current_date = [CommonMethods setDateFormat:[NSDate date]];
+    [fmdb insertRosterData:model];
+    
     LoginInformationModel *loginModel = [[LoginInformationModel alloc] init];
     loginModel.user = self.textField.text;
     loginModel.domain = SERVER_DOMAIN;

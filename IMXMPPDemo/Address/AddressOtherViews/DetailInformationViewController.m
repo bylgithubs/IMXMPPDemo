@@ -93,8 +93,17 @@
 }
 
 - (void)deleteFriendByuId{
+    
+    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+    BOOL res = [fmdb deleteRosterFriend:self.loginInfoModel.user];
+    if (res) {
+        NSLog(@"=======本地好友删除成功");
+    } else {
+        NSLog(@"=======本地好友删除失败");
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:XMPPMANAGER_DELETE_FRIEND object:self.loginInfoModel.user];
     [[NSNotificationCenter defaultCenter] postNotificationName:ADDRESS_Delete_ROSTER_DATA object:nil];
+    self.tabBarController.tabBar.hidden = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

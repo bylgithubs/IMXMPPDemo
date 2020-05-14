@@ -78,35 +78,13 @@ static FMDBOperation *sharedInstance = nil;
     } else {
         NSLog(@"创建表 %@ 失败",tableName);
     }
-    
-    
-//    tableName = @"ChatMessage";
-//    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,room_ID varchar,user_name varchar,content text,current_date varchar)",tableName];
-//    NSLog(@"===%@",sqlStr);
-//    result = [self.dbOperation executeUpdate:sqlStr];
-//    if (result) {
-//        NSLog(@"创建表 %@ 成功",tableName);
-//    } else {
-//        NSLog(@"创建表 %@ 失败",tableName);
-//    }
-//
-//    tableName = @"ChatRecord";
-//    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(jid integer PRIMARY KEY AUTOINCREMENT,room_ID varchar,user_name varchar,content text,current_date varchar)",tableName];
-//    NSLog(@"===%@",sqlStr);
-//    result = [self.dbOperation executeUpdate:sqlStr];
-//    if (result) {
-//        NSLog(@"创建表 %@ 成功",tableName);
-//    } else {
-//        NSLog(@"创建表 %@ 失败",tableName);
-//    }
-    
 }
 
 //插入花名册
 - (void)insertRosterData:(RosterListModel *)model{
 
     [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        NSString *sqlStr = @"select * from RosterLis1t where jid = ?";
+        NSString *sqlStr = @"select * from RosterList where jid = ?";
         FMResultSet *res = [db executeQuery:sqlStr,model.jid];
         if ([res next]) {
             sqlStr = @"delete from RosterList where jid = ?";
@@ -115,6 +93,20 @@ static FMDBOperation *sharedInstance = nil;
         sqlStr = @"insert into RosterList(jid,uid,domain,nick,resource,current_date) values(?,?,?,?,?,?);";
         [db executeUpdate:sqlStr,model.jid,model.uid,model.domain,model.nick,model.resource,model.current_date];
     }];
+}
+
+//删除好友
+- (BOOL)deleteRosterFriend:(NSString *)uid{
+    NSString *jid = [NSString stringWithFormat:@"%@@%@",uid,SERVER_DOMAIN];
+    @try {
+        [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+            NSString *sqlStr = @"delete from RosterList where jid = ?";
+            [db executeUpdate:sqlStr,jid];
+        }];
+    } @catch (NSException *exception) {
+        NSLog(@"=========删除本地好友失败");
+        return NO;
+    }
 }
 
 //查询当前用户所有好友
