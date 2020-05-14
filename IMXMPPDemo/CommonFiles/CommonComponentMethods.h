@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "UIKit/UIKit.h"
+#import <Masonry.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CommonComponentMethods : UIView
-
+//左上角返回按钮
 + (UIView *)setLeftBarItems:(UIViewController *)viewControll;
+//底部按钮
++ (void)setBottonButton:(UIViewController *)VC titleWithButton:(NSString *)title;
 
 @end
 

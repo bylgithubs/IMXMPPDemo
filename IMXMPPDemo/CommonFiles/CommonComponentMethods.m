@@ -9,7 +9,7 @@
 #import "CommonComponentMethods.h"
 
 @implementation CommonComponentMethods
-
+//左上角返回按钮
 + (UIView *)setLeftBarItems:(UIViewController *)viewControll{
     UIView *leftContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftContentView.backgroundColor = [UIColor blueColor];
@@ -24,8 +24,28 @@
     [leftContentView addSubview:button];
     return leftContentView;
 }
+//底部按钮
++ (void)setBottonButton:(UIViewController *)VC titleWithButton:(NSString *)title{
+    UIButton *bottonBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    bottonBtn.backgroundColor = [UIColor lightGrayColor];
+    [bottonBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [bottonBtn setTitle:title forState:UIControlStateNormal];
+    [bottonBtn addTarget:VC action:@selector(clickBottonBtn) forControlEvents:UIControlEventTouchUpInside];
+    [VC.view addSubview:bottonBtn];
+    [bottonBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(VC.view.mas_left);
+        make.bottom.mas_equalTo(VC.view.mas_bottom);
+        make.right.mas_equalTo(VC.view.mas_right);
+        make.height.mas_equalTo(40);
+    }];
+    
+}
 
 - (void)clickBackBtn{
+    
+}
+
+- (void)clickBottonBtn{
     
 }
 

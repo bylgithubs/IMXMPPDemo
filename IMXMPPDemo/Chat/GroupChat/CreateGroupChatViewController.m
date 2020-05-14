@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataArr;
+@property (nonatomic,strong) NSMutableArray *selectedArr;
 
 @end
 
@@ -27,15 +28,23 @@
 }
 
 - (void)initUI{
+    self.tabBarController.tabBar.hidden = YES;
+    [self setTitle:@"创建群聊"];
     self.view.backgroundColor = [UIColor whiteColor];
     tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
-
+    
+    UIView *backBtnView = [CommonComponentMethods setLeftBarItems:self];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtnView];
+    //底部按钮
+    [CommonComponentMethods setBottonButton:self titleWithButton:@"创建群聊"];
+    
 }
 
 - (void)initData{
+    self.selectedArr = [[NSMutableArray alloc] init];
     self.dataArr = [[NSMutableArray alloc] init];
     FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
     self.dataArr = [fmdb searchFriendsFromRoster];
@@ -55,14 +64,43 @@
     if (cell == nil) {
         cell = [[CreateGroupChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    if ([self.selectedArr containsObject:indexPath]) {
+        cell.backgroundColor = [UIColor greenColor];
+    } else {
+        cell.backgroundColor = [UIColor whiteColor];
+    }
     RosterListModel *model = self.dataArr[indexPath.row];
     cell.textLabel.text = model.uid;
+    cell.textLabel.backgroundColor = [UIColor clearColor];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.bounds];
+    if ([self.selectedArr containsObject:indexPath]) {
+        [self.selectedArr removeObject:indexPath];
+        cell.selectedBackgroundView.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor whiteColor];
+    } else {
+        [self.selectedArr addObject:indexPath];
+        cell.selectedBackgroundView.backgroundColor = [UIColor greenColor];
+        cell.backgroundColor = [UIColor greenColor];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 45;
 }
+
+- (void)clickBackBtn{
+    self.tabBarController.tabBar.hidden = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)clickBottonBtn{
+    
+}
+
 /*
 #pragma mark - Navigation
 
