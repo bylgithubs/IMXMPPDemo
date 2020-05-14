@@ -86,7 +86,7 @@
 		6406607324615FEF00AF4975 /* CustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextView.m; sourceTree = "<group>"; };
 		6406607424615FEF00AF4975 /* CustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextView.h; sourceTree = "<group>"; };
 		6406607524615FEF00AF4975 /* KeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardView.h; sourceTree = "<group>"; };
-		64093B902460113C00C75DA3 /* IMXMPPDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMXMPPDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64093B902460113C00C75DA3 /* XMPP即时通讯.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XMPP即时通讯.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64093B932460113C00C75DA3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		64093B942460113C00C75DA3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		64093B9A2460113C00C75DA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -295,7 +295,7 @@
 		64093B912460113C00C75DA3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64093B902460113C00C75DA3 /* IMXMPPDemo.app */,
+				64093B902460113C00C75DA3 /* XMPP即时通讯.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -470,7 +470,7 @@
 			);
 			name = IMXMPPDemo;
 			productName = IMXMPPDemo;
-			productReference = 64093B902460113C00C75DA3 /* IMXMPPDemo.app */;
+			productReference = 64093B902460113C00C75DA3 /* XMPP即时通讯.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -750,7 +750,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PersonalONBYL.IMXMPPDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "XMPP即时通讯";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -770,7 +770,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PersonalONBYL.IMXMPPDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "XMPP即时通讯";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

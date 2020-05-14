@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //获取不带@的用户名
 +(NSString *)handleUserIDWithSeparated:(NSString *)userId;
+//获取聊天室ID
++ (NSString *)getGoupChatRoomID;
 
 @end
 

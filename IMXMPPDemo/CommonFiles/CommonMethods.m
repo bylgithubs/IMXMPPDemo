@@ -29,5 +29,10 @@
     return strArr[0];
 }
 
++ (NSString *)getGoupChatRoomID{
+    NSString *room_id = [NSString stringWithFormat:@"%@_%@",[CURRENTUSER lowercaseString],[[NSUUID UUID] UUIDString]];
+    return room_id;
+}
+
 
 @end
