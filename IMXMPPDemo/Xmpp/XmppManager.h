@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) XMPPStream *xmppStream;
 @property (nonatomic,strong) XMPPReconnect *xmppReconnect;
 @property (nonatomic,strong) XMPPRosterCoreDataStorage *rosterStorage;
+@property (nonatomic,strong) XMPPRoomCoreDataStorage *roomStorage;
 @property (nonatomic,strong) XMPPRoster *xmppRoster;
 @property (nonatomic,strong) XMPPRoom *xmppRoom;
 @property (nonatomic,assign) BOOL isRegisterAfterConnected;

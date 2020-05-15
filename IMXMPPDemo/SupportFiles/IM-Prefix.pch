@@ -14,5 +14,7 @@
 
 #import "constants.h"
 
+#import "XmppManager.h"
+#import "FMDBOperation.h"
 #import "CommonMethods.h"
 #import "CommonComponentMethods.h"

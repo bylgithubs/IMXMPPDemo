@@ -30,7 +30,7 @@
 }
 
 + (NSString *)getGoupChatRoomID{
-    NSString *room_id = [NSString stringWithFormat:@"%@_%@",[CURRENTUSER lowercaseString],[[NSUUID UUID] UUIDString]];
+    NSString *room_id = [NSString stringWithFormat:@"%@_%@@conference.%@",[CURRENTUSER lowercaseString],[[NSUUID UUID] UUIDString],SERVER_DOMAIN];
     return room_id;
 }
 

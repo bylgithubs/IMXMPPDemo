@@ -125,6 +125,10 @@
     rosterModel.resource = XMPP_RESOURCE;
     rosterModel.current_date = [CommonMethods setDateFormat:[NSDate date]];
     chatRoomVC.rosterListModel = rosterModel;
+    
+    XmppManager *xmppManager = [XmppManager sharedInstance];
+    [xmppManager createGroupChat];
+    
     [self.navigationController pushViewController:chatRoomVC animated:YES];
 }
 

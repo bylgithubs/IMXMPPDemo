@@ -8,11 +8,14 @@
 
 #import "XmppManager.h"
 
-@interface XmppManager ()<NSXMLParserDelegate,XMPPRoomStorage>
+@interface XmppManager ()<NSXMLParserDelegate,XMPPRoomDelegate>
 
 
 @property (nonatomic,strong) NSString *userName;
 @property (nonatomic,strong) NSString *passward;
+
+@property (nonatomic,strong) XMPPJID *room_id;
+@property (nonatomic,strong) XMPPMUC *xmppMUC;
 
 
 @end
@@ -38,6 +41,12 @@
     self.rosterArr = [[NSMutableArray alloc] init];
     xmppStream = [[XMPPStream alloc] init];
     xmppReconnect = [[XMPPReconnect alloc] init];
+    self.roomStorage = [[XMPPRoomCoreDataStorage alloc] init];
+    
+    self.xmppMUC = [[XMPPMUC alloc] initWithDispatchQueue:dispatch_get_main_queue()];
+    [self.xmppMUC activate:xmppStream];
+    [self.xmppMUC addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
     [xmppReconnect activate:xmppStream];
     [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     [self activeModules];
@@ -121,6 +130,7 @@
     //[self getDetailsofRegisteredUser];
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
     [[self xmppStream] sendElement:presence];
+    [self createGroupChat];
 }
 
 #pragma mark 密码验证失败方法
@@ -277,15 +287,145 @@
 
 //初始化聊天室
 - (void)createGroupChat{
+    if (self.roomStorage==nil) {
+        self.roomStorage = [[XMPPRoomCoreDataStorage alloc] init];
+    }
     XMPPJID *room_id = [XMPPJID jidWithString:[CommonMethods getGoupChatRoomID]];
-    xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self jid:room_id];
-    [xmppRoom activate:xmppStream];
-    [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+//    NSString *room_id1 = [NSString stringWithFormat:@"%@@conference.%@",@"ccc_9ad12ccc-c2a6-4d70-85c3-83ec551649ee",SERVER_DOMAIN];
+//    XMPPJID *room_id = [XMPPJID jidWithString:room_id1];
+    self.room_id = room_id;
+//    xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self.roomStorage jid:room_id dispatchQueue:dispatch_get_main_queue()];
+//    //xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:rosterstorage jid:room_id];
+//    [xmppRoom activate:xmppStream];
+//           // 在聊天是显示的昵称
+//    [xmppRoom joinRoomUsingNickname:@"aaaa" history:nil];
+//
+//    [xmppRoom fetchConfigurationForm];
+//    [xmppRoom addDelegate:self delegateQueue:dispatch_get_main_queue()];
+//
+    
+    
+    
+//    XMPPRoom *room;
+////
+//    // 初始化房间
+//    XMPPRoomCoreDataStorage *rosterstorage = [[XMPPRoomCoreDataStorage alloc] init];
+//       if (rosterstorage==nil) {
+//           NSLog(@"nil");
+//           rosterstorage = [[XMPPRoomCoreDataStorage alloc] init];
+//       }
+////    NSString *room_id = [NSString stringWithFormat:@"%@_%@@conference%@",[CURRENTUSER lowercaseString],[[NSUUID UUID] UUIDString],SERVER_DOMAIN];
+//       XMPPJID *roomJID = [XMPPJID jidWithString:[CommonMethods getGoupChatRoomID]];
+//       room = [[XMPPRoom alloc] initWithRoomStorage:rosterstorage jid:roomJID
+//                                                dispatchQueue:dispatch_get_main_queue()];
+//
+//       [room activate:xmppStream];
+//
+//       // 在聊天是显示的昵称
+//       [room joinRoomUsingNickname:@"aaa" history:nil];
+//
+//       [room fetchConfigurationForm];
+//
+//       [room addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
 }
 
 -(void)xmppRoomDidCreate:(XMPPRoom *)sender
 {
     NSLog(@"================创建聊天室成功");
+//    NSString *room_id = [NSString stringWithFormat:@"%@_%@@conference.%@",[CURRENTUSER lowercaseString],[[NSUUID UUID] UUIDString],SERVER_DOMAIN];
+//    NSString *room_id = [NSString stringWithFormat:@"bbb@%@",SERVER_DOMAIN];
+//    XMPPJID *jid = [XMPPJID jidWithString:room_id];
+//    [xmppRoom inviteUser:jid withMessage:@"=================="];
+//    NSXMLElement *iq = [NSXMLElement elementWithName:@"iq"];
+//    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:data"];
+//    [iq addChild:query];
+//    NSXMLElement *room = [NSXMLElement elementWithName:@"room" stringValue:[NSString stringWithFormat:@"%@@conference.%@",self.room_id.user,SERVER_DOMAIN]];
+//    [query addChild:room];
+//    NSXMLElement *invite = [NSXMLElement elementWithName:@"invite"];
+//    [query addChild:invite];
+//    NSXMLElement *item = [NSXMLElement elementWithName:@"item"];
+//    [item addAttributeWithName:@"jid" stringValue:@"ddd@civetmac030"];
+//    [invite addChild:item];
+//
+//    [iq addAttributeWithName:@"from" stringValue:@"ccc@civetmac030"];
+//    [iq addAttributeWithName:@"id" stringValue:self.room_id.user];
+//    [iq addAttributeWithName:@"type" stringValue:@"get"];
+//    [self.xmppStream sendElement:iq];
+//    XMPPJID *jid = [XMPPJID jidWithString:@"ccc@civetmac030"];
+//    [xmppRoom inviteUser:jid withMessage:@"join room!"];
+}
+
+-(void)xmppMUC:(XMPPMUC *)sender roomJID:(XMPPJID *)roomJID didReceiveInvitation:(XMPPMessage *)message
+{
+    NSLog(@"%@", message);
+    xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self.roomStorage jid:roomJID];
+    [xmppRoom activate:xmppStream];
+    [xmppRoom addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    [xmppRoom joinRoomUsingNickname:@"ccc" history:nil];
+    
+    
+}
+
+
+
+
+- (void)xmppRoom:(XMPPRoom *)sender occupantDidJoin:(XMPPJID *)occupantJID
+{
+    
+}
+
+- (void)xmppRoomDidJoin:(XMPPRoom *)sender
+{
+    [xmppRoom fetchConfigurationForm];
+    [xmppRoom fetchBanList];
+    [xmppRoom fetchMembersList];
+    [xmppRoom fetchModeratorsList];
+}
+
+// 收到禁止名单列表
+- (void)xmppRoom:(XMPPRoom *)sender didFetchBanList:(NSArray *)items{
+    
+}
+// 收到好友名单列表
+- (void)xmppRoom:(XMPPRoom *)sender didFetchMembersList:(NSArray *)items{
+//    NSXMLElement *iq = [NSXMLElement elementWithName:@"iq"];
+//    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:data"];
+//    [iq addChild:query];
+//    NSXMLElement *room = [NSXMLElement elementWithName:@"room" stringValue:[NSString stringWithFormat:@"%@@conference.%@",self.room_id.user,SERVER_DOMAIN]];
+//    [query addChild:room];
+//    NSXMLElement *invite = [NSXMLElement elementWithName:@"invite"];
+//    [query addChild:invite];
+//    NSXMLElement *item = [NSXMLElement elementWithName:@"item"];
+//    [item addAttributeWithName:@"jid" stringValue:@"ddd@civetmac030"];
+//    [invite addChild:item];
+//
+//    [iq addAttributeWithName:@"from" stringValue:@"ccc@civetmac030"];
+//    [iq addAttributeWithName:@"id" stringValue:self.room_id.user];
+//    [iq addAttributeWithName:@"type" stringValue:@"get"];
+//    [self.xmppStream sendElement:iq];
+    
+}
+// 收到主持人名单列表
+- (void)xmppRoom:(XMPPRoom *)sender didFetchModeratorsList:(NSArray *)items{
+    
+}
+
+- (BOOL)configureWithParent:(XMPPRoom *)aParent queue:(dispatch_queue_t)queue{
+    return YES;
+}
+- (void)handlePresence:(XMPPPresence *)presence room:(XMPPRoom *)room{
+    
+}
+- (void)handleIncomingMessage:(XMPPMessage *)message room:(XMPPRoom *)room{
+    
+}
+- (void)handleOutgoingMessage:(XMPPMessage *)message room:(XMPPRoom *)room{
+    
+}
+
+- (void)handleDidLeaveRoom:(XMPPRoom *)room{
+    
 }
 
 - (void)notification:(BOOL)flag{
