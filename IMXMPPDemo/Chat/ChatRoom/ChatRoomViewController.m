@@ -42,7 +42,7 @@
 - (void)initUI{
     self.tabBarController.tabBar.hidden = YES;
     if (self.rosterListModel!=nil) {
-        [self.navigationItem setTitle:self.rosterListModel.uid];
+        [self.navigationItem setTitle:self.rosterListModel.nick];
     }
     //设置聊天室导航栏标题样式
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -186,20 +186,20 @@
         
         chatRoomModel.uId = self.rosterListModel.uid;
         chatRoomModel.roomId = self.rosterListModel.uid;
-        chatRoomModel.userNick = self.rosterListModel.uid;
+        chatRoomModel.userNick = self.rosterListModel.nick;
         chatRoomModel.messageFrom = CURRENTUSER;
         chatRoomModel.messageTo = self.rosterListModel.uid;
-        chatRoomModel.messageType = @"chat";
+        chatRoomModel.messageType = self.rosterListModel.item_type;
         chatRoomModel.content = message;
         chatRoomModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
         
         ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
         chatRecordModel.uId = self.rosterListModel.uid;
         chatRecordModel.roomId = self.rosterListModel.uid;
-        chatRecordModel.userNick = self.rosterListModel.uid;
+        chatRecordModel.userNick = self.rosterListModel.nick;
         chatRecordModel.messageFrom = CURRENTUSER;
         chatRecordModel.messageTo = self.rosterListModel.uid;
-        chatRecordModel.messageType = @"chat";
+        chatRecordModel.messageType = self.rosterListModel.item_type;
         chatRecordModel.content = message;
         chatRecordModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
         

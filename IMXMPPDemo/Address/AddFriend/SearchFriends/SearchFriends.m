@@ -66,6 +66,7 @@
     RosterListModel *model = [[RosterListModel alloc] init];
     model.jid = [NSString stringWithFormat:@"%@@%@",searchText,SERVER_DOMAIN];
     model.uid = searchText;
+    model.item_type = PERSONAL;
     model.domain = SERVER_DOMAIN;
     model.nick = searchText;
     model.resource = XMPP_RESOURCE;

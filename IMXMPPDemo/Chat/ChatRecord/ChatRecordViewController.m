@@ -94,6 +94,8 @@
     ChatRecordModel *model = self.dataArr[indexPath.row];
     RosterListModel *rosterListModel = [[RosterListModel alloc] init];
     rosterListModel.uid = model.uId;
+    rosterListModel.nick = model.userNick;
+    rosterListModel.item_type = model.messageType;
     
     ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
     chatRoomVC.rosterListModel = rosterListModel;

@@ -165,6 +165,7 @@
     for (XMPPJID *jid in self.rosterArr) {
         model.jid = [NSString stringWithFormat:@"%@@%@",jid.user,jid.domain];
         model.uid = jid.user;
+        model.item_type = PERSONAL;
         model.domain = jid.domain;
         model.nick = jid.user;
         model.resource = jid.resource;

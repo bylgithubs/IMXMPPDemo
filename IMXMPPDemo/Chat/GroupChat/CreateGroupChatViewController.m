@@ -12,7 +12,8 @@
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataArr;
-@property (nonatomic,strong) NSMutableArray *selectedArr;
+@property (nonatomic,strong) NSMutableArray *selectedArr;//选中cell
+@property (nonatomic,strong) NSMutableDictionary *selectedDic;//选择数据
 
 @end
 
@@ -45,6 +46,7 @@
 
 - (void)initData{
     self.selectedArr = [[NSMutableArray alloc] init];
+    self.selectedDic = [[NSMutableDictionary alloc] init];
     self.dataArr = [[NSMutableArray alloc] init];
     FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
     self.dataArr = [fmdb searchFriendsFromRoster];
@@ -80,10 +82,12 @@
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.bounds];
     if ([self.selectedArr containsObject:indexPath]) {
         [self.selectedArr removeObject:indexPath];
+        [self.selectedDic removeObjectForKey:indexPath];
         cell.selectedBackgroundView.backgroundColor = [UIColor whiteColor];
         cell.backgroundColor = [UIColor whiteColor];
     } else {
         [self.selectedArr addObject:indexPath];
+        [self.selectedDic setObject:self.dataArr[indexPath.row] forKey:indexPath];
         cell.selectedBackgroundView.backgroundColor = [UIColor greenColor];
         cell.backgroundColor = [UIColor greenColor];
     }
@@ -99,6 +103,28 @@
 }
 - (void)clickBottonBtn{
     ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
+    NSString *groupName = CURRENTUSER;
+    RosterListModel *model;
+    NSString *key;
+    NSArray *allkeys = [self.selectedDic allKeys];
+    for (int i = 0; i < allkeys.count; i++) {
+        key = [allkeys objectAtIndex:i];
+        model = [self.selectedDic objectForKey:key];
+        groupName = [groupName stringByAppendingFormat:@",%@",model.nick];
+    }
+//    NSEnumerator *enumerator = [self.selectedDic objectEnumerator];
+//    while (model = [enumerator nextObject]) {
+//        groupName = [groupName stringByAppendingFormat:@",%@",model.nick];
+//    }
+    RosterListModel *rosterModel = [[RosterListModel alloc] init];
+    rosterModel.jid = [NSString stringWithFormat:@"%@@%@",[CommonMethods getGoupChatRoomID],SERVER_DOMAIN];
+    rosterModel.uid = [CommonMethods getGoupChatRoomID];
+    rosterModel.item_type = GROUP;
+    rosterModel.domain = SERVER_DOMAIN;
+    rosterModel.nick = groupName;
+    rosterModel.resource = XMPP_RESOURCE;
+    rosterModel.current_date = [CommonMethods setDateFormat:[NSDate date]];
+    chatRoomVC.rosterListModel = rosterModel;
     [self.navigationController pushViewController:chatRoomVC animated:YES];
 }
 
