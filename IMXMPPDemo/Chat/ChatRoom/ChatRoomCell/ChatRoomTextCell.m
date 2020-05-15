@@ -31,7 +31,7 @@
     ChatRoomModel *model = self.chatRoomModel;
     self.messageContent.text = model.content;
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20]};
-    CGSize textSize = [self.messageContent.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20,SCREEN_HEIGHT/5) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    CGSize textSize = [self.messageContent.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20,SCREEN_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
     
     if (![CURRENTUSER isEqualToString:model.messageFrom]) {
         

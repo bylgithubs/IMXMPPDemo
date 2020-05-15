@@ -62,3 +62,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 enum MessageType{
     Text
 };
+
+#define PERSONAL @"Personal"
+#define GROUP @"Group"

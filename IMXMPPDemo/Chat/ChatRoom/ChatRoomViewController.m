@@ -138,7 +138,7 @@
 - (void)changeTableViewHeight{
     CGRect tableViewFrame = tableView.frame;
     //tableViewFrame.origin.y = NAVIGATION_AND_STATUSBAR_HEIGHT;
-    tableViewFrame.size.height = self.keyboard.frame.origin.y - NAVIGATION_AND_STATUSBAR_HEIGHT + 80;
+    tableViewFrame.size.height = self.keyboard.frame.origin.y - NAVIGATION_AND_STATUSBAR_HEIGHT;
     tableView.frame = tableViewFrame;
     
 }
