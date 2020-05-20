@@ -244,6 +244,9 @@
     chatRecordModel.sendDate =sendDate;
     chatRecordModel.content = body;
     FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+    if ([type isEqualToString:@"groupchat"]) {
+        return;
+    }
     [fmdb insertChatMessage:chatRoomModel];
     [fmdb insertChatRecord:chatRecordModel];
     [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_CHATROOM_MESSAGE object:nil];
