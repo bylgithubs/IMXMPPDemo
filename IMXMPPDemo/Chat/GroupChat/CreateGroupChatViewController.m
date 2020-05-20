@@ -103,6 +103,7 @@
 }
 - (void)clickBottonBtn{
     ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
+    NSMutableArray *friendList = [[NSMutableArray alloc] init];
     NSString *groupName = CURRENTUSER;
     RosterListModel *model;
     NSString *key;
@@ -111,6 +112,7 @@
         key = [allkeys objectAtIndex:i];
         model = [self.selectedDic objectForKey:key];
         groupName = [groupName stringByAppendingFormat:@",%@",model.nick];
+        [friendList addObject:model.uid];
     }
 //    NSEnumerator *enumerator = [self.selectedDic objectEnumerator];
 //    while (model = [enumerator nextObject]) {
@@ -127,7 +129,7 @@
     chatRoomVC.rosterListModel = rosterModel;
     
     XmppManager *xmppManager = [XmppManager sharedInstance];
-    [xmppManager createGroupChat];
+    [xmppManager createGroupChat:friendList];
     
     [self.navigationController pushViewController:chatRoomVC animated:YES];
 }

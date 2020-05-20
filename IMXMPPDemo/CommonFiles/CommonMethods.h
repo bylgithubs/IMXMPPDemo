@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString *)handleUserIDWithSeparated:(NSString *)userId;
 //获取聊天室ID
 + (NSString *)getGoupChatRoomID;
+//通过用户id获取用户jid
++ (NSString *)getUserJid:(NSString *)uid;
 
 @end
 

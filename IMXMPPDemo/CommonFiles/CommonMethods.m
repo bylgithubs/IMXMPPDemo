@@ -34,5 +34,10 @@
     return room_id;
 }
 
+//通过用户id获取用户jid
++ (NSString *)getUserJid:(NSString *)uid{
+    return [NSString stringWithFormat:@"%@@%@",uid,SERVER_DOMAIN];
+}
+
 
 @end

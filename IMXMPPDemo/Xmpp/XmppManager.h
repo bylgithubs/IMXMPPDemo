@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)connectToServer:(NSString *)user passward:(NSString *)passward;
 
 //初始化聊天室
-- (void)createGroupChat;
+- (void)createGroupChat:(NSMutableArray *)friendList;
 
 @end
 
