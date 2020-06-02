@@ -203,6 +203,7 @@
 - (void)loginOutClickAction{
     [[NSNotificationCenter defaultCenter] postNotificationName:ADDRESS_LOGINOUT object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:XMPPMANAGER_DISCONNECTED_TO_SERVER object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:FMDBOPERATION_REFRESH_DB_CONFIG object:nil];
 }
 
 #pragma mark 添加好友点击事件

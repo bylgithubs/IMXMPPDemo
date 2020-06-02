@@ -29,6 +29,8 @@ static FMDBOperation *sharedInstance = nil;
 }
 
 - (void)initDB{
+    //添加通知
+    [self notificationRegister:YES];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isExisted = [fileManager fileExistsAtPath:DATABASE_FOLDER];
     if (!isExisted) {
@@ -77,6 +79,18 @@ static FMDBOperation *sharedInstance = nil;
         NSLog(@"创建表 %@ 成功",tableName);
     } else {
         NSLog(@"创建表 %@ 失败",tableName);
+    }
+}
+
+- (void)refreshDBConfig{
+    _dbQueue = nil;
+}
+
+- (void)notificationRegister:(BOOL)flag{
+    if (flag) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDBConfig) name:FMDBOPERATION_REFRESH_DB_CONFIG object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:FMDBOPERATION_REFRESH_DB_CONFIG object:nil];
     }
 }
 
@@ -233,6 +247,10 @@ static FMDBOperation *sharedInstance = nil;
         NSLog(@"dbOperatin ERROR:%@",exception.description);
         return NO;
     }
+}
+
+-(void)dealloc{
+    [self notificationRegister:NO];
 }
 
 @end

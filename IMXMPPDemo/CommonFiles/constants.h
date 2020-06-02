@@ -40,7 +40,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define SafeAreaBottom (Device_Is_iPhoneX ? 34.f : 0.f) //底部安全距离
 
 #pragma mark 数据库相关
-#define DATABASE_NAME @"IMXMPPDemo.sqlite"
+//#define DATABASE_NAME @"IMXMPPDemo.sqlite"
+#define DATABASE_NAME @"openfire.sqlite"
 #define DOCUMENT_PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
 #define DATABASE_FOLDER [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",CURRENTUSER]]
 #define DATABASE_PATH [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",CURRENTUSER,DATABASE_NAME]]
@@ -58,6 +59,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define XMPPMANAGER_ADD_FRIEND @"XmppManagerAddFriend"
 #define XMPPMANAGER_DELETE_FRIEND @"XmppManagerDeleteFriend"
 #define XMPPMANAGER_DISCONNECTED_TO_SERVER @"XmppManagerDisconnectedToServer"
+#define FMDBOPERATION_REFRESH_DB_CONFIG @"FMDBOperationRefreshDBConfig"
 
 enum MessageType{
     Text
