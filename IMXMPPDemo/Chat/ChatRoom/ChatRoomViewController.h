@@ -14,6 +14,8 @@
 #import "XmppManager.h"
 #import "AddressViewController.h"
 #import "ChatRecordViewController.h"
+#import "AudioRecorder.h"
+#import "ChatRoomAudioCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -112,17 +112,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"ChatRoomTextCell";
-    ChatRoomTextCell *textCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (textCell == nil) {
-        textCell = [[ChatRoomTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    textCell.delegate = self;
-    ChatRoomModel *model = self.dataArr[indexPath.row];
-    textCell.chatRoomModel = model;
-    [textCell configData];
-    self.cellHeight = textCell.cellHeight;
     
-    return textCell;
+    ChatRoomModel *model = self.dataArr[indexPath.row];
+    SuperChatRoomCell *Cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if ([model.messageType isEqualToString:@"text"]) {
+        
+        if (Cell == nil) {
+            Cell = [[ChatRoomTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        Cell.delegate = self;
+        Cell.chatRoomModel = model;
+        [Cell configData];
+        self.cellHeight = Cell.cellHeight;
+    }
+    else if([model.messageType isEqualToString:@"audio"]){
+        if (Cell == nil) {
+            Cell = [[ChatRoomAudioCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        Cell.delegate = self;
+        Cell.chatRoomModel = model;
+        [Cell configData];
+        self.cellHeight = Cell.cellHeight;
+    }
+    return Cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -167,6 +179,7 @@
     
 }
 
+//发送文本消息
 -(void)KeyboardView:(KeyboardView *)keyboardView sendBtnClick:(UIButton *)sender text:(NSString *)text attribute:(NSAttributedString *)attr{
     NSString *string = text;
     if (text.length > 0) {
@@ -174,12 +187,32 @@
             return;
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_KEYBOARD_TEXT object:nil];
-        [self SendMessageAndInsertDB:text];
+        [self SendMessageAndInsertDB:text messageType:@"text"];
+    }
+}
+
+//发送语音消息
+-(void)KeyboardView:(KeyboardView *)keyboardView sendStatus:(BOOL)status{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *path = CHAT_MESSAGE_PATH;
+    BOOL isExisted = [fileManager fileExistsAtPath:CHAT_MESSAGE_PATH];
+    if (!isExisted) {
+        [fileManager createDirectoryAtPath:CHAT_MESSAGE_PATH withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    NSString *audioName = [NSString stringWithFormat:@"%@.aac",[CommonMethods getUUid]];
+    NSString *audioPath = [CHAT_MESSAGE_PATH stringByAppendingPathComponent:audioName];
+    
+    AudioRecorder *audioRecorder = [AudioRecorder sharedInstance];
+    if (status) {
+        [audioRecorder audioRecorderBegin:audioPath];
+    } else {
+        [audioRecorder audioRecorderStop];
+        [self SendMessageAndInsertDB:audioName messageType:@"audio"];
     }
 }
 
 //发送和存储消息
-- (void)SendMessageAndInsertDB:(NSString *)message{
+- (void)SendMessageAndInsertDB:(NSString *)message messageType:(NSString *)type{
     dispatch_queue_t dispatchQueue = dispatch_queue_create("SendDataAndInsertDB", nil);
     dispatch_async(dispatchQueue, ^{
         ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
@@ -189,7 +222,7 @@
         chatRoomModel.userNick = self.rosterListModel.nick;
         chatRoomModel.messageFrom = CURRENTUSER;
         chatRoomModel.messageTo = self.rosterListModel.uid;
-        chatRoomModel.messageType = self.rosterListModel.item_type;
+        chatRoomModel.messageType = type;
         chatRoomModel.content = message;
         chatRoomModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
         
@@ -199,7 +232,7 @@
         chatRecordModel.userNick = self.rosterListModel.nick;
         chatRecordModel.messageFrom = CURRENTUSER;
         chatRecordModel.messageTo = self.rosterListModel.uid;
-        chatRecordModel.messageType = self.rosterListModel.item_type;
+        chatRecordModel.messageType = type;
         chatRecordModel.content = message;
         chatRecordModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
         
@@ -208,7 +241,9 @@
             [dbOperation insertChatMessage:chatRoomModel];
             [dbOperation insertChatRecord:chatRecordModel];
             
-            [self sendMessageToServer:chatRoomModel];
+            if ([type isEqualToString:@"text"]) {
+                [self sendMessageToServer:chatRoomModel];
+            }
             [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_CHATROOM_MESSAGE object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_CHAT_RECORD object:nil];
         });

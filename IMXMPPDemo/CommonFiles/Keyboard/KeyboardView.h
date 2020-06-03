@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <Masonry/Masonry.h>
-#import "AudioRecorder.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,7 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)KeyboardView:(KeyboardView *)keyboardView textFiledBegin:(UITextView *)textFiled;
 
 @optional
+//发送文本消息
 -(void)KeyboardView:(KeyboardView *)keyboardView sendBtnClick:(UIButton *)sender text:(NSString *)text attribute:(NSAttributedString *)attr;
+//发送语音消息
+-(void)KeyboardView:(KeyboardView *)keyboardView sendStatus:(BOOL)status;
 -(void)KeyBoardViewHeightChange:(CGRect)keyboardFrame;
 
 @end
