@@ -124,20 +124,30 @@ static KeyboardView *sharedInstance = nil;
 }
 
 - (void)switchAudioBtnAction{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *path = CHAT_MESSAGE_PATH;
+    BOOL isExisted = [fileManager fileExistsAtPath:CHAT_MESSAGE_PATH];
+    if (!isExisted) {
+        [fileManager createDirectoryAtPath:CHAT_MESSAGE_PATH withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    NSString *audioPath = [CHAT_MESSAGE_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.aac",[CommonMethods getUUid]]];
+    
+    AudioRecorder *audioRecorder = [AudioRecorder sharedInstance];
     if (self.switchFlag) {
         [self.audioBtn setTitle:@"发送录音" forState:UIControlStateNormal];
-        
+        [audioRecorder audioRecorderBegin:audioPath];
     } else {
         [self.audioBtn setTitle:@"开始语音" forState:UIControlStateNormal];
+        [audioRecorder audioRecorderStop];
     }
+
     self.switchFlag = !self.switchFlag;
 }
 
-//开始录音
--(void)audioRecorderBeginBtnClick{
-    
-}
-
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    AudioRecorder *audioRecorder = [AudioRecorder sharedInstance];
+//    [audioRecorder audioRecorderPlay];
+//}
 - (void)sendBtnClick:(UIButton *)button{
     if ([self.delegate respondsToSelector:@selector(KeyboardView:sendBtnClick:text:attribute:)]) {
         [self.delegate KeyboardView:self sendBtnClick:button text:self.customTV.text attribute:self.customTV.attributedText];

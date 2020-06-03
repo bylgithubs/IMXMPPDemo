@@ -42,9 +42,11 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #pragma mark 数据库相关
 //#define DATABASE_NAME @"IMXMPPDemo.sqlite"
 #define DATABASE_NAME @"openfire.sqlite"
+#define CHAT_MESSAGE_FOLDER @"chat"
 #define DOCUMENT_PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
-#define DATABASE_FOLDER [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",CURRENTUSER]]
+#define USER_FOLDER [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",CURRENTUSER]]
 #define DATABASE_PATH [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",CURRENTUSER,DATABASE_NAME]]
+#define CHAT_MESSAGE_PATH [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",CURRENTUSER,CHAT_MESSAGE_FOLDER]]
 
 #pragma mark 添加通知
 #define LOGIN_SUCCESS @"LoginSuccess"

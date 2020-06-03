@@ -39,5 +39,9 @@
     return [NSString stringWithFormat:@"%@@%@",uid,SERVER_DOMAIN];
 }
 
+//获取uuid
++ (NSString *)getUUid{
+    return [[NSUUID UUID] UUIDString];
+}
 
 @end

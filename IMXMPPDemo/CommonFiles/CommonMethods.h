@@ -22,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getGoupChatRoomID;
 //通过用户id获取用户jid
 + (NSString *)getUserJid:(NSString *)uid;
-
+//获取uuid
++ (NSString *)getUUid;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -32,9 +32,9 @@ static FMDBOperation *sharedInstance = nil;
     //添加通知
     [self notificationRegister:YES];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL isExisted = [fileManager fileExistsAtPath:DATABASE_FOLDER];
+    BOOL isExisted = [fileManager fileExistsAtPath:USER_FOLDER];
     if (!isExisted) {
-        [fileManager createDirectoryAtPath:DATABASE_FOLDER withIntermediateDirectories:YES attributes:nil error:nil];
+        [fileManager createDirectoryAtPath:USER_FOLDER withIntermediateDirectories:YES attributes:nil error:nil];
     }
     NSString *databasePath = DATABASE_PATH;
     self.dbOperation = [FMDatabase databaseWithPath:databasePath];

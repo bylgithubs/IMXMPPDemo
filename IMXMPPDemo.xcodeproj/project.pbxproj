@@ -44,6 +44,7 @@
 		647166522463948600A64520 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647166512463948600A64520 /* AddFriendViewController.m */; };
 		6471665C24639C3900A64520 /* SearchFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471665B24639C3900A64520 /* SearchFriends.m */; };
 		647166602463A56600A64520 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471665F2463A56600A64520 /* AddFriendCell.m */; };
+		64B07B8E24878DDC00031530 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B07B8D24878DDB00031530 /* AudioRecorder.m */; };
 		85AF33461DC05BE2245B04A6 /* Pods_IMXMPPDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,8 @@
 		6471665B24639C3900A64520 /* SearchFriends.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchFriends.m; sourceTree = "<group>"; };
 		6471665E2463A56600A64520 /* AddFriendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
 		6471665F2463A56600A64520 /* AddFriendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
+		64B07B8C24878DDB00031530 /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
+		64B07B8D24878DDB00031530 /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
 		65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMXMPPDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AE98748654903ADA77D050 /* Pods-IMXMPPDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMXMPPDemo.release.xcconfig"; path = "Target Support Files/Pods-IMXMPPDemo/Pods-IMXMPPDemo.release.xcconfig"; sourceTree = "<group>"; };
 		91276AE7DC66FE3F484D82D5 /* Pods-IMXMPPDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMXMPPDemo.debug.xcconfig"; path = "Target Support Files/Pods-IMXMPPDemo/Pods-IMXMPPDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -335,6 +338,7 @@
 		64093BAB2460149E00C75DA3 /* CommonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				64B07B8B24878DDB00031530 /* AudioRecorder */,
 				64093BAC246014C500C75DA3 /* constants.h */,
 				6471216424629D140078423F /* Model */,
 				6406607024615FEF00AF4975 /* Keyboard */,
@@ -462,6 +466,15 @@
 				6471665F2463A56600A64520 /* AddFriendCell.m */,
 			);
 			path = AddFriendCell;
+			sourceTree = "<group>";
+		};
+		64B07B8B24878DDB00031530 /* AudioRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				64B07B8C24878DDB00031530 /* AudioRecorder.h */,
+				64B07B8D24878DDB00031530 /* AudioRecorder.m */,
+			);
+			path = AudioRecorder;
 			sourceTree = "<group>";
 		};
 		E6DF606EE9C229478DC1DEA1 /* Frameworks */ = {
@@ -596,6 +609,7 @@
 				6406606F24615FE000AF4975 /* FMDBOperation.m in Sources */,
 				64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */,
 				6406605F24615F1700AF4975 /* ChatRecordViewController.m in Sources */,
+				64B07B8E24878DDC00031530 /* AudioRecorder.m in Sources */,
 				6406607724615FEF00AF4975 /* CustomTextView.m in Sources */,
 				6471665C24639C3900A64520 /* SearchFriends.m in Sources */,
 				6406606B24615FA800AF4975 /* CommonMethods.m in Sources */,
