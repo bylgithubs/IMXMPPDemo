@@ -9,13 +9,16 @@
 #import "KeyboardView.h"
 #import "CustomTextView.h"
 
-@interface KeyboardView()<UITextViewDelegate>
+@interface KeyboardView()<UITextViewDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) UIView *toolView;
 @property (nonatomic,strong) CustomTextView *customTV;
+@property (nonatomic,strong) UIButton *audioBtn;
+@property (nonatomic,strong) UIButton *longPressRecord;
 @property (nonatomic,strong) UIButton *sendBtn;
 //@property (nonatomic,assign) CGFloat keyboardHeight;
 @property (nonatomic,assign) CGRect toolFrame;
+@property (nonatomic,assign) BOOL switchFlag;
 //@property (nonatomic,assign) CGRect keyboardFrame;
 //@property (nonatomic,assign) BOOL isShowKeyboard;
 
@@ -42,6 +45,7 @@ static KeyboardView *sharedInstance = nil;
 
 - (void)initKeyboard{
 //    self.toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 44)];
+    self.switchFlag = YES;
     self.toolView = [[UIView alloc] init];
     
     self.toolFrame = self.toolView.frame;
@@ -54,6 +58,20 @@ static KeyboardView *sharedInstance = nil;
         make.right.mas_equalTo(self.mas_right);
     }];
 
+    if (!self.audioBtn) {
+        self.audioBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.audioBtn.backgroundColor = [UIColor orangeColor];
+        [self.audioBtn setTitle:@"开始语音" forState:UIControlStateNormal];
+        [self.audioBtn addTarget:self action:@selector(switchAudioBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.toolView addSubview:self.audioBtn];
+        [self.audioBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.toolView.mas_top).mas_offset(5);
+            make.left.mas_equalTo(self.toolView.mas_left).mas_offset(10);
+            make.height.mas_equalTo(44);
+            make.width.mas_equalTo(44*2);
+        }];
+    }
+    
     if (!self.customTV) {
 //        self.customTV = [[CustomTextView alloc] initWithFrame:CGRectMake(10, 5, self.toolView.frame.size.width - 100, 40)];
         self.customTV = [[CustomTextView alloc] init];
@@ -63,11 +81,28 @@ static KeyboardView *sharedInstance = nil;
         [self.toolView addSubview:self.customTV];
         [self.customTV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.toolView.mas_top).mas_offset(5);
-            make.left.mas_equalTo(self.toolView.mas_left).mas_offset(10);
+            make.left.mas_equalTo(self.audioBtn.mas_right).mas_offset(10);
             make.height.mas_equalTo(44);
             make.right.mas_equalTo(self.toolView.mas_right).mas_offset(-100);
         }];
     }
+    
+//    if (!self.longPressRecord) {
+//        self.longPressRecord = [UIButton buttonWithType:UIButtonTypeCustom];
+//        self.longPressRecord.backgroundColor = [UIColor orangeColor];
+//        [self.longPressRecord setTitle:@"长按录音" forState:UIControlStateNormal];
+//        UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapAction)];
+//        longTap.delegate = self;
+//        [self.longPressRecord addGestureRecognizer:longTap];
+//        [self.toolView addSubview:self.longPressRecord];
+//        self.longPressRecord.hidden = YES;
+//        [self.longPressRecord mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(self.toolView.mas_top).mas_offset(5);
+//            make.left.mas_equalTo(self.audioBtn.mas_right).mas_offset(10);
+//            make.height.mas_equalTo(44);
+//            make.right.mas_equalTo(self.toolView.mas_right).mas_offset(-100);
+//        }];
+//    }
     
     if (!self.sendBtn) {
         CGRect toolFrame = self.toolView.frame;
@@ -86,7 +121,20 @@ static KeyboardView *sharedInstance = nil;
         }];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTextViewData) name:DELETE_KEYBOARD_TEXT object:nil];
     }
-    
+}
+
+- (void)switchAudioBtnAction{
+    if (self.switchFlag) {
+        [self.audioBtn setTitle:@"发送录音" forState:UIControlStateNormal];
+        
+    } else {
+        [self.audioBtn setTitle:@"开始语音" forState:UIControlStateNormal];
+    }
+    self.switchFlag = !self.switchFlag;
+}
+
+//开始录音
+-(void)audioRecorderBeginBtnClick{
     
 }
 
