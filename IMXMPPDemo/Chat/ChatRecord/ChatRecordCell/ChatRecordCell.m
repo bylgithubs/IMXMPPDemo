@@ -57,7 +57,7 @@
     currentDateLabel.font = [UIFont systemFontOfSize:12];
     [self addSubview:currentDateLabel];
     [currentDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(latestMessageLabel.mas_right).mas_offset(10);
+        make.left.mas_equalTo(self.latestMessageLabel.mas_right).mas_offset(10);
         make.bottom.mas_equalTo(self.mas_bottom);
         make.height.mas_equalTo(15);
         make.right.mas_equalTo(self.mas_right);
@@ -67,7 +67,12 @@
 - (void)configData{
     ChatRecordModel *model = self.chatRecordModel;
     userNameLabel.text = model.userNick;
-    latestMessageLabel.text = model.content;
+    if ([model.messageType isEqualToString:@"text"]) {
+        latestMessageLabel.text = model.content;
+    }
+    else if([model.messageType isEqualToString:@"audio"]){
+        latestMessageLabel.text = @"[语音]";
+    }
     currentDateLabel.text = model.sendDate;
 }
 

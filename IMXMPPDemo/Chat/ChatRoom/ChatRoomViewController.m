@@ -287,8 +287,21 @@
 
 - (void)deleteMessageCell{
     NSString *jid = self.currentCell.chatRoomModel.jId;
+    NSString *messageType = self.currentCell.chatRoomModel.messageType;
     if ([[FMDBOperation sharedDatabaseInstance] deleteChatRoomMessage:jid]) {
         [self.dataArr removeObject:self.currentCell.chatRoomModel];
+        if ([messageType isEqualToString:@"audio"]) {
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSString *audioPath = [CHAT_MESSAGE_PATH stringByAppendingPathComponent:self.currentCell.chatRoomModel.content];
+            if ([fileManager fileExistsAtPath:audioPath]) {
+                BOOL flag = [fileManager removeItemAtPath:audioPath error:nil];
+                if (flag) {
+                    NSLog(@"录音删除成功");
+                } else {
+                    NSLog(@"录音删除失败");
+                }
+            }
+        }
         [self reloadTableView];
     }
     
