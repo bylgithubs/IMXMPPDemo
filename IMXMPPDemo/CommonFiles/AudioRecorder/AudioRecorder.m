@@ -111,19 +111,19 @@ static AudioRecorder *sharedInstance = nil;
 /*
  音频的存储url
  */
--(NSURL *)getSavePath{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *path = CHAT_MESSAGE_PATH;
-    BOOL isExisted = [fileManager fileExistsAtPath:CHAT_MESSAGE_PATH];
-    if (!isExisted) {
-        [fileManager createDirectoryAtPath:CHAT_MESSAGE_PATH withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    //NSString *audioPath=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *audioPath = [CHAT_MESSAGE_PATH stringByAppendingPathComponent:@"myRecord.aac"];
-    NSLog(@"file path:%@",audioPath);
-    NSURL *url=[NSURL fileURLWithPath:audioPath];
-    return url;
-}
+//-(NSURL *)getSavePath{
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    NSString *path = CHAT_MESSAGE_PATH;
+//    BOOL isExisted = [fileManager fileExistsAtPath:CHAT_MESSAGE_PATH];
+//    if (!isExisted) {
+//        [fileManager createDirectoryAtPath:CHAT_MESSAGE_PATH withIntermediateDirectories:YES attributes:nil error:nil];
+//    }
+//    //NSString *audioPath=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSString *audioPath = [CHAT_MESSAGE_PATH stringByAppendingPathComponent:@"myRecord.aac"];
+//    NSLog(@"file path:%@",audioPath);
+//    NSURL *url=[NSURL fileURLWithPath:audioPath];
+//    return url;
+//}
 
 /*
  @return 录音设置

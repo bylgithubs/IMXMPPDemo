@@ -22,7 +22,7 @@
     self.audioPlayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.audioPlayBtn setTitle:@"语音" forState:UIControlStateNormal];
     self.audioPlayBtn.backgroundColor = [UIColor orangeColor];
-    [self.audioPlayBtn addTarget:self action:@selector(audioPlayBtn) forControlEvents:UIControlEventTouchUpInside];
+    [self.audioPlayBtn addTarget:self action:@selector(audioRecordPlay) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.audioPlayBtn];
 }
 

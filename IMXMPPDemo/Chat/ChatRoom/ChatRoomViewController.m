@@ -199,11 +199,12 @@
     if (!isExisted) {
         [fileManager createDirectoryAtPath:CHAT_MESSAGE_PATH withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    NSString *audioName = [NSString stringWithFormat:@"%@.aac",[CommonMethods getUUid]];
-    NSString *audioPath = [CHAT_MESSAGE_PATH stringByAppendingPathComponent:audioName];
+    static NSString *audioName = nil;
     
     AudioRecorder *audioRecorder = [AudioRecorder sharedInstance];
     if (status) {
+        audioName = [NSString stringWithFormat:@"%@.aac",[CommonMethods getUUid]];
+        NSString *audioPath = [CHAT_MESSAGE_PATH stringByAppendingPathComponent:audioName];
         [audioRecorder audioRecorderBegin:audioPath];
     } else {
         [audioRecorder audioRecorderStop];
