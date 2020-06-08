@@ -23,7 +23,7 @@
 #define SERVER_DOMAIN @"civetmac030"
 #define SERVER_PORT @"5222"
 #define XMPP_RESOURCE @"iOS"
-#define HOST_NAME @"192.168.43.139"
+#define HOST_NAME [[[IPManager sharedManager] getIPAddresses] objectForKey:@"en1/ipv4"]
 
 #pragma mark 手机屏幕适配
 #define Device_Is_iPhoneX \
