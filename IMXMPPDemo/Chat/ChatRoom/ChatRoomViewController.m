@@ -169,14 +169,20 @@
     [self.keyboard resignKeyboard];
 }
 
-
 -(void)KeyBoardViewHeightChange:(CGRect)keyboardFrame{
-    self.keyboard.frame = keyboardFrame;
+    [UIView animateWithDuration:0.25 animations:^{
+        self.keyboard.frame = keyboardFrame;
+    }];
     [self changeTableViewHeight];
 }
 
 - (void)KeyboardView:(KeyboardView *)keyboardView textFiledBegin:(UITextView *)textFiled{
     
+}
+
+//加号按钮
+-(void)KeyBoardView:(KeyboardView *)keyBoardView addBtnPress:(UIButton *)sender{
+    [keyBoardView showAddCollectionViewithkeyboardType];
 }
 
 //发送文本消息
@@ -309,6 +315,22 @@
 
 - (void)reloadTableView{
     [tableView reloadData];
+}
+
+//聊天collection
+-(void)KeyBoardViewCollectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath cellTag:(NSInteger)tag{
+    switch (tag) {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)dealloc{

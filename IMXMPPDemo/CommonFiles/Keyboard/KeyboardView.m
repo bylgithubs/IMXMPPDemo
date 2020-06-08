@@ -8,8 +8,9 @@
 
 #import "KeyboardView.h"
 #import "CustomTextView.h"
+#import "CustomCollectionView.h"
 
-@interface KeyboardView()<UITextViewDelegate,UIGestureRecognizerDelegate>
+@interface KeyboardView()<UITextViewDelegate,UIGestureRecognizerDelegate,CustomCollectionViewDelegate>
 
 @property (nonatomic,strong) UIView *toolView;
 @property (nonatomic,strong) UIScrollView *scrollView;
@@ -23,6 +24,8 @@
 @property (nonatomic,assign) CGRect toolFrame;
 @property (nonatomic,assign) BOOL switchFlag;
 @property (nonatomic,assign) BOOL functionListSwitch;
+@property (nonatomic,strong) CustomCollectionView *collectionView;
+@property (nonatomic,assign) NSInteger currentIndex;
 //@property (nonatomic,assign) CGRect hideKeyboardFrame;
 
 @end
@@ -135,7 +138,7 @@ static KeyboardView *sharedInstance = nil;
         [self.functionBtn setTitle:@"十" forState:UIControlStateNormal];
         self.functionBtn.backgroundColor = [UIColor orangeColor];
         [self.functionBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [self.functionBtn addTarget:self action:@selector(functionBtnClickAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.functionBtn addTarget:self action:@selector(addBtnClickAction) forControlEvents:UIControlEventTouchUpInside];
         self.functionBtn.frame = CGRectMake(self.keyboardFrame.size.width - self.sendBtn.frame.size.width - 44 - 5 - 5, 5, 44, 44);
         [self.toolView addSubview:self.functionBtn];
 //        [self.functionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -150,7 +153,7 @@ static KeyboardView *sharedInstance = nil;
     
     
     self.scrollView = [[UIScrollView alloc] init];
-    self.scrollView.backgroundColor = [UIColor blueColor];
+    self.scrollView.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.toolView.mas_bottom);
@@ -181,13 +184,18 @@ static KeyboardView *sharedInstance = nil;
     self.switchFlag = !self.switchFlag;
 }
 
-- (void)functionBtnClickAction{
+- (void)addBtnClickAction{
     
     self.functionListSwitch = !self.functionListSwitch;
     if (self.functionListSwitch) {
         self.scrollView.hidden = NO;
         [self.functionBtn setTitle:@"键盘" forState:UIControlStateNormal];
 
+        if([self.delegate respondsToSelector:@selector(KeyBoardView:addBtnPress:)])
+        {
+            [self.delegate KeyBoardView:self addBtnPress:self.functionBtn];
+        }
+        
         CGRect keyboardFrame = self.frame;
         CGFloat keyboardHeight = self.toolView.frame.size.height + self.scrollView.frame.size.height + 10;
         keyboardFrame.origin.y = SCREEN_HEIGHT - keyboardHeight;
@@ -231,11 +239,49 @@ static KeyboardView *sharedInstance = nil;
     }
 }
 
+- (void)showAddCollectionViewithkeyboardType{
+    [self initScroViewithkeyboard];
+}
+
+- (void)initScroViewithkeyboard{
+    NSMutableArray *collectArr = [[NSMutableArray alloc] initWithCapacity:5];
+    NSMutableArray *tagArr = [[NSMutableArray alloc] initWithCapacity:5];
+    [collectArr addObject:@"照片"];
+    [tagArr addObject:@"1"];
+    [collectArr addObject:@"拍照"];
+    [tagArr addObject:@"2"];
+    [collectArr addObject:@"录像"];
+    [tagArr addObject:@"3"];
+    [collectArr addObject:@"地图"];
+    [tagArr addObject:@"4"];
+    
+    self.currentIndex = 0;
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, self.bounds.size.width, self.bounds.size.height-44)];
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    CGRect frame=CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    CustomCollectionView *collectView = [[CustomCollectionView alloc] initWithFrame:CGRectZero collectionArray:collectArr tagArray:tagArr itemInRow:1 itemInColumn:4];
+    collectView.delegate = self;
+    self.collectionView = collectView;
+    self.collectionView.frame = CGRectMake(frame.origin.x, -10, frame.size.width, frame.size.height);
+    [self.collectionView.collctionView reloadData];
+    [self.scrollView addSubview:self.collectionView];
+    [self addSubview:self.scrollView];
+    
+}
 - (void)resignKeyboard{
     [self.customTV resignFirstResponder];
     [self resignFirstResponder];
     
 }
+
+-(void)CustomCollectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    NSIndexPath * index = [NSIndexPath indexPathForRow:indexPath.row inSection:self.currentIndex] ;
+    if ([self.delegate respondsToSelector:@selector(KeyBoardViewCollectionView:didSelectItemAtIndexPath:cellTag:)]) {
+        [self.delegate KeyBoardViewCollectionView:collectionView didSelectItemAtIndexPath:index cellTag:cell.tag];
+    }
+}
+
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:DELETE_KEYBOARD_TEXT object:nil];

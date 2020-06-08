@@ -45,6 +45,8 @@
 		6471665C24639C3900A64520 /* SearchFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471665B24639C3900A64520 /* SearchFriends.m */; };
 		647166602463A56600A64520 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471665F2463A56600A64520 /* AddFriendCell.m */; };
 		6487B278248E118B00C7029B /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B277248E118B00C7029B /* IPManager.m */; };
+		6487B27C248E281700C7029B /* CustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B27B248E281700C7029B /* CustomCollectionView.m */; };
+		6487B280248E331900C7029B /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B27F248E331900C7029B /* CustomCollectionViewCell.m */; };
 		64B07B8E24878DDC00031530 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B07B8D24878DDB00031530 /* AudioRecorder.m */; };
 		64B07B9124879B3600031530 /* ChatRoomAudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B07B9024879B3600031530 /* ChatRoomAudioCell.m */; };
 		85AF33461DC05BE2245B04A6 /* Pods_IMXMPPDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */; };
@@ -128,6 +130,10 @@
 		6471665F2463A56600A64520 /* AddFriendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
 		6487B276248E118B00C7029B /* IPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPManager.h; sourceTree = "<group>"; };
 		6487B277248E118B00C7029B /* IPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPManager.m; sourceTree = "<group>"; };
+		6487B27A248E281700C7029B /* CustomCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCollectionView.h; sourceTree = "<group>"; };
+		6487B27B248E281700C7029B /* CustomCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionView.m; sourceTree = "<group>"; };
+		6487B27E248E331900C7029B /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = "<group>"; };
+		6487B27F248E331900C7029B /* CustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCell.m; sourceTree = "<group>"; };
 		64B07B8C24878DDB00031530 /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		64B07B8D24878DDB00031530 /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
 		64B07B8F24879B3600031530 /* ChatRoomAudioCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRoomAudioCell.h; sourceTree = "<group>"; };
@@ -289,6 +295,7 @@
 		6406607224615FEF00AF4975 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				6487B279248E27BE00C7029B /* CustomCollectionView */,
 				6406607424615FEF00AF4975 /* CustomTextView.h */,
 				6406607324615FEF00AF4975 /* CustomTextView.m */,
 			);
@@ -486,6 +493,25 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		6487B279248E27BE00C7029B /* CustomCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				6487B27D248E32B300C7029B /* CustomCollectionCell */,
+				6487B27A248E281700C7029B /* CustomCollectionView.h */,
+				6487B27B248E281700C7029B /* CustomCollectionView.m */,
+			);
+			path = CustomCollectionView;
+			sourceTree = "<group>";
+		};
+		6487B27D248E32B300C7029B /* CustomCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				6487B27E248E331900C7029B /* CustomCollectionViewCell.h */,
+				6487B27F248E331900C7029B /* CustomCollectionViewCell.m */,
+			);
+			path = CustomCollectionCell;
+			sourceTree = "<group>";
+		};
 		64B07B8B24878DDB00031530 /* AudioRecorder */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,10 +646,12 @@
 				6406606424615F1700AF4975 /* SuperChatRoomCell.m in Sources */,
 				6470597824694749005CEF12 /* AddressDataModel.m in Sources */,
 				6470AE85246CDB5B008426F0 /* CreateGroupChatViewController.m in Sources */,
+				6487B280248E331900C7029B /* CustomCollectionViewCell.m in Sources */,
 				6470597C2469475E005CEF12 /* AddressSegmentView.m in Sources */,
 				647166522463948600A64520 /* AddFriendViewController.m in Sources */,
 				6471216724629D4A0078423F /* RosterListModel.m in Sources */,
 				64065FE22460FC9C00AF4975 /* XmppManager.m in Sources */,
+				6487B27C248E281700C7029B /* CustomCollectionView.m in Sources */,
 				6406606F24615FE000AF4975 /* FMDBOperation.m in Sources */,
 				64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */,
 				6406605F24615F1700AF4975 /* ChatRecordViewController.m in Sources */,
