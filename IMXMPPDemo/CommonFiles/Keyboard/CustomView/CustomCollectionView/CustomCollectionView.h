@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CustomCollectionView : UIView
 
 @property (nonatomic, strong) id<CustomCollectionViewDelegate> delegate;
-@property (nonatomic, strong) UICollectionView *collctionView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *itemCollectionListArr;
 @property (nonatomic, strong) NSArray *itemimgArray;
 @property (nonatomic, strong) NSArray *itemTagArray;

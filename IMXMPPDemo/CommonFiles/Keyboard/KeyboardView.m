@@ -26,6 +26,8 @@
 @property (nonatomic,assign) BOOL functionListSwitch;
 @property (nonatomic,strong) CustomCollectionView *collectionView;
 @property (nonatomic,assign) NSInteger currentIndex;
+@property (nonatomic,assign) NSInteger collectionInRow;
+@property (nonatomic,assign) NSInteger collectionInColumn;
 //@property (nonatomic,assign) CGRect hideKeyboardFrame;
 
 @end
@@ -43,6 +45,7 @@ static KeyboardView *sharedInstance = nil;
         sharedInstance.backgroundColor = [UIColor grayColor];
         sharedInstance.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
         [[NSNotificationCenter defaultCenter] addObserver:sharedInstance selector:@selector(keyboardHeightChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+        [sharedInstance notificationRegister:YES];
         [sharedInstance initKeyboard];
     });
     
@@ -130,7 +133,6 @@ static KeyboardView *sharedInstance = nil;
 //            make.height.mas_equalTo(44);
 //            make.right.mas_equalTo(self.toolView.mas_right).mas_offset(-5);
 //        }];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTextViewData) name:DELETE_KEYBOARD_TEXT object:nil];
     }
     
     if (!self.functionBtn) {
@@ -172,6 +174,14 @@ static KeyboardView *sharedInstance = nil;
 //    openKeyboardFrame.size.height = self.frame.size.height + self.toolFrame.size.height + self.scrollView.frame.size.height;
 }
 
+- (void)notificationRegister:(BOOL)flag{
+    if (flag) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTextViewData) name:DELETE_KEYBOARD_TEXT object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:DELETE_KEYBOARD_TEXT object:nil];
+    }
+}
+
 - (void)switchAudioBtnAction{
     if (self.switchFlag) {
         [self.audioBtn setTitle:@"发送录音" forState:UIControlStateNormal];
@@ -197,7 +207,7 @@ static KeyboardView *sharedInstance = nil;
         }
         
         CGRect keyboardFrame = self.frame;
-        CGFloat keyboardHeight = self.toolView.frame.size.height + self.scrollView.frame.size.height + 10;
+        CGFloat keyboardHeight = self.toolView.frame.size.height + keyboardFrame.size.width*self.collectionInRow/self.collectionInColumn;
         keyboardFrame.origin.y = SCREEN_HEIGHT - keyboardHeight;
         keyboardFrame.size.height = keyboardHeight;
         [self.customTV resignFirstResponder];
@@ -221,6 +231,18 @@ static KeyboardView *sharedInstance = nil;
     self.customTV.text = @"";
 }
 
+- (void)showSystemKeyboard:(BOOL)flag{
+    if (flag) {
+        self.scrollView.hidden = YES;
+        self.functionListSwitch = NO;
+        [self.functionBtn setTitle:@"十" forState:UIControlStateNormal];
+    }
+//    else {
+//        self.scrollView.hidden = NO;
+//        self.functionListSwitch = YES;
+//        [self.functionBtn setTitle:@"键盘" forState:UIControlStateNormal];
+//    }
+}
 
 - (void)keyboardHeightChange:(NSNotification *)notification{
     NSLog(@"==============");
@@ -233,7 +255,10 @@ static KeyboardView *sharedInstance = nil;
     
     customKeyboardFrame.origin.y = keyboardRect.origin.y - self.toolFrame.size.height;
     customKeyboardFrame.size.height = keyboardRect.size.height + self.toolFrame.size.height;
-    
+    CGFloat height = SCREEN_HEIGHT;
+    if (keyboardRect.origin.y < SCREEN_HEIGHT) {
+        [self showSystemKeyboard:YES];
+    }
     if ([self.delegate respondsToSelector:@selector(KeyBoardViewHeightChange:)]) {
         [self.delegate KeyBoardViewHeightChange:customKeyboardFrame];
     }
@@ -256,16 +281,20 @@ static KeyboardView *sharedInstance = nil;
     [tagArr addObject:@"4"];
     
     self.currentIndex = 0;
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, self.bounds.size.width, self.bounds.size.height-44)];
+    self.collectionInRow = 1;
+    self.collectionInColumn = 4;
+    //self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, self.bounds.size.width, self.bounds.size.height-44)];
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     CGRect frame=CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-    CustomCollectionView *collectView = [[CustomCollectionView alloc] initWithFrame:CGRectZero collectionArray:collectArr tagArray:tagArr itemInRow:1 itemInColumn:4];
-    collectView.delegate = self;
-    self.collectionView = collectView;
-    self.collectionView.frame = CGRectMake(frame.origin.x, -10, frame.size.width, frame.size.height);
-    [self.collectionView.collctionView reloadData];
-    [self.scrollView addSubview:self.collectionView];
-    [self addSubview:self.scrollView];
+    if (!self.collectionView) {
+        CustomCollectionView *collectView = [[CustomCollectionView alloc] initWithFrame:frame collectionArray:collectArr tagArray:tagArr itemInRow:self.collectionInRow itemInColumn:self.collectionInColumn];
+        collectView.delegate = self;
+        self.collectionView = collectView;
+        [self.scrollView addSubview:self.collectionView];
+        [self addSubview:self.scrollView];
+    }
+    [self.collectionView.collectionView reloadData];
+    
     
 }
 - (void)resignKeyboard{
@@ -284,7 +313,7 @@ static KeyboardView *sharedInstance = nil;
 
 
 - (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:DELETE_KEYBOARD_TEXT object:nil];
+    [self notificationRegister:NO];
 }
 
 /*

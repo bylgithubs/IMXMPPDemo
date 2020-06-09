@@ -10,19 +10,62 @@
 
 @interface CustomCollectionView()<UICollectionViewDelegate,UICollectionViewDataSource>
 
+@property (nonatomic, assign) CGRect collectionFrame;
+
 @end
 
 @implementation CustomCollectionView
+
+static NSString * identifier = @"CustomCollectionCell";
+
+-(UICollectionView *)collectionView{
+    
+    if (!_collectionView) {
+        
+        //自动网格布局
+        CGFloat cellWidth = self.collectionFrame.size.width/self.itemInColumn - 20;
+        CGFloat cellHeight = self.collectionFrame.size.width/self.itemInColumn - 20;
+        UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.itemSize = CGSizeMake(cellWidth, cellHeight);
+        //设置单元格之间的间距
+        flowLayout.minimumLineSpacing = 10;
+        //网格布局
+        CGRect collectionFrame = self.collectionFrame;
+        collectionFrame.size.height = cellHeight*_itemInRow;
+        self.collectionFrame = collectionFrame;
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.collectionFrame collectionViewLayout:flowLayout];
+        
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        //注册cell
+        
+        [_collectionView registerClass:[CustomCollectionViewCell class] forCellWithReuseIdentifier:identifier];
+        
+        //设置数据源代理
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        [self addSubview:_collectionView];
+    }
+    
+    return _collectionView;
+
+}
 
 - (id)initWithFrame:(CGRect)frame collectionArray:(NSArray*)collectionArr tagArray:(NSArray *)tagArray itemInRow:(NSInteger)itemInRow itemInColumn:(NSInteger)itemInColumn
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.collectionFrame = frame;
+//        UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc]init];
+//        _collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
         self.itemCollectionListArr = collectionArr;
         self.itemTagArray = tagArray;
         self.itemInRow = itemInRow;
         self.itemInColumn = itemInColumn;
+//        self.collectionView.delegate = self;
+//        self.collectionView.dataSource = self;
+        //[self.collectionView registerClass:[CustomCollectionViewCell class] forCellWithReuseIdentifier:@"CustomCollectionCell"];
     }
+    
     return self;
 }
 
