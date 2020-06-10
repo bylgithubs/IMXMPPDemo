@@ -86,6 +86,12 @@ static NSString * identifier = @"CustomCollectionCell";
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self.delegate respondsToSelector:@selector(CustomCollectionView:didSelectItemAtIndexPath:)]) {
+        [self.delegate CustomCollectionView:collectionView didSelectItemAtIndexPath:indexPath];
+    }
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
