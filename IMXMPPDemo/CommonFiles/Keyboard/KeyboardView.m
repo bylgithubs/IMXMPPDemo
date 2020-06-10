@@ -301,6 +301,17 @@ static KeyboardView *sharedInstance = nil;
     [self.customTV resignFirstResponder];
     [self resignFirstResponder];
     
+    //收起聊天室功能栏
+    [self showSystemKeyboard:YES];
+    CGRect keyboardFrame = self.frame;
+    CGFloat keyboardHeight = self.toolView.frame.size.height;
+    keyboardFrame.origin.y = SCREEN_HEIGHT - keyboardHeight;
+    keyboardFrame.size.height = keyboardHeight;
+    [self.customTV resignFirstResponder];
+    if ([self.delegate respondsToSelector:@selector(KeyBoardViewHeightChange:)]) {
+        [self.delegate KeyBoardViewHeightChange:keyboardFrame];
+    }
+    
 }
 
 -(void)CustomCollectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

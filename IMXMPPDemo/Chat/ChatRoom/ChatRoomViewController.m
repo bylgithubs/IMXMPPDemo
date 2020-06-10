@@ -33,6 +33,7 @@
     // Do any additional setup after loading the view.
     [self initUI];
     [self initData];
+    //收起键盘手势
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     self.packUpKeyboard = tapGesture;
     [tableView addGestureRecognizer:self.packUpKeyboard];
