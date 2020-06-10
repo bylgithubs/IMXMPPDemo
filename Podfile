@@ -6,6 +6,7 @@ target 'IMXMPPDemo' do
  pod 'XMPPFramework', '~> 4.0.0'
  pod 'Masonry', '~> 1.1.0'
  pod 'FMDB', '~> 2.7.5'
+ pod 'TZImagePickerController', '~> 3.2.8'
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 

@@ -16,6 +16,7 @@ PODS:
   - KissXML/Core (5.3.1)
   - libidn (1.35)
   - Masonry (1.1.0)
+  - TZImagePickerController (3.2.8)
   - XMPPFramework (4.0.0):
     - XMPPFramework/default (= 4.0.0)
   - XMPPFramework/default (4.0.0):
@@ -27,6 +28,7 @@ PODS:
 DEPENDENCIES:
   - FMDB (~> 2.7.5)
   - Masonry (~> 1.1.0)
+  - TZImagePickerController (~> 3.2.8)
   - XMPPFramework (~> 4.0.0)
 
 SPEC REPOS:
@@ -37,6 +39,7 @@ SPEC REPOS:
     - KissXML
     - libidn
     - Masonry
+    - TZImagePickerController
     - XMPPFramework
 
 SPEC CHECKSUMS:
@@ -46,8 +49,9 @@ SPEC CHECKSUMS:
   KissXML: 5c8e0f2e8b9f071d3e1ae123dec3eb5da615c10c
   libidn: e4576a956b797c584c77aaedfc6e3dd639b61bdc
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  TZImagePickerController: 4b0a5d3abe6351b6c9ec52c7be0fa9a5bbca23f6
   XMPPFramework: 5d31ff9f73dce031b24bc49bcf88093627a3a86e
 
-PODFILE CHECKSUM: 2cc73af7e384b3367b911e6beb7205dee401a526
+PODFILE CHECKSUM: e67781f7d4dc2b5dcb205d66852e06fe90ce805c
 
 COCOAPODS: 1.9.1
