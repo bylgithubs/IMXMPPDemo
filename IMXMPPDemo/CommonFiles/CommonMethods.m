@@ -44,4 +44,20 @@
     return [[NSUUID UUID] UUIDString];
 }
 
+//保存原图
++(BOOL)saveOriginalImageToPath:(NSString *)path image:(NSData *)imageData
+{
+    @try
+    {
+        
+        [imageData writeToFile:path atomically:YES];
+        NSLog(@"文件大小为 %ld",[imageData length]);
+        return true;
+    }
+    @catch (NSException *exception)
+    {
+        return false;
+    }
+}
+
 @end

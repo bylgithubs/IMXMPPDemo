@@ -12,8 +12,11 @@
 
 #endif /* IM_Prefix_h */
 
-#import "constants.h"
+//第三方库
+#import <TZImagePickerController/TZImagePickerController.h>
 
+//自定义方法
+#import "constants.h"
 #import "XmppManager.h"
 #import "FMDBOperation.h"
 #import "CommonMethods.h"

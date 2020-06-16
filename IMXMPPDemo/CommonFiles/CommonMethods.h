@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getUserJid:(NSString *)uid;
 //获取uuid
 + (NSString *)getUUid;
+//保存原图
++(BOOL)saveOriginalImageToPath:(NSString *)path image:(NSData *)imageData;
+
 @end
 
 NS_ASSUME_NONNULL_END

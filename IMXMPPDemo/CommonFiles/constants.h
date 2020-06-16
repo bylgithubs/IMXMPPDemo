@@ -47,6 +47,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define USER_FOLDER [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",CURRENTUSER]]
 #define DATABASE_PATH [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",CURRENTUSER,DATABASE_NAME]]
 #define CHAT_MESSAGE_PATH [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",CURRENTUSER,CHAT_MESSAGE_FOLDER]]
+#define CHAT_FILE_PATH(IMAGE_NAME) [CHAT_MESSAGE_PATH stringByAppendingPathComponent:IMAGE_NAME]
 
 #pragma mark 添加通知
 #define LOGIN_SUCCESS @"LoginSuccess"
@@ -64,7 +65,14 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define FMDBOPERATION_REFRESH_DB_CONFIG @"FMDBOperationRefreshDBConfig"
 
 enum MessageType{
-    Text
+    Text,
+    Picture,
+    Audio,
+    Video,
+    map,
+    Gif,
+    doc,
+    Invite
 };
 
 #define PERSONAL @"Personal"

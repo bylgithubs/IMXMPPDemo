@@ -52,7 +52,7 @@ static FMDBOperation *sharedInstance = nil;
 - (void)initTable{
     
     NSString *tableName = @"RosterList";
-    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,jid varchar,uid varchar,item_type,varchar,domain varchar,nick varchar,resource varchar,current_date varchar)",tableName];
+    NSString *sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,jid varchar,uid varchar,item_type varchar,domain varchar,nick varchar,resource varchar,current_date varchar)",tableName];
     NSLog(@"===%@",sqlStr);
     BOOL result = [self.dbOperation executeUpdate:sqlStr];
     if (result) {
@@ -62,7 +62,7 @@ static FMDBOperation *sharedInstance = nil;
     }
     
     tableName = @"ChatMessage";
-    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_type varchar,message_from varchar,message_to varchar,content text,send_date varchar)",tableName];
+    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type varchar,contact_type varchar,content text,is_riginal_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
     NSLog(@"===%@",sqlStr);
     result = [self.dbOperation executeUpdate:sqlStr];
     if (result) {
@@ -72,7 +72,7 @@ static FMDBOperation *sharedInstance = nil;
     }
     
     tableName = @"ChatRecord";
-    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_type varchar,message_from varchar,message_to varchar,content text,send_date varchar)",tableName];
+    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type varchar,contact_type varchar,content text,is_riginal_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
     NSLog(@"===%@",sqlStr);
     result = [self.dbOperation executeUpdate:sqlStr];
     if (result) {
