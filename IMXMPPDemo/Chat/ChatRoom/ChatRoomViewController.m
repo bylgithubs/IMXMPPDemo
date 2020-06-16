@@ -11,7 +11,7 @@
 #import "ChatRoomModel.h"
 #import "ChatRecordModel.h"
 
-@interface ChatRoomViewController ()<UITableViewDelegate,UITableViewDataSource,KeyboardViewDelegate,ChatRoomCellDelegate,CollectionViewDelegate>
+@interface ChatRoomViewController ()<UITableViewDelegate,UITableViewDataSource,KeyboardViewDelegate,ChatRoomCellDelegate,CollectionViewDelegate,TZImagePickerControllerDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataArr;
@@ -322,17 +322,73 @@
 -(void)KeyBoardViewCollectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath cellTag:(NSInteger)tag{
     switch (tag) {
         case 1:
+            [self pickImageFromPhotoAlbum];
             break;
         case 2:
             break;
         case 3:
             break;
         case 4:
+            
+            
             break;
         default:
             break;
     }
 }
+
+- (NSMutableArray *)selectOriginImageArr{
+    if (!_selectOriginImageArr) {
+        _selectOriginImageArr = [[NSMutableArray alloc] init];
+    }
+    return _selectOriginImageArr;
+}
+
+- (void)pickImageFromPhotoAlbum{
+    TZImagePickerController *imagePickerC = [[TZImagePickerController alloc] initWithMaxImagesCount:9 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
+    imagePickerC.videoMaximumDuration = 10;//视频最大拍摄时间
+    [imagePickerC setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
+        imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
+    }];
+    
+    [imagePickerC setPhotoPreviewPageUIConfigBlock:^(UICollectionView *collectionView, UIView *naviBar, UIButton *backButton, UIButton *selectButton, UILabel *indexLabel, UIView *toolBar, UIButton *originalPhotoButton, UILabel *originalPhotoLabel, UIButton *doneButton, UIImageView *numberImageView, UILabel *numberLabel) {
+        [doneButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    }];
+    
+    // 是否显示可选原图按钮
+    imagePickerC.allowPickingOriginalPhoto = NO;
+    //设置是否可以选择图片/视频/原图
+    imagePickerC.allowPickingImage = YES;
+    imagePickerC.allowPickingVideo = YES;
+    imagePickerC.allowPickingMultipleVideo = YES;
+    imagePickerC.allowPickingOriginalPhoto = YES;
+    imagePickerC.showSelectBtn = YES;
+    
+    //照片按时间升序排列
+    imagePickerC.sortAscendingByModificationDate = YES;
+//    imagePickerC.statusBarStyle = UIStatusBarStyleLightContent;
+    // 这是一个navigation 只能present
+    // 设置 模态弹出模式。 iOS 13默认非全屏
+    imagePickerC.modalPresentationStyle = UIModalPresentationFullScreen;
+    //访问相册手机授权
+    [UserAuthorization getPhotoAlbumAuthorization:self completionBlock:^{
+        [self presentViewController:imagePickerC animated:YES completion:nil];
+    }];
+}
+
+// 选择照片的回调
+-(void)imagePickerController:(TZImagePickerController *)picker
+      didFinishPickingPhotos:(NSArray<UIImage *> *)photos
+                sourceAssets:(NSArray *)assets
+       isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto{
+    for (PHAsset *asset in assets) {
+        NSString *fileName = [asset valueForKey:@"filename"];
+        if ([fileName hasSuffix:@"JPG"] || [fileName hasSuffix:@"PNG"] || [fileName hasSuffix:@"GIF"]) {
+            
+        }
+    }
+}
+
 
 - (void)dealloc{
     [self addNotification:NO];

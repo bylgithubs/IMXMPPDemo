@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *messageTo;
 @property (nonatomic,copy) NSString *messageType;
 @property (nonatomic,copy) NSString *content;
+@property (nonatomic,copy) NSString *thumbnail;
 @property (nonatomic,copy) NSString *sendDate;
 
 @end

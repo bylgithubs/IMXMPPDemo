@@ -44,6 +44,7 @@
 		647166522463948600A64520 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647166512463948600A64520 /* AddFriendViewController.m */; };
 		6471665C24639C3900A64520 /* SearchFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471665B24639C3900A64520 /* SearchFriends.m */; };
 		647166602463A56600A64520 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471665F2463A56600A64520 /* AddFriendCell.m */; };
+		6472B5332491BD9400F7FD17 /* UserAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6472B5322491BD9400F7FD17 /* UserAuthorization.m */; };
 		6487B278248E118B00C7029B /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B277248E118B00C7029B /* IPManager.m */; };
 		6487B27C248E281700C7029B /* CustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B27B248E281700C7029B /* CustomCollectionView.m */; };
 		6487B280248E331900C7029B /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B27F248E331900C7029B /* CustomCollectionViewCell.m */; };
@@ -128,6 +129,8 @@
 		6471665B24639C3900A64520 /* SearchFriends.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchFriends.m; sourceTree = "<group>"; };
 		6471665E2463A56600A64520 /* AddFriendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
 		6471665F2463A56600A64520 /* AddFriendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
+		6472B5312491BD9400F7FD17 /* UserAuthorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAuthorization.h; sourceTree = "<group>"; };
+		6472B5322491BD9400F7FD17 /* UserAuthorization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAuthorization.m; sourceTree = "<group>"; };
 		6487B276248E118B00C7029B /* IPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPManager.h; sourceTree = "<group>"; };
 		6487B277248E118B00C7029B /* IPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPManager.m; sourceTree = "<group>"; };
 		6487B27A248E281700C7029B /* CustomCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCollectionView.h; sourceTree = "<group>"; };
@@ -364,6 +367,8 @@
 				6406606A24615FA800AF4975 /* CommonComponentMethods.m */,
 				6406606924615FA800AF4975 /* CommonMethods.h */,
 				6406606724615FA800AF4975 /* CommonMethods.m */,
+				6472B5312491BD9400F7FD17 /* UserAuthorization.h */,
+				6472B5322491BD9400F7FD17 /* UserAuthorization.m */,
 			);
 			path = CommonFiles;
 			sourceTree = "<group>";
@@ -657,6 +662,7 @@
 				6406605F24615F1700AF4975 /* ChatRecordViewController.m in Sources */,
 				64B07B8E24878DDC00031530 /* AudioRecorder.m in Sources */,
 				6406607724615FEF00AF4975 /* CustomTextView.m in Sources */,
+				6472B5332491BD9400F7FD17 /* UserAuthorization.m in Sources */,
 				6471665C24639C3900A64520 /* SearchFriends.m in Sources */,
 				6406606B24615FA800AF4975 /* CommonMethods.m in Sources */,
 				6470596A246946E9005CEF12 /* DetailInformationViewController.m in Sources */,

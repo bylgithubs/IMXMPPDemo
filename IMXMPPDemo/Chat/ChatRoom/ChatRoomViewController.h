@@ -16,12 +16,15 @@
 #import "ChatRecordViewController.h"
 #import "AudioRecorder.h"
 #import "ChatRoomAudioCell.h"
+#import <TZImagePickerController/TZImagePickerController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatRoomViewController : UIViewController
 
 @property (nonatomic,strong) RosterListModel *rosterListModel;
+
+@property (nonatomic, strong) NSMutableArray *selectOriginImageArr;
 
 @end
 
