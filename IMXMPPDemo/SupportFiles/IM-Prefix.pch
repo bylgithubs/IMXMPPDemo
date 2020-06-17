@@ -14,6 +14,7 @@
 
 //第三方库
 #import <TZImagePickerController/TZImagePickerController.h>
+#import <Base64nl/Base64.h>
 
 //自定义方法
 #import "constants.h"

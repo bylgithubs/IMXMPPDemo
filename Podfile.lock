@@ -1,4 +1,5 @@
 PODS:
+  - Base64nl (1.2)
   - CocoaAsyncSocket (7.6.3)
   - CocoaLumberjack (3.6.0):
     - CocoaLumberjack/Core (= 3.6.0)
@@ -26,6 +27,7 @@ PODS:
     - libidn (~> 1.35)
 
 DEPENDENCIES:
+  - Base64nl (~> 1.2)
   - FMDB (~> 2.7.5)
   - Masonry (~> 1.1.0)
   - TZImagePickerController (~> 3.2.8)
@@ -33,6 +35,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Base64nl
     - CocoaAsyncSocket
     - CocoaLumberjack
     - FMDB
@@ -43,6 +46,7 @@ SPEC REPOS:
     - XMPPFramework
 
 SPEC CHECKSUMS:
+  Base64nl: a497bdcd1c01ea793d36b399016195a8713c0e95
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -52,6 +56,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: 4b0a5d3abe6351b6c9ec52c7be0fa9a5bbca23f6
   XMPPFramework: 5d31ff9f73dce031b24bc49bcf88093627a3a86e
 
-PODFILE CHECKSUM: e67781f7d4dc2b5dcb205d66852e06fe90ce805c
+PODFILE CHECKSUM: 1d55a97f38069a44fda82c4e59ca6a834aaad772
 
 COCOAPODS: 1.9.1

@@ -453,8 +453,8 @@
 //            UIImage *newThumbnailImg = [newImage compressImageToTargetPx:133]; //指定大小為133x133
 //            //壓縮圖片
 //            NSData *thumbnalData = [newThumbnailImg compressImageToTargetKB:2]; //壓縮到2kb
-//            NSString *strMessage = [thumbnalData base64EncodedString];
-            NSString *strMessage = [[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];;
+            NSString *strMessage = [imageData base64EncodedString];
+//            NSString *strMessage = [[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
             chatRoomModel.thumbnail=strMessage;
         //}
         //插入DB
