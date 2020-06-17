@@ -50,6 +50,7 @@
 		6487B280248E331900C7029B /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B27F248E331900C7029B /* CustomCollectionViewCell.m */; };
 		64B07B8E24878DDC00031530 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B07B8D24878DDB00031530 /* AudioRecorder.m */; };
 		64B07B9124879B3600031530 /* ChatRoomAudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B07B9024879B3600031530 /* ChatRoomAudioCell.m */; };
+		64CD63672499F0B4007F78FF /* UIImage+ImageCompressionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CD63662499F0B4007F78FF /* UIImage+ImageCompressionTool.m */; };
 		85AF33461DC05BE2245B04A6 /* Pods_IMXMPPDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -141,6 +142,8 @@
 		64B07B8D24878DDB00031530 /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
 		64B07B8F24879B3600031530 /* ChatRoomAudioCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRoomAudioCell.h; sourceTree = "<group>"; };
 		64B07B9024879B3600031530 /* ChatRoomAudioCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRoomAudioCell.m; sourceTree = "<group>"; };
+		64CD63652499F0B4007F78FF /* UIImage+ImageCompressionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageCompressionTool.h"; sourceTree = "<group>"; };
+		64CD63662499F0B4007F78FF /* UIImage+ImageCompressionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageCompressionTool.m"; sourceTree = "<group>"; };
 		65095FAB929153C5791D780A /* Pods_IMXMPPDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMXMPPDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AE98748654903ADA77D050 /* Pods-IMXMPPDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMXMPPDemo.release.xcconfig"; path = "Target Support Files/Pods-IMXMPPDemo/Pods-IMXMPPDemo.release.xcconfig"; sourceTree = "<group>"; };
 		91276AE7DC66FE3F484D82D5 /* Pods-IMXMPPDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMXMPPDemo.debug.xcconfig"; path = "Target Support Files/Pods-IMXMPPDemo/Pods-IMXMPPDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -492,8 +495,8 @@
 		6487B269248DEF2D00C7029B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				6487B276248E118B00C7029B /* IPManager.h */,
-				6487B277248E118B00C7029B /* IPManager.m */,
+				64CD635B2499E7FB007F78FF /* ImageCompressionTool */,
+				64CD635A2499E7BB007F78FF /* IPTool */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -524,6 +527,24 @@
 				64B07B8D24878DDB00031530 /* AudioRecorder.m */,
 			);
 			path = AudioRecorder;
+			sourceTree = "<group>";
+		};
+		64CD635A2499E7BB007F78FF /* IPTool */ = {
+			isa = PBXGroup;
+			children = (
+				6487B276248E118B00C7029B /* IPManager.h */,
+				6487B277248E118B00C7029B /* IPManager.m */,
+			);
+			path = IPTool;
+			sourceTree = "<group>";
+		};
+		64CD635B2499E7FB007F78FF /* ImageCompressionTool */ = {
+			isa = PBXGroup;
+			children = (
+				64CD63652499F0B4007F78FF /* UIImage+ImageCompressionTool.h */,
+				64CD63662499F0B4007F78FF /* UIImage+ImageCompressionTool.m */,
+			);
+			path = ImageCompressionTool;
 			sourceTree = "<group>";
 		};
 		E6DF606EE9C229478DC1DEA1 /* Frameworks */ = {
@@ -671,6 +692,7 @@
 				64065FE524614DA200AF4975 /* MainTabBarViewController.m in Sources */,
 				6406606324615F1700AF4975 /* ChatRoomTextCell.m in Sources */,
 				6470AE89246CDE19008426F0 /* CreateGroupChatCell.m in Sources */,
+				64CD63672499F0B4007F78FF /* UIImage+ImageCompressionTool.m in Sources */,
 				6406606524615F1700AF4975 /* ChatRoomViewController.m in Sources */,
 				64093BA32460114300C75DA3 /* main.m in Sources */,
 				6406606124615F1700AF4975 /* CollectionViewCell.m in Sources */,

@@ -439,8 +439,8 @@
         NSString *imageName = [chatRoomModel.content lastPathComponent];
         if (chatRoomModel.isOriginalPic) {
             UIImage *image = [UIImage imageWithData:imageData];
-            //UIImage *newImage = [UIImage changeImageOrientation:image];
-            NSData *data = UIImageJPEGRepresentation(image, 1.0);
+            UIImage *newImage = [UIImage changeImageOrientation:image];
+            NSData *data = UIImageJPEGRepresentation(newImage, 1.0);
             chatRoomModel.imageSize = data.length;
             [CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:data];
         }
@@ -449,13 +449,12 @@
             UIImage *image = [UIImage imageWithData:imageData];
             CGImageRef ref = [image CGImage];
             UIImage *newImage = [UIImage imageWithCGImage:ref scale:1.0 orientation:orientation];
-            //            UIImage *image = [UIImage changeImageOrientation:[UIImage imageWithData:imageData]];
-//            UIImage *newThumbnailImg = [newImage compressImageToTargetPx:133]; //指定大小為133x133
-//            //壓縮圖片
-//            NSData *thumbnalData = [newThumbnailImg compressImageToTargetKB:2]; //壓縮到2kb
-            NSString *strMessage = [imageData base64EncodedString];
-//            NSString *strMessage = [[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
-            chatRoomModel.thumbnail=strMessage;
+            //压缩到指定像素
+            UIImage *newThumbnailImg = [newImage compressQualityWithPixelLimit:133]; //指定大小為133x133
+            //压缩图片到d指定大小
+            NSData *thumbnailData = [newThumbnailImg compressMidQualityWithLengthLimit:1024*2]; //压缩到2kb
+            NSString *imageMessage = [thumbnailData base64EncodedString];
+            chatRoomModel.thumbnail=imageMessage;
         //}
         //插入DB
     }];
