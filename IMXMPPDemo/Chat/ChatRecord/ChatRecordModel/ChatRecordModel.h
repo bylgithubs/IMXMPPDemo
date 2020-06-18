@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *userNick;
 @property (nonatomic,copy) NSString *messageFrom;
 @property (nonatomic,copy) NSString *messageTo;
-@property (nonatomic,copy) NSString *messageType;
+@property (nonatomic,assign) enum MessageType messageType;
 @property (nonatomic,copy) NSString *contactType;   //联系人类型，是好友，还是当前用户
 @property (nonatomic,copy) NSString *content;
 @property (nonatomic,assign) BOOL isOriginalPic;    //是否为原图

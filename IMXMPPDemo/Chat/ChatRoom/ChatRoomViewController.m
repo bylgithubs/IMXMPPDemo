@@ -117,7 +117,7 @@
     
     ChatRoomModel *model = self.dataArr[indexPath.row];
     SuperChatRoomCell *Cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if ([model.messageType isEqualToString:@"text"]) {
+    if (model.messageType == Text) {
         
         if (Cell == nil) {
             Cell = [[ChatRoomTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -127,7 +127,10 @@
         [Cell configData];
         self.cellHeight = Cell.cellHeight;
     }
-    else if([model.messageType isEqualToString:@"audio"]){
+//    else if (model.messageType == Picture){
+//        
+//    }
+    else if(model.messageType == Audio){
         if (Cell == nil) {
             Cell = [[ChatRoomAudioCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
@@ -195,7 +198,17 @@
             return;
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_KEYBOARD_TEXT object:nil];
-        [self SendMessageAndInsertDB:text messageType:@"text"];
+        ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
+        chatRoomModel.uId = self.rosterListModel.uid;
+        chatRoomModel.roomId = self.rosterListModel.uid;
+        chatRoomModel.userNick = self.rosterListModel.nick;
+        chatRoomModel.messageFrom = CURRENTUSER;
+        chatRoomModel.messageTo = self.rosterListModel.uid;
+        chatRoomModel.messageType = Text;
+        chatRoomModel.content = text;
+        chatRoomModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
+        
+        [self sendMessageAndInsertDB:chatRoomModel messageType:Text isUploadFile:NO];
     }
 }
 
@@ -216,41 +229,53 @@
         [audioRecorder audioRecorderBegin:audioPath];
     } else {
         [audioRecorder audioRecorderStop];
-        [self SendMessageAndInsertDB:audioName messageType:@"audio"];
-    }
-}
-
-//发送和存储消息
-- (void)SendMessageAndInsertDB:(NSString *)message messageType:(NSString *)type{
-    dispatch_queue_t dispatchQueue = dispatch_queue_create("SendDataAndInsertDB", nil);
-    dispatch_async(dispatchQueue, ^{
         ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
-        
         chatRoomModel.uId = self.rosterListModel.uid;
         chatRoomModel.roomId = self.rosterListModel.uid;
         chatRoomModel.userNick = self.rosterListModel.nick;
         chatRoomModel.messageFrom = CURRENTUSER;
         chatRoomModel.messageTo = self.rosterListModel.uid;
-        chatRoomModel.messageType = type;
-        chatRoomModel.content = message;
+        chatRoomModel.messageType = Audio;
+        chatRoomModel.content = audioName;
         chatRoomModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
-        
+        [self sendMessageAndInsertDB:chatRoomModel messageType:Audio isUploadFile:NO];
+    }
+}
+
+//发送和存储消息
+- (void)sendMessageAndInsertDB:(ChatRoomModel *)chatRoomModel messageType:(enum MessageType)type isUploadFile:(BOOL)isUpload{
+    dispatch_queue_t dispatchQueue = dispatch_queue_create("SendDataAndInsertDB", nil);
+    dispatch_async(dispatchQueue, ^{
         ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
-        chatRecordModel.uId = self.rosterListModel.uid;
-        chatRecordModel.roomId = self.rosterListModel.uid;
-        chatRecordModel.userNick = self.rosterListModel.nick;
-        chatRecordModel.messageFrom = CURRENTUSER;
-        chatRecordModel.messageTo = self.rosterListModel.uid;
-        chatRecordModel.messageType = type;
-        chatRecordModel.content = message;
-        chatRecordModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
         
+        chatRecordModel.uId = chatRoomModel.uId;
+        chatRecordModel.roomId = chatRoomModel.roomId;
+        chatRecordModel.userNick = chatRoomModel.userNick;
+        chatRecordModel.messageFrom = chatRoomModel.messageFrom;
+        chatRecordModel.messageTo = chatRoomModel.messageTo;
+        chatRecordModel.messageType = chatRoomModel.messageType;
+        chatRecordModel.content = chatRoomModel.content;
+        chatRecordModel.sendDate = chatRoomModel.sendDate;
+        
+        switch (type) {
+            case Text:
+                break;
+            case Picture:
+                chatRecordModel.content = @"[图片]";
+                break;
+            case Audio:
+                chatRecordModel.content = @"[语音]";
+                break;
+                
+            default:
+                break;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             FMDBOperation *dbOperation = [FMDBOperation sharedDatabaseInstance];
             [dbOperation insertChatMessage:chatRoomModel];
             [dbOperation insertChatRecord:chatRecordModel];
             
-            if ([type isEqualToString:@"text"]) {
+            if (type == Text) {
                 [self sendMessageToServer:chatRoomModel];
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_CHATROOM_MESSAGE object:nil];
@@ -295,10 +320,10 @@
 
 - (void)deleteMessageCell{
     NSString *jid = self.currentCell.chatRoomModel.jId;
-    NSString *messageType = self.currentCell.chatRoomModel.messageType;
+    enum MessageType messageType = self.currentCell.chatRoomModel.messageType;
     if ([[FMDBOperation sharedDatabaseInstance] deleteChatRoomMessage:jid]) {
         [self.dataArr removeObject:self.currentCell.chatRoomModel];
-        if ([messageType isEqualToString:@"audio"]) {
+        if (messageType == Audio) {
             NSFileManager *fileManager = [NSFileManager defaultManager];
             NSString *audioPath = [CHAT_MESSAGE_PATH stringByAppendingPathComponent:self.currentCell.chatRoomModel.content];
             if ([fileManager fileExistsAtPath:audioPath]) {
@@ -405,7 +430,7 @@
     chatRoomModel.userNick = self.rosterListModel.nick;
     chatRoomModel.messageFrom = CURRENTUSER;
     chatRoomModel.messageTo = self.rosterListModel.uid;
-    chatRoomModel.messageType = @"Picture";
+    chatRoomModel.messageType = Picture;
     chatRoomModel.contactType = @"owner";
     chatRoomModel.content = fileName;
     chatRoomModel.isOriginalPic = _isSelectOriginalPhoto ;
@@ -444,7 +469,7 @@
             chatRoomModel.imageSize = data.length;
             [CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:data];
         }
-        //if (chatRoomModel.messageType != Gif) {
+        if (chatRoomModel.messageType != Gif) {
             //取出asset中的图片
             UIImage *image = [UIImage imageWithData:imageData];
             CGImageRef ref = [image CGImage];
@@ -455,25 +480,11 @@
             NSData *thumbnailData = [newThumbnailImg compressMidQualityWithLengthLimit:1024*2]; //压缩到2kb
             NSString *imageMessage = [thumbnailData base64EncodedString];
             chatRoomModel.thumbnail=imageMessage;
-        //}
+        }
         //插入DB
+        [self sendMessageAndInsertDB:chatRoomModel messageType:chatRoomModel.messageType isUploadFile:YES];
     }];
 }
-
-//插入DB发送消息
-- (void)insertDBAndSendMessage:(ChatRoomModel *)chatRoomModel isUploadFile:(BOOL)isUpload{
-    ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
-    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
-//    switch (chatRoomModel.messageType) {
-//        case <#constant#>:
-//            <#statements#>
-//            break;
-//            
-//        default:
-//            break;
-//    }
-}
-
 
 - (void)dealloc{
     [self addNotification:NO];

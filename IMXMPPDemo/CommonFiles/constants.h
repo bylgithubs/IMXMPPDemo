@@ -69,9 +69,9 @@ enum MessageType{
     Picture,
     Audio,
     Video,
-    map,
+    Map,
     Gif,
-    doc,
+    Doc,
     Invite
 };
 

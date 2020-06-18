@@ -62,7 +62,7 @@ static FMDBOperation *sharedInstance = nil;
     }
     
     tableName = @"ChatMessage";
-    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type varchar,contact_type varchar,content text,is_original_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
+    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type integer,contact_type varchar,content text,is_original_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
     NSLog(@"===%@",sqlStr);
     result = [self.dbOperation executeUpdate:sqlStr];
     if (result) {
@@ -72,7 +72,7 @@ static FMDBOperation *sharedInstance = nil;
     }
     
     tableName = @"ChatRecord";
-    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type varchar,contact_type varchar,content text,is_original_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
+    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type varchar,contact_type integer,content text,is_original_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
     NSLog(@"===%@",sqlStr);
     result = [self.dbOperation executeUpdate:sqlStr];
     if (result) {
@@ -134,7 +134,7 @@ static FMDBOperation *sharedInstance = nil;
             RosterListModel *model = [[RosterListModel alloc] init];
             model.jid = [resultSet stringForColumn:@"jid"];
             model.uid = [resultSet stringForColumn:@"uid"];
-            model.item_type = [resultSet stringForColumn:@"item_type"];
+            model.item_type = [resultSet intForColumn:@"item_type"];
             model.domain = [resultSet stringForColumn:@"domain"];
             model.nick = [resultSet stringForColumn:@"nick"];
             model.resource = [resultSet stringForColumn:@"resource"];
@@ -151,7 +151,7 @@ static FMDBOperation *sharedInstance = nil;
 
     [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
         NSString *sqlStr = @"insert into ChatMessage(uid,room_id,user_nick,message_type,message_from,message_to,content,send_date) values(?,?,?,?,?,?,?,?)";
-        [db executeUpdate:sqlStr,model.uId,model.roomId,model.userNick,model.messageType,model.messageFrom,model.messageTo,model.content,model.sendDate];
+        [db executeUpdate:sqlStr,model.uId,model.roomId,model.userNick,[NSNumber numberWithInt:model.messageType],model.messageFrom,model.messageTo,model.content,model.sendDate];
     }];
 }
 
@@ -166,7 +166,7 @@ static FMDBOperation *sharedInstance = nil;
         }
         [resultSet close];
         sqlStr = @"insert into ChatRecord(uid,room_id,user_nick,message_type,message_from,message_to,content,send_date) values(?,?,?,?,?,?,?,?)";
-        [db executeUpdate:sqlStr,model.uId,model.roomId,model.userNick,model.messageType,model.messageFrom,model.messageTo,model.content,model.sendDate];
+        [db executeUpdate:sqlStr,model.uId,model.roomId,model.userNick,[NSNumber numberWithInt:model.messageType],model.messageFrom,model.messageTo,model.content,model.sendDate];
     }];
 }
 
@@ -184,7 +184,7 @@ static FMDBOperation *sharedInstance = nil;
             model.userNick = [resultSet stringForColumn:@"user_nick"];
             model.messageFrom = [resultSet stringForColumn:@"message_from"];
             model.messageTo = [resultSet stringForColumn:@"message_to"];
-            model.messageType = [resultSet stringForColumn:@"message_type"];
+            model.messageType = [resultSet intForColumn:@"message_type"];
             model.content = [resultSet stringForColumn:@"content"];
             model.sendDate = [resultSet stringForColumn:@"send_date"];
             [dataArr addObject:model];
@@ -224,7 +224,7 @@ static FMDBOperation *sharedInstance = nil;
             model.userNick = [resultSet stringForColumn:@"user_nick"];
             model.messageFrom = [resultSet stringForColumn:@"message_from"];
             model.messageTo = [resultSet stringForColumn:@"message_to"];
-            model.messageType = [resultSet stringForColumn:@"message_type"];
+            model.messageType = [resultSet intForColumn:@"message_type"];
             model.content = [resultSet stringForColumn:@"content"];
             model.sendDate = [resultSet stringForColumn:@"send_date"];
             [dataArr addObject:model];

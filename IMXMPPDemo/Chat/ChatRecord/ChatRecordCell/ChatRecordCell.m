@@ -67,10 +67,10 @@
 - (void)configData{
     ChatRecordModel *model = self.chatRecordModel;
     userNameLabel.text = model.userNick;
-    if ([model.messageType isEqualToString:@"text"]) {
+    if (model.messageType == Text) {
         latestMessageLabel.text = model.content;
     }
-    else if([model.messageType isEqualToString:@"audio"]){
+    else if(model.messageType == Audio){
         latestMessageLabel.text = @"[语音]";
     }
     currentDateLabel.text = model.sendDate;

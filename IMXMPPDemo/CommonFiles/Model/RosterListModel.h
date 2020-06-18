@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,copy) NSString *jid;
 @property (nonatomic,copy) NSString *uid;
-@property (nonatomic,copy) NSString *item_type;
+@property (nonatomic,assign) enum MessageType item_type;
 @property (nonatomic,copy) NSString *domain;
 @property (nonatomic,copy) NSString *nick;
 @property (nonatomic,copy) NSString *resource;
