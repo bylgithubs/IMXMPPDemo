@@ -62,7 +62,7 @@ static FMDBOperation *sharedInstance = nil;
     }
     
     tableName = @"ChatMessage";
-    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type varchar,contact_type varchar,content text,is_riginal_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
+    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type varchar,contact_type varchar,content text,is_original_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
     NSLog(@"===%@",sqlStr);
     result = [self.dbOperation executeUpdate:sqlStr];
     if (result) {
@@ -72,7 +72,7 @@ static FMDBOperation *sharedInstance = nil;
     }
     
     tableName = @"ChatRecord";
-    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type varchar,contact_type varchar,content text,is_riginal_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
+    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type varchar,contact_type varchar,content text,is_original_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
     NSLog(@"===%@",sqlStr);
     result = [self.dbOperation executeUpdate:sqlStr];
     if (result) {

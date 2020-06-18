@@ -460,6 +460,20 @@
     }];
 }
 
+//插入DB发送消息
+- (void)insertDBAndSendMessage:(ChatRoomModel *)chatRoomModel isUploadFile:(BOOL)isUpload{
+    ChatRecordModel *chatRecordModel = [[ChatRecordModel alloc] init];
+    FMDBOperation *fmdb = [FMDBOperation sharedDatabaseInstance];
+//    switch (chatRoomModel.messageType) {
+//        case <#constant#>:
+//            <#statements#>
+//            break;
+//            
+//        default:
+//            break;
+//    }
+}
+
 
 - (void)dealloc{
     [self addNotification:NO];

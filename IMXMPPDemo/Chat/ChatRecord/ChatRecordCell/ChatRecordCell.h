@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ChatRecordModel.h"
-#import <Masonry/Masonry.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

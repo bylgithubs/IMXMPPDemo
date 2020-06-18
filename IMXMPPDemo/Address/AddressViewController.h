@@ -10,7 +10,6 @@
 #import "AddressTableViewCell.h"
 #import <Contacts/Contacts.h>
 #import "AddressDataModel.h"
-#import <Masonry/Masonry.h>
 #import "ChatRoomViewController.h"
 #import "DetailInformationViewController.h"
 #import "AddFriendViewController.h"
