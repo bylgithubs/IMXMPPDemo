@@ -63,6 +63,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define XMPPMANAGER_DELETE_FRIEND @"XmppManagerDeleteFriend"
 #define XMPPMANAGER_DISCONNECTED_TO_SERVER @"XmppManagerDisconnectedToServer"
 #define FMDBOPERATION_REFRESH_DB_CONFIG @"FMDBOperationRefreshDBConfig"
+#define RESIGNKEYBOARD @"ResignKeyboard"
 
 enum MessageType{
     Text,

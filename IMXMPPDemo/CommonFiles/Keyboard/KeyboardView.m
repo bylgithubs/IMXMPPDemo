@@ -177,8 +177,10 @@ static KeyboardView *sharedInstance = nil;
 - (void)notificationRegister:(BOOL)flag{
     if (flag) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTextViewData) name:DELETE_KEYBOARD_TEXT object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resignKeyboard) name:RESIGNKEYBOARD object:nil];
     } else {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:DELETE_KEYBOARD_TEXT object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:RESIGNKEYBOARD object:nil];
     }
 }
 

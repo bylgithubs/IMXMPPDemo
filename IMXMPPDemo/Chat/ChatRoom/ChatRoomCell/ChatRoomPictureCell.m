@@ -26,6 +26,11 @@
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapPressAction)];
     singleTap.numberOfTapsRequired = 1;
     [self.pictureBtn addGestureRecognizer:singleTap];
+    [self.pictureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.userName.mas_bottom);
+        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-10);
+        make.right.mas_equalTo(self.mas_right).mas_offset(-45);
+    }];
 }
 
 - (void)configData{
@@ -47,7 +52,14 @@
         
         CGFloat imageWidth = CGImageGetWidth(image.CGImage);
         CGFloat imageHeight = CGImageGetHeight(image.CGImage);
-        self.pictureBtn.frame = CGRectMake(self.frame.size.width - 200, 30, imageWidth, imageHeight);
+        CGRect btnFrame = self.pictureBtn.frame;
+        btnFrame.size.width = imageWidth;
+        btnFrame.size.height = imageHeight;
+        ChatRoomModel *model = self.chatRoomModel;
+        if (![CURRENTUSER isEqualToString:model.messageFrom]) {
+            btnFrame.origin.x = 45;
+        }
+        self.pictureBtn.frame = btnFrame;
         [self.pictureBtn setBackgroundImage:image forState:UIControlStateNormal];
         [self.pictureBtn.layer setMasksToBounds:YES];
         [self.pictureBtn.layer setCornerRadius:5];

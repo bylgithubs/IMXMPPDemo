@@ -119,17 +119,22 @@
     SuperChatRoomCell *Cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (model.messageType == Text) {
-        
+        static NSString *cellIdentifier = @"ChatRoomTextCell";
+        Cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (Cell == nil) {
             Cell = [[ChatRoomTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
     }
     else if (model.messageType == Picture){
+        static NSString *cellIdentifier = @"ChatRoomPictureCell";
+        Cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (Cell == nil) {
             Cell = [[ChatRoomPictureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
     }
     else if(model.messageType == Audio){
+        static NSString *cellIdentifier = @"ChatRoomAudioCell";
+        Cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (Cell == nil) {
             Cell = [[ChatRoomAudioCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
@@ -148,7 +153,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self addKeyBoard];
     [self changeTableViewHeight];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:RESIGNKEYBOARD object:nil];
 }
 
 - (void)changeTableViewHeight{
