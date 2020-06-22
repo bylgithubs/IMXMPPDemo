@@ -34,34 +34,60 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.userNameLabel = [[UILabel alloc] init];
     [self.userNameLabel setText:@"用户名:"];
+    self.userNameLabel.textAlignment = NSTextAlignmentCenter;
     
     self.passwardLabel =
     [[UILabel alloc] init];
     [self.passwardLabel setText:@"密码:"];
+    self.passwardLabel.textAlignment = NSTextAlignmentCenter;
     
     self.userNameTextField = [[UITextField alloc] init];
     self.userNameTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.userNameTextField.layer.borderWidth = 1.0f;
+    self.userNameTextField.layer.cornerRadius = 8;
+    self.userNameTextField.layer.borderColor = [UIColor blackColor].CGColor;
+    //设置清除按钮
+    self.userNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
     self.passwardTextField = [[UITextField alloc] init];
     self.passwardTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwardTextField.secureTextEntry = YES;
+    self.passwardTextField.layer.borderWidth = 1.0f;
+    self.passwardTextField.layer.cornerRadius = 8;
+    self.passwardTextField.layer.borderColor = [UIColor blackColor].CGColor;
+    //设置清除按钮
+    self.passwardTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     self.userNameTextField.text = @"ccc";
     self.passwardTextField.text = @"ccc";
     
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+    [self.loginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.loginBtn.layer.masksToBounds = YES;
+    self.loginBtn.layer.cornerRadius = 8;
+    self.loginBtn.layer.borderWidth = 1.0f;
+    
+    self.loginBtn.layer.borderColor = [UIColor blackColor].CGColor;
+    
     [self.loginBtn addTarget:self action:@selector(loginClickAction) forControlEvents:UIControlEventTouchUpInside];
     
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [self.registerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.registerBtn.layer.borderWidth = 1.0f;
+    self.registerBtn.layer.cornerRadius = 8;
+    self.registerBtn.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    
     [self.registerBtn addTarget:self action:@selector(registerClickAction) forControlEvents:UIControlEventTouchUpInside];
     
-    self.userNameLabel.backgroundColor = [UIColor grayColor];
-    self.userNameTextField.backgroundColor = [UIColor greenColor];
-    self.passwardLabel.backgroundColor = [UIColor grayColor];
-    self.passwardTextField.backgroundColor = [UIColor greenColor];
-    self.loginBtn.backgroundColor = [UIColor redColor];
-    self.registerBtn.backgroundColor = [UIColor redColor];
+    self.userNameLabel.backgroundColor = [UIColor whiteColor];
+    self.userNameTextField.backgroundColor = [UIColor whiteColor];
+    self.passwardLabel.backgroundColor = [UIColor whiteColor];
+    self.passwardTextField.backgroundColor = [UIColor whiteColor];
+    self.loginBtn.backgroundColor = [UIColor whiteColor];
+    self.registerBtn.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.userNameLabel];
     [self.view addSubview:self.passwardLabel];
@@ -70,8 +96,8 @@
     [self.view addSubview:self.loginBtn];
     [self.view addSubview:self.registerBtn];
     
-    CGFloat width = 60;
-    CGFloat height = 40;
+    CGFloat width = 70;
+    CGFloat height = 35;
     [self.userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX).mas_offset(-SCREEN_WIDTH/5);
         make.centerY.mas_equalTo(self.view.mas_centerY).mas_offset(-20);
@@ -100,12 +126,12 @@
     
     [self.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.passwardLabel.mas_bottom).mas_offset(30);
-        make.left.mas_equalTo(self.passwardLabel.mas_left).mas_offset(15);
+        make.left.mas_equalTo(self.passwardLabel.mas_left).mas_offset(20);
         make.width.mas_equalTo(width);
         make.height.mas_equalTo(height);
     }];
     [self.registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.loginBtn.mas_right).mas_offset(30);
+        make.left.mas_equalTo(self.loginBtn.mas_right).mas_offset(40);
         make.top.mas_equalTo(self.loginBtn.mas_top);
         make.width.mas_equalTo(width);
         make.height.mas_equalTo(height);

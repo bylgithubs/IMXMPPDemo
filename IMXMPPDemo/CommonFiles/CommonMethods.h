@@ -26,7 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getUUid;
 //保存原图
 +(BOOL)saveOriginalImageToPath:(NSString *)path image:(NSData *)imageData;
-
+//读取图片
++(UIImage *)getImageFromPath:(NSString *)path;
 @end
 
 NS_ASSUME_NONNULL_END

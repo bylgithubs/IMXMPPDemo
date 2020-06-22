@@ -37,6 +37,8 @@
     tableView = [[UITableView alloc] init];
     tableView.delegate = self;
     tableView.dataSource =self;
+    //去除分割线
+    //[tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:tableView];
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top);
@@ -60,18 +62,18 @@
     self.loginOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.loginOutBtn.frame = CGRectMake(0, 0, 50, 30);
     [self.loginOutBtn setTitle:@"登出" forState:UIControlStateNormal];
+    [self.loginOutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.loginOutBtn.backgroundColor = [UIColor blueColor];
     [self.loginOutBtn addTarget:self action:@selector(loginOutClickAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.loginOutBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.loginOutBtn];
     
     self.addFriendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.addFriendBtn.frame = CGRectMake(0, 0, 80, 30);
     [self.addFriendBtn setTitle:@"添加好友" forState:UIControlStateNormal];
+    [self.addFriendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.addFriendBtn.backgroundColor = [UIColor blueColor];
     [self.addFriendBtn addTarget:self action:@selector(addFriendClickAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.addFriendBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.addFriendBtn];
 }

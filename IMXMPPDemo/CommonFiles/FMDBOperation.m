@@ -150,8 +150,8 @@ static FMDBOperation *sharedInstance = nil;
 - (void)insertChatMessage:(ChatRoomModel *)model{
 
     [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        NSString *sqlStr = @"insert into ChatMessage(uid,room_id,user_nick,message_type,message_from,message_to,content,send_date) values(?,?,?,?,?,?,?,?)";
-        [db executeUpdate:sqlStr,model.uId,model.roomId,model.userNick,[NSNumber numberWithInt:model.messageType],model.messageFrom,model.messageTo,model.content,model.sendDate];
+        NSString *sqlStr = @"insert into ChatMessage(uid,room_id,user_nick,message_from,message_to,message_type,contact_type,content,is_original_pic,thumbnail,oriImage_width,oriImage_height,imageSize,send_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        [db executeUpdate:sqlStr,model.uId,model.roomId,model.userNick,model.messageFrom,model.messageTo,[NSNumber numberWithInt:model.messageType],model.contactType,model.content,[NSString stringWithFormat:@"%d",model.isOriginalPic],model.thumbnail,[NSString stringWithFormat:@"%ld",model.oriImageWidth],[NSString stringWithFormat:@"%ld",(long)model.oriImageHeight],[NSNumber numberWithLong:model.imageSize],model.sendDate];
     }];
 }
 
@@ -185,7 +185,13 @@ static FMDBOperation *sharedInstance = nil;
             model.messageFrom = [resultSet stringForColumn:@"message_from"];
             model.messageTo = [resultSet stringForColumn:@"message_to"];
             model.messageType = [resultSet intForColumn:@"message_type"];
+            model.contactType = [resultSet stringForColumn:@"contact_type"];
             model.content = [resultSet stringForColumn:@"content"];
+            model.isOriginalPic = [resultSet boolForColumn:@"is_original_pic"];
+            model.thumbnail = [resultSet stringForColumn:@"thumbnail"];
+            model.oriImageWidth = [resultSet intForColumn:@"oriImage_width"];
+            model.oriImageHeight = [resultSet intForColumn:@"oriImage_height"];
+            model.imageSize = [resultSet intForColumn:@"imageSize"];
             model.sendDate = [resultSet stringForColumn:@"send_date"];
             [dataArr addObject:model];
         }

@@ -31,6 +31,7 @@
 		64093BA02460114300C75DA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64093B9E2460114300C75DA3 /* LaunchScreen.storyboard */; };
 		64093BA32460114300C75DA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093BA22460114300C75DA3 /* main.m */; };
 		64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093BAF2460176C00C75DA3 /* LoginViewController.m */; };
+		6421896424A04059008C0154 /* ChatRoomPictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421896324A04059008C0154 /* ChatRoomPictureCell.m */; };
 		6470596A246946E9005CEF12 /* DetailInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64705968246946E9005CEF12 /* DetailInformationViewController.m */; };
 		6470597224694724005CEF12 /* SuperAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6470596F24694724005CEF12 /* SuperAddressCell.m */; };
 		6470597324694724005CEF12 /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6470597024694724005CEF12 /* AddressTableViewCell.m */; };
@@ -104,6 +105,8 @@
 		64093BAC246014C500C75DA3 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		64093BAE2460176C00C75DA3 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		64093BAF2460176C00C75DA3 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		6421896224A04059008C0154 /* ChatRoomPictureCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRoomPictureCell.h; sourceTree = "<group>"; };
+		6421896324A04059008C0154 /* ChatRoomPictureCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRoomPictureCell.m; sourceTree = "<group>"; };
 		64705966246946E9005CEF12 /* DetailInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInformationViewController.h; sourceTree = "<group>"; };
 		64705968246946E9005CEF12 /* DetailInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInformationViewController.m; sourceTree = "<group>"; };
 		6470596C24694724005CEF12 /* AddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 				6406605424615F1700AF4975 /* ChatRoomTextCell.m */,
 				64B07B8F24879B3600031530 /* ChatRoomAudioCell.h */,
 				64B07B9024879B3600031530 /* ChatRoomAudioCell.m */,
+				6421896224A04059008C0154 /* ChatRoomPictureCell.h */,
+				6421896324A04059008C0154 /* ChatRoomPictureCell.m */,
 			);
 			path = ChatRoomCell;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 				6471216724629D4A0078423F /* RosterListModel.m in Sources */,
 				64065FE22460FC9C00AF4975 /* XmppManager.m in Sources */,
 				6487B27C248E281700C7029B /* CustomCollectionView.m in Sources */,
+				6421896424A04059008C0154 /* ChatRoomPictureCell.m in Sources */,
 				6406606F24615FE000AF4975 /* FMDBOperation.m in Sources */,
 				64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */,
 				6406605F24615F1700AF4975 /* ChatRecordViewController.m in Sources */,

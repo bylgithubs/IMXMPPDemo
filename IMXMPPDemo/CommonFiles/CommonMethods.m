@@ -59,4 +59,10 @@
     }
 }
 
+//读取图片
++(UIImage *)getImageFromPath:(NSString *)path{
+    UIImage *img=[UIImage imageWithContentsOfFile:path];
+    return img;
+}
+
 @end

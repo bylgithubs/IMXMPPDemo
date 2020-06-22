@@ -17,6 +17,7 @@
 #import "AudioRecorder.h"
 #import "ChatRoomAudioCell.h"
 #import <TZImagePickerController/TZImagePickerController.h>
+#import "ChatRoomPictureCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

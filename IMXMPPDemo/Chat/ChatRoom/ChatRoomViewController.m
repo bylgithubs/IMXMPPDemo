@@ -113,32 +113,31 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"ChatRoomTextCell";
+    static NSString *cellIdentifier = @"ChatRoomCell";
     
     ChatRoomModel *model = self.dataArr[indexPath.row];
     SuperChatRoomCell *Cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
     if (model.messageType == Text) {
         
         if (Cell == nil) {
             Cell = [[ChatRoomTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        Cell.delegate = self;
-        Cell.chatRoomModel = model;
-        [Cell configData];
-        self.cellHeight = Cell.cellHeight;
     }
-//    else if (model.messageType == Picture){
-//        
-//    }
+    else if (model.messageType == Picture){
+        if (Cell == nil) {
+            Cell = [[ChatRoomPictureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+    }
     else if(model.messageType == Audio){
         if (Cell == nil) {
             Cell = [[ChatRoomAudioCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        Cell.delegate = self;
-        Cell.chatRoomModel = model;
-        [Cell configData];
-        self.cellHeight = Cell.cellHeight;
     }
+    Cell.delegate = self;
+    Cell.chatRoomModel = model;
+    [Cell configData];
+    self.cellHeight = Cell.cellHeight;
     return Cell;
 }
 
