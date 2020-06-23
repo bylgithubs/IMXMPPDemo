@@ -32,6 +32,7 @@
 		64093BA32460114300C75DA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093BA22460114300C75DA3 /* main.m */; };
 		64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64093BAF2460176C00C75DA3 /* LoginViewController.m */; };
 		6421896424A04059008C0154 /* ChatRoomPictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421896324A04059008C0154 /* ChatRoomPictureCell.m */; };
+		643B15D924A1F170006F0B57 /* ImageScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 643B15D824A1F170006F0B57 /* ImageScrollViewController.m */; };
 		6470596A246946E9005CEF12 /* DetailInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64705968246946E9005CEF12 /* DetailInformationViewController.m */; };
 		6470597224694724005CEF12 /* SuperAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6470596F24694724005CEF12 /* SuperAddressCell.m */; };
 		6470597324694724005CEF12 /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6470597024694724005CEF12 /* AddressTableViewCell.m */; };
@@ -107,6 +108,8 @@
 		64093BAF2460176C00C75DA3 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		6421896224A04059008C0154 /* ChatRoomPictureCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRoomPictureCell.h; sourceTree = "<group>"; };
 		6421896324A04059008C0154 /* ChatRoomPictureCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRoomPictureCell.m; sourceTree = "<group>"; };
+		643B15D724A1F170006F0B57 /* ImageScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageScrollViewController.h; sourceTree = "<group>"; };
+		643B15D824A1F170006F0B57 /* ImageScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageScrollViewController.m; sourceTree = "<group>"; };
 		64705966246946E9005CEF12 /* DetailInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInformationViewController.h; sourceTree = "<group>"; };
 		64705968246946E9005CEF12 /* DetailInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInformationViewController.m; sourceTree = "<group>"; };
 		6470596C24694724005CEF12 /* AddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
@@ -365,6 +368,7 @@
 		64093BAB2460149E00C75DA3 /* CommonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				643B15D624A1F105006F0B57 /* ImageScrollView */,
 				64B07B8B24878DDB00031530 /* AudioRecorder */,
 				64093BAC246014C500C75DA3 /* constants.h */,
 				6471216424629D140078423F /* Model */,
@@ -389,6 +393,15 @@
 				64093BAF2460176C00C75DA3 /* LoginViewController.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		643B15D624A1F105006F0B57 /* ImageScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				643B15D724A1F170006F0B57 /* ImageScrollViewController.h */,
+				643B15D824A1F170006F0B57 /* ImageScrollViewController.m */,
+			);
+			path = ImageScrollView;
 			sourceTree = "<group>";
 		};
 		64705965246946E9005CEF12 /* AddressOtherViews */ = {
@@ -683,6 +696,7 @@
 				6471216724629D4A0078423F /* RosterListModel.m in Sources */,
 				64065FE22460FC9C00AF4975 /* XmppManager.m in Sources */,
 				6487B27C248E281700C7029B /* CustomCollectionView.m in Sources */,
+				643B15D924A1F170006F0B57 /* ImageScrollViewController.m in Sources */,
 				6421896424A04059008C0154 /* ChatRoomPictureCell.m in Sources */,
 				6406606F24615FE000AF4975 /* FMDBOperation.m in Sources */,
 				64093BB02460176C00C75DA3 /* LoginViewController.m in Sources */,

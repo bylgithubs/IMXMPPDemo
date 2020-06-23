@@ -18,7 +18,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.contentMode = UIViewContentModeCenter;
         label.numberOfLines=0;
-        label.backgroundColor = [UIColor greenColor];
+        label.backgroundColor = [UIColor grayColor];
         label.textColor = [UIColor blueColor];
         self.itemLabel = label;
         [self addSubview:self.itemLabel];
