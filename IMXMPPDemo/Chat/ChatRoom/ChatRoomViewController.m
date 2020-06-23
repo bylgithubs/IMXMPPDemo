@@ -153,7 +153,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self addKeyBoard];
     [self changeTableViewHeight];
-    [[NSNotificationCenter defaultCenter] postNotificationName:RESIGNKEYBOARD object:nil];
 }
 
 - (void)changeTableViewHeight{
@@ -365,6 +364,7 @@
         default:
             break;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:RESIGNKEYBOARD object:nil];
 }
 
 - (NSMutableArray *)selectOriginImageArr{
