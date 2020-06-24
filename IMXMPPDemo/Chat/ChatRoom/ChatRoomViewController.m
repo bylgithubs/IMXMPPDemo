@@ -394,7 +394,7 @@
         default:
             break;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:RESIGNKEYBOARD object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:RESIGNKEYBOARD object:nil];
 }
 
 - (NSMutableArray *)selectOriginImageArr{
@@ -499,10 +499,11 @@
         if (chatRoomModel.isOriginalPic) {
             UIImage *image = [UIImage imageWithData:imageData];
             UIImage *newImage = [UIImage changeImageOrientation:image];
-            NSData *data = UIImageJPEGRepresentation(newImage, 1.0);
-            chatRoomModel.imageSize = data.length;
-            [CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:data];
+            imageData = UIImageJPEGRepresentation(newImage, 1.0);
+            chatRoomModel.imageSize = imageData.length;
+            //[CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:data];
         }
+        [CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:imageData];
         if (chatRoomModel.messageType != Gif) {
             //取出asset中的图片
             UIImage *image = [UIImage imageWithData:imageData];

@@ -49,12 +49,12 @@
         } else {
             
         }
-        NSString *fileName = self.chatRoomModel.content;
-        NSString *savePath = CHAT_FILE_PATH(fileName);
-        UIImage *localImage = [CommonMethods getImageFromPath:savePath];
-        if (localImage) {
-            image = localImage;
-        }
+//        NSString *fileName = self.chatRoomModel.content;
+//        NSString *savePath = CHAT_FILE_PATH(fileName);
+//        UIImage *localImage = [CommonMethods getImageFromPath:savePath];
+//        if (localImage) {
+//            image = localImage;
+//        }
         
         CGFloat imageWidth = CGImageGetWidth(image.CGImage);
         CGFloat imageHeight = CGImageGetHeight(image.CGImage);
