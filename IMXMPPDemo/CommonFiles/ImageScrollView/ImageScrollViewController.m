@@ -45,6 +45,8 @@
     //设置背景颜色
     scrollView.backgroundColor = [UIColor whiteColor];
     
+    [self setScrollViewContent:self.image];
+    
     [self.view addSubview:scrollView];
 }
 

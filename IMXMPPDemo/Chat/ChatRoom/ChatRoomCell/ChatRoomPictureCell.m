@@ -9,8 +9,8 @@
 #import "ChatRoomPictureCell.h"
 @interface ChatRoomPictureCell()
 
-@property (nonatomic, strong) UIImage *thumbnailImage;
-@property (nonatomic, strong) UIImage *localImage;
+//@property (nonatomic, strong) UIImage *thumbnailImage;
+//@property (nonatomic, strong) UIImage *localImage;
 
 @end
 
@@ -46,15 +46,14 @@
         if (self.chatRoomModel.thumbnail != nil && ![self.chatRoomModel.thumbnail isEqualToString:@""]) {
             NSData *data = [self.chatRoomModel.thumbnail base64DecodedData];
             image = [UIImage imageWithData:data];
-            _thumbnailImage = image;
         } else {
             
         }
         NSString *fileName = self.chatRoomModel.content;
         NSString *savePath = CHAT_FILE_PATH(fileName);
-        _localImage = [CommonMethods getImageFromPath:savePath];
-        if (_localImage) {
-            image = _localImage;
+        UIImage *localImage = [CommonMethods getImageFromPath:savePath];
+        if (localImage) {
+            image = localImage;
         }
         
         CGFloat imageWidth = CGImageGetWidth(image.CGImage);
@@ -72,15 +71,6 @@
         [self.pictureBtn.layer setCornerRadius:5];
         self.pictureBtn.layer.borderWidth = 0.5f;
         self.cellHeight = self.pictureBtn.frame.size.height + 40;
-    }
-}
-
-- (void)singleTapPressAction{
-    ImageScrollViewController *imageScrollVC = [[ImageScrollViewController alloc] init];
-    if (_localImage) {
-        [imageScrollVC setScrollViewContent:_localImage];
-    } else {
-        [imageScrollVC setScrollViewContent:_thumbnailImage];
     }
 }
 

@@ -18,6 +18,7 @@
 #import "ChatRoomAudioCell.h"
 #import <TZImagePickerController/TZImagePickerController.h>
 #import "ChatRoomPictureCell.h"
+#import "ImageScrollViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

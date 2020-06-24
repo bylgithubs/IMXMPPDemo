@@ -303,6 +303,36 @@
     [xmppManager.xmppStream sendElement:message];
 }
 
+//响应单击事件
+- (void)chatRoomCellContentSingleTapAction:(SuperChatRoomCell *)superCell type:(enum MessageType)type filePath:(NSString *)filePath{
+    switch (type) {
+        case Picture:
+            [self entryPictureDetailViewController:superCell.chatRoomModel];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)entryPictureDetailViewController:(ChatRoomModel *)chatRoomModel{
+    ImageScrollViewController *imageScrollVC = [[ImageScrollViewController alloc] init];
+    
+    NSData *data = [chatRoomModel.thumbnail base64DecodedData];
+    UIImage *thumbnailImage = [UIImage imageWithData:data];
+    
+    NSString *orignalPicturePath = CHAT_FILE_PATH(chatRoomModel.content);
+    UIImage *localImage = [CommonMethods getImageFromPath:orignalPicturePath];
+    
+    if (localImage != nil) {
+        //[imageScrollVC setScrollViewContent:localImage];
+        imageScrollVC.image = localImage;
+    } else {
+        //[imageScrollVC setScrollViewContent:thumbnailImage];
+        imageScrollVC.image = thumbnailImage;
+    }
+    [self.navigationController pushViewController:imageScrollVC animated:YES];
+}
 
 - (void)chatRoomTableViewCellLongPress:(SuperChatRoomCell *)chatRoomCell type:(enum MessageType)type content:(NSString *)content{
     NSString *roomID = chatRoomCell.chatRoomModel.roomId;

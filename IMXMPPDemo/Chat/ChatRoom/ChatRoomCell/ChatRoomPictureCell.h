@@ -7,7 +7,6 @@
 //
 
 #import "SuperChatRoomCell.h"
-#import "ImageScrollViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

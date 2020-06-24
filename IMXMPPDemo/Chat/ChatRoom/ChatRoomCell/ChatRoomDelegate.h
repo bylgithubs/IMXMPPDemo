@@ -16,5 +16,7 @@
 @protocol ChatRoomCellDelegate <NSObject>
 
 - (void)chatRoomTableViewCellLongPress:(SuperChatRoomCell *)chatRoomCell type:(enum MessageType)type content:(NSString *)content;
+//响应单击事件
+- (void)chatRoomCellContentSingleTapAction:(SuperChatRoomCell *)superCell type:(enum MessageType)type filePath:(NSString *)filePath;
 
 @end

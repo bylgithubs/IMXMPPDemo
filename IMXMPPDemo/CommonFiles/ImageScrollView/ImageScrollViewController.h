@@ -12,8 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ImageScrollViewController : UIViewController
 
+@property (nonatomic, strong) UIImage *image;
 //设置视图内容
-- (void)setScrollViewContent:(UIImage *)image;
+//- (void)setScrollViewContent:(UIImage *)image;
 
 @end
 

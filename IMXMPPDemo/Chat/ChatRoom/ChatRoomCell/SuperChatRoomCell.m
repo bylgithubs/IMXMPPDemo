@@ -46,6 +46,13 @@
 
 }
 
+- (void)singleTapPressAction{
+    if ([self.delegate respondsToSelector:@selector(chatRoomCellContentSingleTapAction:type:filePath:)])
+    {
+        [self.delegate chatRoomCellContentSingleTapAction:self type:self.chatRoomModel.messageType filePath:self.chatRoomModel.content];
+    }
+}
+
 - (void)longTapClick:(UILongPressGestureRecognizer *)sender{
     NSLog(@"=========%ld",(long)sender.state);
     if (sender.state == UIGestureRecognizerStateBegan) {
