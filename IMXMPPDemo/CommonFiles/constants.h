@@ -12,6 +12,9 @@
 
 #endif /* constants_h */
 
+#pragma mark 产品名称
+#define PRODUCT_NAME [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
+
 #pragma mark 屏幕大小
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height

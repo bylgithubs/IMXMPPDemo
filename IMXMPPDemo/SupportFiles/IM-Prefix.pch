@@ -16,6 +16,7 @@
 #import <TZImagePickerController/TZImagePickerController.h>
 #import <Base64nl/Base64.h>
 #import <Masonry/Masonry.h>
+#import <Photos/Photos.h>
 
 //自定义方法
 #import "constants.h"

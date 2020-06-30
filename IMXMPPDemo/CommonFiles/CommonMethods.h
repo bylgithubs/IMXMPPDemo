@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^GetUserCameraAuthorizationBlock) (void);
+
 @interface CommonMethods : NSObject
 
 +(BOOL)isEmptyString:(NSString *)text;
@@ -28,6 +30,13 @@ NS_ASSUME_NONNULL_BEGIN
 +(BOOL)saveOriginalImageToPath:(NSString *)path image:(NSData *)imageData;
 //读取图片
 +(UIImage *)getImageFromPath:(NSString *)path;
+
+//获取相册权限
++ (void)getUserPhotoAlbumAuthorization:(UIViewController *)controller completionBlock:(GetUserCameraAuthorizationBlock)completionBlock;
+//获取相机权限
++ (void)getUserCameraAuthorization:(UIViewController *)controller completionBlock:(GetUserCameraAuthorizationBlock)completionBlock;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
