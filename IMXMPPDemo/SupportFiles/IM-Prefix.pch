@@ -12,11 +12,15 @@
 
 #endif /* IM_Prefix_h */
 
-//第三方库
+//cocoaPods第三方库
+#import <TZImagePickerController/TZImagePickerController.h>
 #import <TZImagePickerController/TZImagePickerController.h>
 #import <Base64nl/Base64.h>
 #import <Masonry/Masonry.h>
 #import <Photos/Photos.h>
+
+//手动导入第三方库
+#import "SDAVAssetExportSession.h"
 
 //自定义方法
 #import "constants.h"
@@ -27,3 +31,5 @@
 #import "IPManager.h"
 #import "UserAuthorization.h"
 #import "UIImage+ImageCompressionTool.h"
+
+

@@ -389,6 +389,7 @@
             [self pickImageFrameCamera];
             break;
         case 3:
+            [self pickMovieFrameCamera];
             break;
         case 4:
             
@@ -417,12 +418,53 @@
     }
 }
 
+- (void)pickMovieFrameCamera
+{
+    //首先判断是否摄像头是有权限
+    UIImagePickerController *pick = [[UIImagePickerController alloc] init];
+    pick.sourceType = UIImagePickerControllerSourceTypeCamera;
+    NSArray* availableMedia = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+    pick.mediaTypes = [NSArray arrayWithObject:availableMedia[1]];
+    //self.IsUseMutli=NO;
+    pick.videoQuality = UIImagePickerControllerQualityTypeHigh;
+    pick.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+    //加密信息录制限制
+    NSInteger maxinumDuration=60;
+//    if(self.isSecurity)
+//    {
+//        maxinumDuration=[[self GetsecurityTime:[self.keyBoard.securityBtn titleForState:UIControlStateSelected]] intValue];//self.ddlsecond.uiButton.titleLabel.text
+//    }
+    pick.videoMaximumDuration = maxinumDuration;
+    pick.delegate = self;
+    //        pick.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    //pick.showsCameraControls=NO;
+    pick.allowsEditing = NO;
+    
+    //有权限跳转，无权限提示
+    [CommonMethods getUserCameraAuthorization:_imagePickerC completionBlock:^{
+        [self presentViewController:pick animated:YES completion:nil];
+    }];
+    
+}
+
 #pragma mark 相机代理
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
     //获取选中资源的类型
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-    self.cameraImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    [self sendAndSavePictureData:nil];
+    
+    if ([mediaType isEqualToString:@"public.image"]) {
+        self.cameraImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        [self sendAndSavePictureData:nil];
+    }
+    else if([mediaType isEqualToString:@"public.movie"]){
+        NSURL *mediaUrl = [info valueForKey:UIImagePickerControllerMediaURL];
+        [CommonMethods getUserPhotoAlbumAuthorization:self completionBlock:^{
+            //将拍摄后的视频保存到本地相册
+            [CommonMethods saveVideoToPhotoAlbumWithUrl:mediaUrl completion:^(PHAsset *asset, NSError *error) {
+                [self sendAndSavePictureData:asset];
+            }];
+        }];
+    }
 
     [self.imagePickerC dismissViewControllerAnimated:YES completion:nil];
 }
@@ -430,76 +472,6 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [self.imagePickerC dismissViewControllerAnimated:YES completion:nil];
 }
-
-//- (void)sendAndSaveCameraImageData:(UIImage *)image{
-//    ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
-//
-//    NSString *fileName = [NSString stringWithFormat:@"%@.JPG",[CommonMethods getUUid]];
-////    NSString *fileName = [asset valueForKey:@"filename"];
-//
-//    chatRoomModel.uId = self.rosterListModel.uid;
-//    chatRoomModel.roomId = self.rosterListModel.uid;
-//    chatRoomModel.userNick = self.rosterListModel.nick;
-//    chatRoomModel.messageFrom = CURRENTUSER;
-//    chatRoomModel.messageTo = self.rosterListModel.uid;
-//    chatRoomModel.messageType = Picture;
-//    chatRoomModel.contactType = @"owner";
-//    //chatRoomModel.content = fileName;
-//    chatRoomModel.isOriginalPic = _isSelectOriginalPhoto ;
-//    chatRoomModel.sendDate = [CommonMethods setDateFormat:[NSDate date]];
-//
-//    //chatRoomModel.imageAsset = asset;
-//
-//    //从数组中取出原图 并获取原图的大小
-////    for ( UIImage *selectOriginalImage in self.selectOriginImageArr){
-////        CGSize size = selectOriginalImage.size;
-////        //原圖
-////        if (_isSelectOriginalPhoto)
-////        {
-////            if ((size.width * size.height) > 1000000)
-////            {
-////                double scal = sqrt(1000000/(size.width * size.height));
-////                size = CGSizeMake(size.width * scal, size.height * scal);
-////            }
-////            chatRoomModel.oriImageWidth = size.width;
-////            chatRoomModel.oriImageHeight = size.height;
-////        }
-////    }
-//
-//    //获取图片
-//    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-//    option.resizeMode = PHImageRequestOptionsResizeModeExact;
-//    option.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-//    [[PHImageManager defaultManager] requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-//        float imageSize = imageData.length;
-//        chatRoomModel.imageSize = imageSize;
-//        NSString *imageName = [chatRoomModel.content lastPathComponent];
-//        if (chatRoomModel.isOriginalPic) {
-//            UIImage *image = [UIImage imageWithData:imageData];
-//            UIImage *newImage = [UIImage changeImageOrientation:image];
-//            imageData = UIImageJPEGRepresentation(newImage, 1.0);
-//            chatRoomModel.imageSize = imageData.length;
-//            //[CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:data];
-//        }
-//        [CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:imageData];
-//        if (chatRoomModel.messageType != Gif) {
-//            //取出asset中的图片
-//            UIImage *image = [UIImage imageWithData:imageData];
-//            CGImageRef ref = [image CGImage];
-//            UIImage *newImage = [UIImage imageWithCGImage:ref scale:1.0 orientation:orientation];
-//            //压缩到指定像素
-//            UIImage *newThumbnailImg = [newImage compressQualityWithPixelLimit:133]; //指定大小為133x133
-//            //压缩图片到d指定大小
-//            NSData *thumbnailData = [newThumbnailImg compressMidQualityWithLengthLimit:1024*2]; //压缩到2kb
-//            NSString *imageMessage = [thumbnailData base64EncodedString];
-//            chatRoomModel.thumbnail=imageMessage;
-//        }
-//        //插入DB
-//        [self sendMessageAndInsertDB:chatRoomModel messageType:chatRoomModel.messageType isUploadFile:YES];
-//    }];
-//    //插入DB
-//    [self sendMessageAndInsertDB:chatRoomModel messageType:chatRoomModel.messageType isUploadFile:YES];
-//}
 
 - (NSMutableArray *)selectOriginImageArr{
     if (!_selectOriginImageArr) {
@@ -561,6 +533,7 @@
 - (void)sendAndSavePictureData:(PHAsset *)asset{
     ChatRoomModel *chatRoomModel = [[ChatRoomModel alloc] init];
     
+    PHAssetMediaType mediaType = asset.mediaType;
     NSString *fileName = nil;
     if (asset == nil) {
         fileName = [NSString stringWithFormat:@"%@.JPG",[CommonMethods getUUid]];
@@ -573,7 +546,12 @@
     chatRoomModel.userNick = self.rosterListModel.nick;
     chatRoomModel.messageFrom = CURRENTUSER;
     chatRoomModel.messageTo = self.rosterListModel.uid;
-    chatRoomModel.messageType = Picture;
+    if (mediaType == PHAssetMediaTypeVideo) {
+        chatRoomModel.messageType = Video;
+    }
+    else {
+        chatRoomModel.messageType = Picture;
+    }
     chatRoomModel.contactType = @"owner";
     chatRoomModel.content = fileName;
     chatRoomModel.isOriginalPic = _isSelectOriginalPhoto ;
@@ -620,39 +598,125 @@
         //插入DB
         [self sendMessageAndInsertDB:chatRoomModel messageType:chatRoomModel.messageType isUploadFile:YES];
     } else {
-        //获取图片
-        PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-        option.resizeMode = PHImageRequestOptionsResizeModeExact;
-        option.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-        [[PHImageManager defaultManager] requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-            
-            float imageSize = imageData.length;
-            chatRoomModel.imageSize = imageSize;
-            NSString *imageName = [chatRoomModel.content lastPathComponent];
-            if (chatRoomModel.isOriginalPic) {
-                UIImage *image = [UIImage imageWithData:imageData];
-                UIImage *newImage = [UIImage changeImageOrientation:image];
-                imageData = UIImageJPEGRepresentation(newImage, 1.0);
-                chatRoomModel.imageSize = imageData.length;
-                //[CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:data];
-            }
-            [CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:imageData];
-            if (chatRoomModel.messageType != Gif) {
-                //取出asset中的图片
-                UIImage *image = [UIImage imageWithData:imageData];
-                CGImageRef ref = [image CGImage];
-                UIImage *newImage = [UIImage imageWithCGImage:ref scale:1.0 orientation:orientation];
-                //压缩到指定像素
-                UIImage *newThumbnailImg = [newImage compressQualityWithPixelLimit:133]; //指定大小為133x133
-                //压缩图片到d指定大小
-                NSData *thumbnailData = [newThumbnailImg compressMidQualityWithLengthLimit:1024*2]; //压缩到2kb
-                NSString *imageMessage = [thumbnailData base64EncodedString];
-                chatRoomModel.thumbnail=imageMessage;
-            }
-            //插入DB
-            [self sendMessageAndInsertDB:chatRoomModel messageType:chatRoomModel.messageType isUploadFile:YES];
-        }];
+        if (mediaType == PHAssetMediaTypeImage) {
+            //获取图片
+            PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+            option.resizeMode = PHImageRequestOptionsResizeModeExact;
+            option.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+            [[PHImageManager defaultManager] requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+                
+                float imageSize = imageData.length;
+                chatRoomModel.imageSize = imageSize;
+                NSString *imageName = [chatRoomModel.content lastPathComponent];
+                if (chatRoomModel.isOriginalPic) {
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    UIImage *newImage = [UIImage changeImageOrientation:image];
+                    imageData = UIImageJPEGRepresentation(newImage, 1.0);
+                    chatRoomModel.imageSize = imageData.length;
+                    //[CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:data];
+                }
+                [CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(imageName) image:imageData];
+                if (chatRoomModel.messageType != Gif) {
+                    //取出asset中的图片
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    CGImageRef ref = [image CGImage];
+                    UIImage *newImage = [UIImage imageWithCGImage:ref scale:1.0 orientation:orientation];
+                    //压缩到指定像素
+                    UIImage *newThumbnailImg = [newImage compressQualityWithPixelLimit:133]; //指定大小為133x133
+                    //压缩图片到d指定大小
+                    NSData *thumbnailData = [newThumbnailImg compressMidQualityWithLengthLimit:1024*2]; //压缩到2kb
+                    NSString *imageMessage = [thumbnailData base64EncodedString];
+                    chatRoomModel.thumbnail=imageMessage;
+                }
+                //插入DB
+                [self sendMessageAndInsertDB:chatRoomModel messageType:chatRoomModel.messageType isUploadFile:YES];
+            }];
+        } else if (mediaType == PHAssetMediaTypeVideo){
+            NSString *videoName = [NSString stringWithFormat:@"video_%@.3gp",[CommonMethods getUUid]];
+            NSURL *outputUrl = [NSURL fileURLWithPath:CHAT_FILE_PATH(videoName)];
+            // 取出视频 并获取AVAsset 用于压缩
+            PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+            options.version = PHVideoRequestOptionsVersionOriginal;
+            [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
+                if ([asset isKindOfClass:[AVURLAsset class]]) {
+                    // 将视频拿去压缩
+                    SDAVAssetExportSession *encoder = [SDAVAssetExportSession.alloc initWithAsset:asset];
+                    encoder.outputFileType = AVFileTypeMPEG4;
+                    encoder.outputURL = outputUrl;
+                    //视频参数设置
+                    encoder.videoSettings = @
+                    {
+                    AVVideoCodecKey: AVVideoCodecH264,
+                    AVVideoWidthKey: @720,
+                    AVVideoHeightKey: @1280,
+                    AVVideoCompressionPropertiesKey: @
+                        {
+                        AVVideoAverageBitRateKey: @6000000,
+                        AVVideoProfileLevelKey: AVVideoProfileLevelH264High40,
+                        },
+                    };
+                    //音频参数设置
+                    encoder.audioSettings = @
+                    {
+                    AVFormatIDKey: @(kAudioFormatMPEG4AAC),
+                    AVNumberOfChannelsKey: @2,
+                    AVSampleRateKey: @44100,
+                    AVEncoderBitRateKey: @128000,
+                    };
+                    __weak typeof(self) weakSelf  = self;
+                    // 压缩结果
+                    [encoder exportAsynchronouslyWithCompletionHandler:^
+                     {
+                         if (encoder.status == AVAssetExportSessionStatusCompleted)
+                         {
+                             NSData *outputData = [NSData dataWithContentsOfURL:encoder.outputURL];
+                             // NSLog(@"压缩后的视频大小为%lf M",(double)outputData.length/1024/1024);
+                             // 在主线程中发送压缩后的视频
+                             dispatch_async(dispatch_get_main_queue(), ^{
+                                 [CommonMethods saveOriginalImageToPath:videoName image:outputData];
+                                 //[weakSelf saveAtta:outputData withName:movName toPath:USER_Chat_Folder_Path];//保存
+//                                 [weakSelf getImageOfVideo:CHAT_FILE_PATH(videoName) noticeController:self callBack:@selector(videoThumbnailLoad:)];
+                                 ChatRoomModel *model = [self createAndSaveThumbnailOfVideo:CHAT_FILE_PATH(videoName)];
+                                 chatRoomModel.content = model.content;
+                                 chatRoomModel.thumbnail = model.thumbnail;
+                                 //插入DB
+                                 [self sendMessageAndInsertDB:chatRoomModel messageType:chatRoomModel.messageType isUploadFile:YES];
+                             });
+                         }
+                         else
+                         {
+                             NSLog(@"Video export failed with error: %@ (%ld)", encoder.error.localizedDescription, (long)encoder.error.code);
+                         }
+                     }];
+                }
+            }];
+        }
+        
+        
     }
+}
+
+- (ChatRoomModel *)createAndSaveThumbnailOfVideo:(NSString *)filePath{
+
+    ChatRoomModel *model = [[ChatRoomModel alloc] init];
+    CGFloat videoDuration= [CommonMethods getVideoDurationFromPath:filePath]*1000;
+    if (videoDuration<999) {
+        NSLog(@"视频太短，不能少于1秒");
+        return nil;
+    }
+    
+    UIImage *thumbnailImage = [CommonMethods getVideoThumbnailImage:filePath];
+    
+    NSString *videoName=[filePath.lastPathComponent.stringByDeletingPathExtension stringByReplacingOccurrencesOfString:@"video_" withString:@""];
+    NSString *thumbnailName = [NSString stringWithFormat:@"%@.jpg",videoName];
+    NSData *imageData = UIImageJPEGRepresentation(thumbnailImage,0.0);
+    NSString *thumbnail = [imageData base64EncodedString];
+    
+    model.content = thumbnailName;
+    model.thumbnail = thumbnail;
+    [CommonMethods saveOriginalImageToPath:CHAT_FILE_PATH(thumbnailName) image:imageData];
+    
+    return model;
 }
 
 - (void)dealloc{

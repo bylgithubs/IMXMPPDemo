@@ -41,8 +41,12 @@ typedef void (^GetUserCameraAuthorizationBlock) (void);
 + (void)getUserPhotoAlbumAuthorization:(UIViewController *)controller completionBlock:(GetUserCameraAuthorizationBlock)completionBlock;
 //获取相机权限
 + (void)getUserCameraAuthorization:(UIViewController *)controller completionBlock:(GetUserCameraAuthorizationBlock)completionBlock;
-
-
+//保存拍摄视频到相册
++(void)saveVideoToPhotoAlbumWithUrl:(NSURL *)url completion:(void (^)(PHAsset *, NSError *))completion;
+//获取视频持续时间
++(CGFloat)getVideoDurationFromPath:(NSString *)filePath;
+//获取视频缩略图
++(UIImage *)getVideoThumbnailImage:(NSString *)videoURL;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -47,6 +47,7 @@
 		6471665C24639C3900A64520 /* SearchFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471665B24639C3900A64520 /* SearchFriends.m */; };
 		647166602463A56600A64520 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6471665F2463A56600A64520 /* AddFriendCell.m */; };
 		6472B5332491BD9400F7FD17 /* UserAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6472B5322491BD9400F7FD17 /* UserAuthorization.m */; };
+		6475C35724AC758A00C60E02 /* SDAVAssetExportSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 6475C35624AC758A00C60E02 /* SDAVAssetExportSession.m */; };
 		6487B278248E118B00C7029B /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B277248E118B00C7029B /* IPManager.m */; };
 		6487B27C248E281700C7029B /* CustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B27B248E281700C7029B /* CustomCollectionView.m */; };
 		6487B280248E331900C7029B /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B27F248E331900C7029B /* CustomCollectionViewCell.m */; };
@@ -139,6 +140,8 @@
 		6471665F2463A56600A64520 /* AddFriendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
 		6472B5312491BD9400F7FD17 /* UserAuthorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAuthorization.h; sourceTree = "<group>"; };
 		6472B5322491BD9400F7FD17 /* UserAuthorization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAuthorization.m; sourceTree = "<group>"; };
+		6475C35524AC758A00C60E02 /* SDAVAssetExportSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAVAssetExportSession.h; sourceTree = "<group>"; };
+		6475C35624AC758A00C60E02 /* SDAVAssetExportSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAVAssetExportSession.m; sourceTree = "<group>"; };
 		6487B276248E118B00C7029B /* IPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPManager.h; sourceTree = "<group>"; };
 		6487B277248E118B00C7029B /* IPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPManager.m; sourceTree = "<group>"; };
 		6487B27A248E281700C7029B /* CustomCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCollectionView.h; sourceTree = "<group>"; };
@@ -514,9 +517,19 @@
 			path = AddFriendCell;
 			sourceTree = "<group>";
 		};
+		6475C35424AC753A00C60E02 /* VideoCompressionTool */ = {
+			isa = PBXGroup;
+			children = (
+				6475C35524AC758A00C60E02 /* SDAVAssetExportSession.h */,
+				6475C35624AC758A00C60E02 /* SDAVAssetExportSession.m */,
+			);
+			path = VideoCompressionTool;
+			sourceTree = "<group>";
+		};
 		6487B269248DEF2D00C7029B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				6475C35424AC753A00C60E02 /* VideoCompressionTool */,
 				64CD635B2499E7FB007F78FF /* ImageCompressionTool */,
 				64CD635A2499E7BB007F78FF /* IPTool */,
 			);
@@ -725,6 +738,7 @@
 				6406606024615F1700AF4975 /* ChatRoomMenuView.m in Sources */,
 				64065FE524614DA200AF4975 /* MainTabBarViewController.m in Sources */,
 				6406606324615F1700AF4975 /* ChatRoomTextCell.m in Sources */,
+				6475C35724AC758A00C60E02 /* SDAVAssetExportSession.m in Sources */,
 				6470AE89246CDE19008426F0 /* CreateGroupChatCell.m in Sources */,
 				64CD63672499F0B4007F78FF /* UIImage+ImageCompressionTool.m in Sources */,
 				6406606524615F1700AF4975 /* ChatRoomViewController.m in Sources */,
