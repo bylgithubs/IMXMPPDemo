@@ -14,6 +14,12 @@ typedef void (^GetUserCameraAuthorizationBlock) (void);
 
 @interface CommonMethods : NSObject
 
+//创建项目文件目录结构
++(void)createDirectoryStructure;
+
+//创建指定文件夹
++(void)createDirectory:(NSString *)filePath;
+
 +(BOOL)isEmptyString:(NSString *)text;
 
 +(NSString *)setDateFormat:(NSDate *)date;

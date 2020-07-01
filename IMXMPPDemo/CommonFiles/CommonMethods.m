@@ -10,6 +10,30 @@
 
 @implementation CommonMethods
 
+//创建项目文件目录结构
++(void)createDirectoryStructure{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isExisted = [fileManager fileExistsAtPath:USER_FOLDER];
+    if (!isExisted) {
+        [fileManager createDirectoryAtPath:USER_FOLDER withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    isExisted = [fileManager fileExistsAtPath:CHAT_MESSAGE_PATH];
+    if (!isExisted) {
+        [fileManager createDirectoryAtPath:CHAT_MESSAGE_PATH withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+}
+
+//创建指定文件夹
++(void)createDirectory:(NSString *)filePath{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isExisted = [fileManager fileExistsAtPath:filePath];
+    if (!isExisted) {
+        [fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+}
+
 +(BOOL)isEmptyString:(NSString *)text{
     text = [text stringByReplacingOccurrencesOfString:@" " withString:@""];
     return [text isEqualToString:@""];

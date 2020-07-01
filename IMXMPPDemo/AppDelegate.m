@@ -19,6 +19,9 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
+    //创建项目目录结构
+    [CommonMethods createDirectoryStructure];
+    
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     self.window.rootViewController = loginVC;
     [self.window makeKeyAndVisible];

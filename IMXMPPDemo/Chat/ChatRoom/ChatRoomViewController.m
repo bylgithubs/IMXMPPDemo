@@ -597,8 +597,10 @@
         }
     }
     
+    //创建存储路径文件夹
+    [CommonMethods createDirectory:CHAT_MESSAGE_PATH];
     if (asset == nil) {
-        NSData *imageData = UIImageJPEGRepresentation(self.cameraImage, 1);
+        NSData *imageData = UIImageJPEGRepresentation(self.cameraImage, 1.0);
         float imageSize = imageData.length;
         chatRoomModel.imageSize = imageSize;
         NSString *imageName = [chatRoomModel.content lastPathComponent];
