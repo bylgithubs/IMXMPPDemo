@@ -11,6 +11,7 @@
 @interface ImageScrollViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UIButton *playBtn;
 
 @end
 
@@ -48,6 +49,17 @@
     [self setScrollViewContent:self.image];
     
     [self.view addSubview:scrollView];
+    
+    if (!self.playBtn && self.mediaModel.messageType == Video) {
+        self.playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.playBtn.frame = CGRectMake(SCREEN_WIDTH/2 - 40, SCREEN_HEIGHT/2 - 30, 80, 60);
+        [self.playBtn setTitle:@"播放" forState:UIControlStateNormal];
+        [self.playBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        self.playBtn addTarget:self action:@sele forControlEvents:<#(UIControlEvents)#>
+        [self.view addSubview:self.playBtn];
+    }
+    
+    
 }
 
 //设置视图内容

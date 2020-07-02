@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *content;
 @property (nonatomic,assign) BOOL isOriginalPic;    //是否为原图
 @property (nonatomic,copy) NSString *thumbnail;
+@property (nonatomic,copy) NSString *localFileName; //保存在本地沙盒文件名称
 @property (nonatomic,copy) PHAsset *imageAsset;
 @property (nonatomic,assign) NSInteger oriImageWidth;
 @property (nonatomic,assign) NSInteger oriImageHeight;

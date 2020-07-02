@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "AddressDataModel.h"
 #import "ChatRoomTextCell.h"
+#import "ChatRoomAudioCell.h"
+#import "ChatRoomPictureCell.h"
+#import "ChatRoomVideoCell.h"
 #import "FMDBOperation.h"
 #import "ChatRoomMenuView.h"
 #import "XmppManager.h"
 #import "AddressViewController.h"
 #import "ChatRecordViewController.h"
 #import "AudioRecorder.h"
-#import "ChatRoomAudioCell.h"
 #import <TZImagePickerController/TZImagePickerController.h>
-#import "ChatRoomPictureCell.h"
 #import "ImageScrollViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN

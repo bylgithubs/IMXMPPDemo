@@ -141,6 +141,13 @@
             Cell = [[ChatRoomAudioCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
     }
+    else if(model.messageType == Video){
+        static NSString *cellIdentifier = @"ChatRoomVideoCell";
+        Cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (Cell == nil) {
+            Cell = [[ChatRoomVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+    }
     Cell.delegate = self;
     Cell.chatRoomModel = model;
     [Cell configData];
@@ -271,7 +278,9 @@
             case Audio:
                 chatRecordModel.content = @"[语音]";
                 break;
-                
+            case Video:
+                chatRecordModel.content = @"[视频]";
+                break;
             default:
                 break;
         }
@@ -309,7 +318,10 @@
 - (void)chatRoomCellContentSingleTapAction:(SuperChatRoomCell *)superCell type:(enum MessageType)type filePath:(NSString *)filePath{
     switch (type) {
         case Picture:
-            [self entryPictureDetailViewController:superCell.chatRoomModel];
+            [self entryPictureOrVideoDetailViewController:superCell.chatRoomModel];
+            break;
+        case Video:
+            [self entryPictureOrVideoDetailViewController:superCell.chatRoomModel];
             break;
             
         default:
@@ -317,7 +329,7 @@
     }
 }
 
-- (void)entryPictureDetailViewController:(ChatRoomModel *)chatRoomModel{
+- (void)entryPictureOrVideoDetailViewController:(ChatRoomModel *)chatRoomModel{
     ImageScrollViewController *imageScrollVC = [[ImageScrollViewController alloc] init];
     
     NSData *data = [chatRoomModel.thumbnail base64DecodedData];
@@ -326,6 +338,7 @@
     NSString *orignalPicturePath = CHAT_FILE_PATH(chatRoomModel.content);
     UIImage *localImage = [CommonMethods getImageFromPath:orignalPicturePath];
     
+    imageScrollVC.mediaModel = chatRoomModel;
     if (localImage != nil) {
         //[imageScrollVC setScrollViewContent:localImage];
         imageScrollVC.image = localImage;
@@ -421,28 +434,28 @@
 - (void)pickMovieFrameCamera
 {
     //首先判断是否摄像头是有权限
-    UIImagePickerController *pick = [[UIImagePickerController alloc] init];
-    pick.sourceType = UIImagePickerControllerSourceTypeCamera;
+    _imagePickerC = [[UIImagePickerController alloc] init];
+    _imagePickerC.sourceType = UIImagePickerControllerSourceTypeCamera;
     NSArray* availableMedia = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-    pick.mediaTypes = [NSArray arrayWithObject:availableMedia[1]];
+    _imagePickerC.mediaTypes = [NSArray arrayWithObject:availableMedia[1]];
     //self.IsUseMutli=NO;
-    pick.videoQuality = UIImagePickerControllerQualityTypeHigh;
-    pick.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+    _imagePickerC.videoQuality = UIImagePickerControllerQualityTypeHigh;
+    _imagePickerC.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
     //加密信息录制限制
     NSInteger maxinumDuration=60;
 //    if(self.isSecurity)
 //    {
 //        maxinumDuration=[[self GetsecurityTime:[self.keyBoard.securityBtn titleForState:UIControlStateSelected]] intValue];//self.ddlsecond.uiButton.titleLabel.text
 //    }
-    pick.videoMaximumDuration = maxinumDuration;
-    pick.delegate = self;
+    _imagePickerC.videoMaximumDuration = maxinumDuration;
+    _imagePickerC.delegate = self;
     //        pick.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     //pick.showsCameraControls=NO;
-    pick.allowsEditing = NO;
+    _imagePickerC.allowsEditing = NO;
     
     //有权限跳转，无权限提示
     [CommonMethods getUserCameraAuthorization:_imagePickerC completionBlock:^{
-        [self presentViewController:pick animated:YES completion:nil];
+        [self presentViewController:self.imagePickerC animated:YES completion:nil];
     }];
     
 }
@@ -633,6 +646,7 @@
             }];
         } else if (mediaType == PHAssetMediaTypeVideo){
             NSString *videoName = [NSString stringWithFormat:@"video_%@.3gp",[CommonMethods getUUid]];
+            chatRoomModel.localFileName = videoName;
             NSURL *outputUrl = [NSURL fileURLWithPath:CHAT_FILE_PATH(videoName)];
             // 取出视频 并获取AVAsset 用于压缩
             PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
@@ -680,7 +694,7 @@
                                  chatRoomModel.content = model.content;
                                  chatRoomModel.thumbnail = model.thumbnail;
                                  //插入DB
-                                 [self sendMessageAndInsertDB:chatRoomModel messageType:chatRoomModel.messageType isUploadFile:YES];
+                                 [weakSelf sendMessageAndInsertDB:chatRoomModel messageType:chatRoomModel.messageType isUploadFile:YES];
                              });
                          }
                          else

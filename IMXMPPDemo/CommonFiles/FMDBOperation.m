@@ -62,7 +62,7 @@ static FMDBOperation *sharedInstance = nil;
     }
     
     tableName = @"ChatMessage";
-    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type integer,contact_type varchar,content text,is_original_pic varchar,thumbnail text,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
+    sqlStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(_id integer PRIMARY KEY AUTOINCREMENT,uid varchar,room_id varchar,user_nick varchar,message_from varchar,message_to varchar,message_type integer,contact_type varchar,content text,is_original_pic varchar,thumbnail text,local_file_Name varchar,oriImage_width varchar,oriImage_height varchar,imageSize varchar,send_date varchar)",tableName];
     NSLog(@"===%@",sqlStr);
     result = [self.dbOperation executeUpdate:sqlStr];
     if (result) {
@@ -150,8 +150,8 @@ static FMDBOperation *sharedInstance = nil;
 - (void)insertChatMessage:(ChatRoomModel *)model{
 
     [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        NSString *sqlStr = @"insert into ChatMessage(uid,room_id,user_nick,message_from,message_to,message_type,contact_type,content,is_original_pic,thumbnail,oriImage_width,oriImage_height,imageSize,send_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        [db executeUpdate:sqlStr,model.uId,model.roomId,model.userNick,model.messageFrom,model.messageTo,[NSNumber numberWithInt:model.messageType],model.contactType,model.content,[NSString stringWithFormat:@"%d",model.isOriginalPic],model.thumbnail,[NSString stringWithFormat:@"%ld",model.oriImageWidth],[NSString stringWithFormat:@"%ld",(long)model.oriImageHeight],[NSNumber numberWithLong:model.imageSize],model.sendDate];
+        NSString *sqlStr = @"insert into ChatMessage(uid,room_id,user_nick,message_from,message_to,message_type,contact_type,content,is_original_pic,thumbnail,local_file_name,oriImage_width,oriImage_height,imageSize,send_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        [db executeUpdate:sqlStr,model.uId,model.roomId,model.userNick,model.messageFrom,model.messageTo,[NSNumber numberWithInt:model.messageType],model.contactType,model.content,[NSString stringWithFormat:@"%d",model.isOriginalPic],model.thumbnail,model.localFileName,[NSString stringWithFormat:@"%ld",model.oriImageWidth],[NSString stringWithFormat:@"%ld",(long)model.oriImageHeight],[NSNumber numberWithLong:model.imageSize],model.sendDate];
     }];
 }
 
@@ -189,6 +189,7 @@ static FMDBOperation *sharedInstance = nil;
             model.content = [resultSet stringForColumn:@"content"];
             model.isOriginalPic = [resultSet boolForColumn:@"is_original_pic"];
             model.thumbnail = [resultSet stringForColumn:@"thumbnail"];
+            model.localFileName = [resultSet stringForColumn:@"local_file_name"];
             model.oriImageWidth = [resultSet intForColumn:@"oriImage_width"];
             model.oriImageHeight = [resultSet intForColumn:@"oriImage_height"];
             model.imageSize = [resultSet intForColumn:@"imageSize"];
