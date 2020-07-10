@@ -399,14 +399,13 @@
             [self pickImageFromPhotoAlbum];
             break;
         case 2:
-            [self pickImageFrameCamera];
+            [self pickImageFromCamera];
             break;
         case 3:
-            [self pickMovieFrameCamera];
+            [self pickMovieFromCamera];
             break;
         case 4:
-            
-            
+            [self entryMapView];
             break;
         default:
             break;
@@ -414,7 +413,7 @@
     //[[NSNotificationCenter defaultCenter] postNotificationName:RESIGNKEYBOARD object:nil];
 }
 
-- (void)pickImageFrameCamera{
+- (void)pickImageFromCamera{
     //判断摄像头是否打开
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         _imagePickerC = [[UIImagePickerController alloc] init];
@@ -431,7 +430,7 @@
     }
 }
 
-- (void)pickMovieFrameCamera
+- (void)pickMovieFromCamera
 {
     //首先判断是否摄像头是有权限
     _imagePickerC = [[UIImagePickerController alloc] init];
@@ -458,6 +457,11 @@
         [self presentViewController:self.imagePickerC animated:YES completion:nil];
     }];
     
+}
+
+- (void)entryMapView{
+    ShareLocationViewController *shareLocationVC = [[ShareLocationViewController alloc] init];
+    [self.navigationController pushViewController:shareLocationVC animated:YES];
 }
 
 #pragma mark 相机代理

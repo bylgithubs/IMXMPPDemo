@@ -20,6 +20,7 @@
 #import "AudioRecorder.h"
 #import <TZImagePickerController/TZImagePickerController.h>
 #import "ImageScrollViewController.h"
+#import "ShareLocationViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
