@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIButton *playBtn;
+@property (nonatomic, strong) AVPlayerViewController *avPlayVC;
 
 @end
 
@@ -55,11 +56,16 @@
         self.playBtn.frame = CGRectMake(SCREEN_WIDTH/2 - 40, SCREEN_HEIGHT/2 - 30, 80, 60);
         [self.playBtn setTitle:@"播放" forState:UIControlStateNormal];
         [self.playBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-        self.playBtn addTarget:self action:@sele forControlEvents:<#(UIControlEvents)#>
+        [self.playBtn addTarget:self action:@selector(playVideoAction) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.playBtn];
     }
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapAction)];
+    [self.view addGestureRecognizer:singleTap];
     
-    
+}
+
+- (void)singleTapAction{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //设置视图内容
@@ -68,6 +74,38 @@
     imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     [scrollView addSubview:imageView];
 }
+
+- (void)playVideoAction{
+    ChatRoomModel *model = _mediaModel;
+    NSString *videoPath = CHAT_FILE_PATH(_mediaModel.localFileName);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handDeviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    AVPlayer *avPlayer = [AVPlayer playerWithURL:[NSURL fileURLWithPath:videoPath]];
+    //视频控制器对象
+    AVPlayerViewController *playerViewController = [[AVPlayerViewController alloc] init];
+    //控制器设置播放器对象
+    playerViewController.player = avPlayer;
+    //视图填充模式
+    playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;
+    //是否显示播放控制条
+    playerViewController.showsPlaybackControls = YES;
+    self.avPlayVC = playerViewController;
+    self.avPlayVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    [self presentViewController:self.avPlayVC animated:NO completion:nil];
+    [self.avPlayVC.player play];
+}
+
+- (void)handDeviceOrientationDidChange:(UIInterfaceOrientation)ratation{
+    UIDevice *currentDvc = [UIDevice currentDevice];
+    switch (currentDvc.orientation) {
+        case UIDeviceOrientationUnknown:
+        case UIDeviceOrientationFaceUp:
+        case UIDeviceOrientationFaceDown:
+            break;
+        default:
+            break;
+    }
+}
+
 /*
 #pragma mark - Navigation
 

@@ -50,7 +50,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define USER_FOLDER [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",CURRENTUSER]]
 #define DATABASE_PATH [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",CURRENTUSER,DATABASE_NAME]]
 #define CHAT_MESSAGE_PATH [DOCUMENT_PATH stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",CURRENTUSER,CHAT_MESSAGE_FOLDER]]
-#define CHAT_FILE_PATH(IMAGE_NAME) [CHAT_MESSAGE_PATH stringByAppendingPathComponent:IMAGE_NAME]
+#define CHAT_FILE_PATH(FILE_NAME) [CHAT_MESSAGE_PATH stringByAppendingPathComponent:FILE_NAME]
 
 #pragma mark 添加通知
 #define LOGIN_SUCCESS @"LoginSuccess"
