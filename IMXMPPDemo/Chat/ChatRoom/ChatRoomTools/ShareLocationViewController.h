@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ShareLocationViewController : UIViewController
 
+@property (nonatomic,strong) MKMapView *mapView;
+@property (nonatomic,strong) CLLocationManager *locationManager;
+@property (nonatomic,strong) MKAnnotationView *annotationView;
+@property (nonatomic,strong) CLGeocoder *geocoder;
+
 @end
 
 NS_ASSUME_NONNULL_END
