@@ -7,6 +7,7 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - JZLocationConverter (1.0.0)
   - KissXML (5.3.1):
     - KissXML/All (= 5.3.1)
   - KissXML/Additions (5.3.1):
@@ -29,6 +30,7 @@ PODS:
 DEPENDENCIES:
   - Base64nl (~> 1.2)
   - FMDB (~> 2.7.5)
+  - JZLocationConverter (~> 1.0.0)
   - Masonry (~> 1.1.0)
   - TZImagePickerController (~> 3.2.8)
   - XMPPFramework (~> 4.0.0)
@@ -39,6 +41,7 @@ SPEC REPOS:
     - CocoaAsyncSocket
     - CocoaLumberjack
     - FMDB
+    - JZLocationConverter
     - KissXML
     - libidn
     - Masonry
@@ -50,12 +53,13 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  JZLocationConverter: 3d816bee6484aed9c155a6045a02ce444833e2f0
   KissXML: 5c8e0f2e8b9f071d3e1ae123dec3eb5da615c10c
   libidn: e4576a956b797c584c77aaedfc6e3dd639b61bdc
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   TZImagePickerController: 4b0a5d3abe6351b6c9ec52c7be0fa9a5bbca23f6
   XMPPFramework: 5d31ff9f73dce031b24bc49bcf88093627a3a86e
 
-PODFILE CHECKSUM: 1d55a97f38069a44fda82c4e59ca6a834aaad772
+PODFILE CHECKSUM: 25c6567927b1209ec7b231cbfa3b5430a6fcac0c
 
 COCOAPODS: 1.9.1

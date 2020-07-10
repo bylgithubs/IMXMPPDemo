@@ -8,6 +8,7 @@ target 'IMXMPPDemo' do
  pod 'FMDB', '~> 2.7.5'
  pod 'TZImagePickerController', '~> 3.2.8'
  pod 'Base64nl', '~> 1.2'
+ pod 'JZLocationConverter', '~> 1.0.0'
  
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
