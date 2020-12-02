@@ -30,7 +30,7 @@
 
 - (void)initUI{
     self.tabBarController.tabBar.hidden = YES;
-    [self setTitle:@"创建群聊"];
+    [self setTitle:self.groupChatModel.title];
     self.view.backgroundColor = [UIColor whiteColor];
     tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     tableView.delegate = self;
@@ -40,7 +40,7 @@
     UIView *backBtnView = [CommonComponentMethods setLeftBarItems:self];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtnView];
     //底部按钮
-    [CommonComponentMethods setBottonButton:self titleWithButton:@"创建群聊"];
+    [CommonComponentMethods setBottonButton:self titleWithButton:self.groupChatModel.bottonButtonTitle];
     
 }
 
@@ -105,14 +105,21 @@
     ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc] init];
     NSMutableArray *friendList = [[NSMutableArray alloc] init];
     NSString *groupName = CURRENTUSER;
+    if (self.groupChatModel.type == InviteFriends) {
+        for (int i = 1; i < self.groupChatModel.hasExistFriendsArr.count; i++) {
+            groupName = [groupName stringByAppendingFormat:@",%@",self.groupChatModel.hasExistFriendsArr[i]];
+        }
+    }
     RosterListModel *model;
     NSString *key;
     NSArray *allkeys = [self.selectedDic allKeys];
     for (int i = 0; i < allkeys.count; i++) {
         key = [allkeys objectAtIndex:i];
         model = [self.selectedDic objectForKey:key];
-        groupName = [groupName stringByAppendingFormat:@",%@",model.nick];
-        [friendList addObject:model.uid];
+        if (![self.groupChatModel.hasExistFriendsArr containsObject:model.uid]) {
+            groupName = [groupName stringByAppendingFormat:@",%@",model.nick];
+            [friendList addObject:model.uid];
+        }
     }
 //    NSEnumerator *enumerator = [self.selectedDic objectEnumerator];
 //    while (model = [enumerator nextObject]) {
@@ -121,7 +128,7 @@
     RosterListModel *rosterModel = [[RosterListModel alloc] init];
     rosterModel.jid = [NSString stringWithFormat:@"%@@%@",[CommonMethods getGoupChatRoomID],SERVER_DOMAIN];
     rosterModel.uid = [CommonMethods getGoupChatRoomID];
-    rosterModel.item_type = GROUP;
+    rosterModel.item_type = self.groupChatModel.type;
     rosterModel.domain = SERVER_DOMAIN;
     rosterModel.nick = groupName;
     rosterModel.resource = XMPP_RESOURCE;
@@ -129,8 +136,13 @@
     chatRoomVC.rosterListModel = rosterModel;
     
     XmppManager *xmppManager = [XmppManager sharedInstance];
-    [xmppManager createGroupChat:friendList];
-    
+    if (friendList.count > 0) {
+        if (self.groupChatModel.type == CreateGroupChat) {
+            [xmppManager createGroupChat:friendList];
+        } else {
+            [xmppManager sendInviteFriendRequest:friendList];
+        }
+    }
     [self.navigationController pushViewController:chatRoomVC animated:YES];
 }
 

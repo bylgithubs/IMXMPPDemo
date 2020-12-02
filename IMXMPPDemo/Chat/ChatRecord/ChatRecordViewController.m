@@ -143,6 +143,11 @@
 
 - (void)createGroupChatClickAction{
     CreateGroupChatViewController *createGroupChatVC = [[CreateGroupChatViewController alloc] init];
+    GroupChatModel *groupChatModel = [[GroupChatModel alloc] init];
+    groupChatModel.title = @"创建群聊";
+    groupChatModel.type = CreateGroupChat;
+    groupChatModel.bottonButtonTitle = @"创建群聊";
+    createGroupChatVC.groupChatModel = groupChatModel;
     [self.navigationController pushViewController:createGroupChatVC animated:YES];
 }
 

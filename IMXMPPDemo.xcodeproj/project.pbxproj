@@ -52,6 +52,7 @@
 		6487B278248E118B00C7029B /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B277248E118B00C7029B /* IPManager.m */; };
 		6487B27C248E281700C7029B /* CustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B27B248E281700C7029B /* CustomCollectionView.m */; };
 		6487B280248E331900C7029B /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6487B27F248E331900C7029B /* CustomCollectionViewCell.m */; };
+		649172B22577709700184C44 /* GroupChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 649172B12577709700184C44 /* GroupChatModel.m */; };
 		64AABCFB24B839CE009E23BE /* ShareLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64AABCFA24B839CE009E23BE /* ShareLocationViewController.m */; };
 		64B07B8E24878DDC00031530 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B07B8D24878DDB00031530 /* AudioRecorder.m */; };
 		64B07B9124879B3600031530 /* ChatRoomAudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B07B9024879B3600031530 /* ChatRoomAudioCell.m */; };
@@ -152,6 +153,8 @@
 		6487B27B248E281700C7029B /* CustomCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionView.m; sourceTree = "<group>"; };
 		6487B27E248E331900C7029B /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = "<group>"; };
 		6487B27F248E331900C7029B /* CustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCell.m; sourceTree = "<group>"; };
+		649172B02577709700184C44 /* GroupChatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupChatModel.h; sourceTree = "<group>"; };
+		649172B12577709700184C44 /* GroupChatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupChatModel.m; sourceTree = "<group>"; };
 		64AABCF924B839CE009E23BE /* ShareLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareLocationViewController.h; sourceTree = "<group>"; };
 		64AABCFA24B839CE009E23BE /* ShareLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareLocationViewController.m; sourceTree = "<group>"; };
 		64B07B8C24878DDB00031530 /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
@@ -463,6 +466,7 @@
 		6470AE82246CDA68008426F0 /* GroupChat */ = {
 			isa = PBXGroup;
 			children = (
+				649172AF2577704500184C44 /* GroupChatModel */,
 				6470AE86246CDDC2008426F0 /* CreateGroupChatCell */,
 				6470AE83246CDB5B008426F0 /* CreateGroupChatViewController.h */,
 				6470AE84246CDB5B008426F0 /* CreateGroupChatViewController.m */,
@@ -562,6 +566,15 @@
 				6487B27F248E331900C7029B /* CustomCollectionViewCell.m */,
 			);
 			path = CustomCollectionCell;
+			sourceTree = "<group>";
+		};
+		649172AF2577704500184C44 /* GroupChatModel */ = {
+			isa = PBXGroup;
+			children = (
+				649172B02577709700184C44 /* GroupChatModel.h */,
+				649172B12577709700184C44 /* GroupChatModel.m */,
+			);
+			path = GroupChatModel;
 			sourceTree = "<group>";
 		};
 		64AABCF824B83944009E23BE /* ChatRoomTools */ = {
@@ -772,6 +785,7 @@
 				64B07B9124879B3600031530 /* ChatRoomAudioCell.m in Sources */,
 				6470597324694724005CEF12 /* AddressTableViewCell.m in Sources */,
 				647166602463A56600A64520 /* AddFriendCell.m in Sources */,
+				649172B22577709700184C44 /* GroupChatModel.m in Sources */,
 				6470597424694724005CEF12 /* AddressSideView.m in Sources */,
 				6406606624615F1700AF4975 /* ChatRoomModel.m in Sources */,
 				6487B278248E118B00C7029B /* IPManager.m in Sources */,

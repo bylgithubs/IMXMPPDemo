@@ -54,6 +54,15 @@
     tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     UIView *backBtnView = [CommonComponentMethods setLeftBarItems:self];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtnView];
+    
+    UIButton *inviteFriendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    inviteFriendBtn.frame = CGRectMake(0, 0, 80, 30);
+    [inviteFriendBtn setTitle:@"邀请好友" forState:UIControlStateNormal];
+    inviteFriendBtn.backgroundColor = [UIColor blueColor];
+    [inviteFriendBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [inviteFriendBtn addTarget:self action:@selector(inviteFriendJoinChat) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:inviteFriendBtn];
+    
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
@@ -104,6 +113,18 @@
     if (rowNumber<1) return;
     NSIndexPath *index = [NSIndexPath indexPathForRow:rowNumber-1 inSection:sectionNumber-1];  //取最后一行数据
     [tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+- (void)inviteFriendJoinChat{
+    CreateGroupChatViewController *createGroupChatVC = [[CreateGroupChatViewController alloc] init];
+    NSArray *memberArr = [self.rosterListModel.nick componentsSeparatedByString:@","];
+    GroupChatModel *groupChatModel = [[GroupChatModel alloc] init];
+    groupChatModel.title = @"邀请好友";
+    groupChatModel.type = InviteFriends;
+    groupChatModel.bottonButtonTitle = @"确定";
+    groupChatModel.hasExistFriendsArr = [NSMutableArray arrayWithArray:memberArr];
+    createGroupChatVC.groupChatModel = groupChatModel;
+    [self.navigationController pushViewController:createGroupChatVC animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

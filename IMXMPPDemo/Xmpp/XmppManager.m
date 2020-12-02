@@ -278,6 +278,7 @@
 
     [xmppRoom fetchConfigurationForm];
     [xmppRoom addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    [xmppRoom joinRoomUsingNickname:CURRENTUSER history:nil password:nil];
 }
 
 -(void)xmppRoomDidCreate:(XMPPRoom *)sender
@@ -326,7 +327,9 @@
     NSXMLElement *fieldOwners = [NSXMLElement elementWithName:@"field"];
     NSXMLElement *valueOwners = [NSXMLElement elementWithName:@"value"];
     //永久房间
-    [field addAttributeWithName:@"var" stringValue:@"muc#roomconfig_persistentroom"];
+//    [field addAttributeWithName:@"var" stringValue:@"muc#roomconfig_persistentroom"];
+    [field addAttributeWithName:@"var" stringValue:@"muc#roomconfig_moderatedroom"];
+    //临时房间
     [field1 addAttributeWithName:@"var" stringValue:@"muc#roomconfig_allowinvites"];
     //谁创建的房间
     [fieldOwners addAttributeWithName:@"var" stringValue:@"muc#roomconfig_roomowners"];

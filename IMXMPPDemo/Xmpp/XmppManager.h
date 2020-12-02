@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //初始化聊天室
 - (void)createGroupChat:(NSMutableArray *)friendList;
+//发送添加好友请求
+- (void)sendInviteFriendRequest:(NSMutableArray *)friendList;
 
 @end
 

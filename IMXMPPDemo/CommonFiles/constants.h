@@ -76,8 +76,9 @@ enum MessageType{
     Map,
     Gif,
     Doc,
-    Invite,
-    Group
+    AddFriend,
+    InviteFriends,
+    CreateGroupChat
 };
 
 #define PERSONAL @"Personal"

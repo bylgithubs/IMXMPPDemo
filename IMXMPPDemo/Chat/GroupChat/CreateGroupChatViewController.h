@@ -11,10 +11,13 @@
 #import "FMDBOperation.h"
 #import "ChatRoomViewController.h"
 #import "RosterListModel.h"
+#import "GroupChatModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CreateGroupChatViewController : UIViewController
+
+@property(nonatomic,strong) GroupChatModel *groupChatModel;
 
 @end
 
