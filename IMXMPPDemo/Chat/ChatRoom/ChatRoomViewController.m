@@ -419,6 +419,7 @@
         _imagePickerC = [[UIImagePickerController alloc] init];
         //告诉picker对象是获取相机资源
         _imagePickerC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        _imagePickerC.cameraFlashMode = UIImagePickerControllerCameraCaptureModePhoto;
         _imagePickerC.delegate = self;
         _imagePickerC.allowsEditing = YES;
         //设置进去的模态方式
@@ -436,10 +437,12 @@
     _imagePickerC = [[UIImagePickerController alloc] init];
     _imagePickerC.sourceType = UIImagePickerControllerSourceTypeCamera;
     NSArray* availableMedia = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+    //mediaTypes:videoQuality:媒体类型，视频质量照相可以不设置，录像必须设置。
     _imagePickerC.mediaTypes = [NSArray arrayWithObject:availableMedia[1]];
     //self.IsUseMutli=NO;
     _imagePickerC.videoQuality = UIImagePickerControllerQualityTypeHigh;
-    _imagePickerC.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+    _imagePickerC.cameraFlashMode = UIImagePickerControllerCameraCaptureModeVideo;
+//    _imagePickerC.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
     //加密信息录制限制
     NSInteger maxinumDuration=60;
 //    if(self.isSecurity)
@@ -468,6 +471,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
     //获取选中资源的类型
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
     
     if ([mediaType isEqualToString:@"public.image"]) {
         self.cameraImage = [info objectForKey:UIImagePickerControllerEditedImage];
@@ -499,10 +503,10 @@
 
 - (void)pickImageFromPhotoAlbum{
     TZImagePickerController *imagePickerC = [[TZImagePickerController alloc] initWithMaxImagesCount:9 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
-    imagePickerC.videoMaximumDuration = 10;//视频最大拍摄时间
-    [imagePickerC setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
-        imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
-    }];
+    //imagePickerC.videoMaximumDuration = 10;//视频最大拍摄时间
+//    [imagePickerC setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
+//        imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
+//    }];
     
     [imagePickerC setPhotoPreviewPageUIConfigBlock:^(UICollectionView *collectionView, UIView *naviBar, UIButton *backButton, UIButton *selectButton, UILabel *indexLabel, UIView *toolBar, UIButton *originalPhotoButton, UILabel *originalPhotoLabel, UIButton *doneButton, UIImageView *numberImageView, UILabel *numberLabel) {
         [doneButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];

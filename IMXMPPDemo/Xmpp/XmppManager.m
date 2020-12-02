@@ -47,6 +47,7 @@
     xmppReconnect = [[XMPPReconnect alloc] init];
     self.roomStorage = [[XMPPRoomCoreDataStorage alloc] init];
     
+    //XMPPMUC:用于客户端对收到邀请做出响应
     self.xmppMUC = [[XMPPMUC alloc] initWithDispatchQueue:dispatch_get_main_queue()];
     [self.xmppMUC activate:xmppStream];
     [self.xmppMUC addDelegate:self delegateQueue:dispatch_get_main_queue()];
