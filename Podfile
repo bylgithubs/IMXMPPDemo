@@ -9,7 +9,7 @@ target 'IMXMPPDemo' do
  pod 'TZImagePickerController', '~> 3.2.8'
  pod 'Base64nl', '~> 1.2'
  pod 'JZLocationConverter', '~> 1.0.0'
- pod 'CocoaLumberjack', '~> 3.6.0'
+ pod 'CocoaLumberjack', '~> 3.7.0'
  pod 'Base64nl', '~> 1.2'
  pod 'CocoaAsyncSocket', '~> 7.6.3'
  pod 'KissXML', '~> 5.3.1'
