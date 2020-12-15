@@ -16,6 +16,7 @@
 @property (nonatomic,strong) UITextField *passwardTextField;
 @property (nonatomic,strong) UIButton *loginBtn;
 @property (nonatomic,strong) UIButton *registerBtn;
+@property (nonatomic,strong) UIButton *offlineLoginBtn;
 //@property (nonatomic,strong) NSString *userName;
 //@property (nonatomic,strong) NSString *passward;
 
@@ -72,6 +73,17 @@
     
     [self.loginBtn addTarget:self action:@selector(loginClickAction) forControlEvents:UIControlEventTouchUpInside];
     
+    self.offlineLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.offlineLoginBtn setTitle:@"本地登录" forState:UIControlStateNormal];
+    [self.offlineLoginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.offlineLoginBtn.layer.masksToBounds = YES;
+    self.offlineLoginBtn.layer.cornerRadius = 8;
+    self.offlineLoginBtn.layer.borderWidth = 1.0f;
+    
+    self.offlineLoginBtn.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    [self.offlineLoginBtn addTarget:self action:@selector(offlineLoginClickAction) forControlEvents:UIControlEventTouchUpInside];
+    
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.registerBtn setTitle:@"注册" forState:UIControlStateNormal];
     [self.registerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -87,6 +99,7 @@
     self.passwardLabel.backgroundColor = [UIColor whiteColor];
     self.passwardTextField.backgroundColor = [UIColor whiteColor];
     self.loginBtn.backgroundColor = [UIColor whiteColor];
+    self.offlineLoginBtn.backgroundColor = [UIColor whiteColor];
     self.registerBtn.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.userNameLabel];
@@ -94,6 +107,7 @@
     [self.view addSubview:self.userNameTextField];
     [self.view addSubview:self.passwardTextField];
     [self.view addSubview:self.loginBtn];
+    [self.view addSubview:self.offlineLoginBtn];
     [self.view addSubview:self.registerBtn];
     
     CGFloat width = 70;
@@ -136,6 +150,13 @@
         make.width.mas_equalTo(width);
         make.height.mas_equalTo(height);
     }];
+    
+    [self.offlineLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.loginBtn.mas_bottom).mas_offset(20);
+        make.left.mas_equalTo(self.loginBtn.mas_left).mas_offset(35);
+        make.width.mas_equalTo(width*1.5);
+        make.height.mas_equalTo(height);
+    }];
 }
 
 - (void)initData{
@@ -157,6 +178,11 @@
     [xmppManager connectToServer:self.userNameTextField.text passward:self.passwardTextField.text];
     self.userNameTextField.text = @"";
     self.passwardTextField.text = @"";
+}
+
+- (void)offlineLoginClickAction{
+//    [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:self.rosterArr];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_SUCCESS object:nil];
 }
 
 /*

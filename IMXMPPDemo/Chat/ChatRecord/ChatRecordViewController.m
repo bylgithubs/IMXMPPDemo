@@ -91,6 +91,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    XmppManager *manager = [XmppManager sharedInstance];
+    [manager sendIQAndGetRoster];
     ChatRecordModel *model = self.dataArr[indexPath.row];
     RosterListModel *rosterListModel = [[RosterListModel alloc] init];
     rosterListModel.uid = model.uId;

@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)createGroupChat:(NSMutableArray *)friendList;
 //发送添加好友请求
 - (void)sendInviteFriendRequest:(NSMutableArray *)friendList;
-
+- (void)sendIQAndGetRoster;
 @end
 
 NS_ASSUME_NONNULL_END

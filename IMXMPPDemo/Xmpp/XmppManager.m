@@ -210,6 +210,12 @@
 {
     NSLog(@"发送失败");
 }
+
+//接收服务器返回的iq消息
+- (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq{
+    return YES;
+}
+
 //接收到消息触发
 -(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
@@ -315,6 +321,14 @@
 //    [self.xmppStream sendElement:iq];
 //
 //}
+
+- (void)sendIQAndGetRoster{
+    NSXMLElement *iq = [NSXMLElement elementWithName:@"iq"];
+    [iq addAttributeWithName:@"type" stringValue:@"get"];
+    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:roster"];
+    [iq addChild:query];
+    [xmppStream sendElement:iq];
+}
 
 - (void)sendRoomConfig{
     NSXMLElement *x = [NSXMLElement elementWithName:@"x" xmlns:@"jabber:x:data"];

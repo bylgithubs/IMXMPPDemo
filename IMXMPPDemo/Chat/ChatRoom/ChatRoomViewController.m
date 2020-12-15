@@ -458,7 +458,7 @@
     _imagePickerC = [[UIImagePickerController alloc] init];
     _imagePickerC.sourceType = UIImagePickerControllerSourceTypeCamera;
     NSArray* availableMedia = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-    //mediaTypes:videoQuality:媒体类型，视频质量照相可以不设置，录像必须设置。
+    //mediaTypes:videoQuality:媒体类型，视频质量,照相可以不设置，录像必须设置。
     _imagePickerC.mediaTypes = [NSArray arrayWithObject:availableMedia[1]];
     //self.IsUseMutli=NO;
     _imagePickerC.videoQuality = UIImagePickerControllerQualityTypeHigh;
